@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天津市机动车排污检控中心监控平台</title>
+
+		<link href="../css/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="../css/easyui.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../../css/header.css" />
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				background: #f4f4f4;
+			}
+			
+			* {
+				font-family: "微软雅黑";
+				font-size: 13px;
+				letter-spacing: 1px;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		
+		<div class="pagewrap" style="width:100%;height:100%;">
+				<div style="height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;width:100%;">检测站管理</div>
+		
+			
+			<div style="width:100%;height:42px;background:#f4f4f4;">
+
+				<div style="float:left;margin-left:20px;margin-top:7px;">
+					<div style="float:left;height:27px;line-height:27px;">检测站名称：</div>
+					<div style="float:left;height:27px;"><input class="_cunitname" style="height:27px;" type="text" /><input style="display:none" id="txtUnit" type="text" /></div>
+				</div>
+				<div class="page-search" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">查询</div>
+				<div class="page-refresh" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">刷新</div>
+			</div>
+			<div style="width:100%;height:635px;background:#f4f4f4;">
+				<div style="width:100%;height:100%;">
+					<table class="page-table"></table>
+				</div>
+			</div>
+		</div>
+
+		<script src="../js/jquery-2.2.1.min.js"></script>
+		<script src="../js/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../js/column.js" ></script>
+		<script>
+			$.ajax({
+				url: '../../AjaxHandler/AjaxService.ashx?method=QueryJCZ',
+				type: 'post',
+				dataType: 'json',
+				timeout: 10000, //设定超时
+				cache: false, //禁用缓存
+				error: function(xml) {
+
+				},
+				success: function(json) {
+					//console.log(json);
+					var arrCounty = [];
+					var arrUnit = [];
+					for(var i = 0; i < json.rows.length; i++) {
+						arrCounty.push(json.rows[i].COUNTY);
+						arrUnit.push(json.rows[i]);
+						//$(".jcz").append("<div onclick=\" window.location.href='shipinzhongzhuan.html?UnitName=" + escape(json.rows[i].CUNITNAME)+"'\" style=\"width:100%;height: 27px; line-height:27px; text-indent:15px; \"><i class=\"icon-file\"></i>&nbsp;" + json.rows[i].CUNITNAME + "</div>");
+					}
+					//console.log(arrCounty);
+					arrCounty = arrCounty.unique();
+					for(var i = 0; i < arrCounty.length; i++) {
+						//$(".jcz").append("<div class=\"county\" value=\"" + arrUnit[j].COUNTY+"\" name=\"county" + i +"\" style=\"width:100%;height:27px; line-height:27px;text-indent:15px;\"><i class=\"icon-plus\"></i>&nbsp;" + arrCounty[i] + "</div>");
+						var flag = true;
+						for(var j = 0; j < arrUnit.length; j++) {
+							if(flag) {
+								$(".jcz").append("<div class=\"county-part\" value=\"" + arrUnit[j].AREACODE + "\" style=\"display:none;width:100%;height:27px; line-height:27px;text-indent:15px;\">&nbsp;&nbsp;&nbsp;&nbsp;<i class=\"icon-file\"></i>&nbsp;" + arrCounty[i] + "</div>");
+								flag = false;
+							}
+							if(arrUnit[j].COUNTY == arrCounty[i]) {
+								arrUnit.splice(j, 1);
+								j--;
+							}
+						}
+					}
+					$(".county,.county-part").click(function() {
+						var temp = $(this).attr("value");
+						$("#txtUnit").val(temp);
+						tablerefresh(1, 50);
+					});
+					$(".county").click(function() {
+						var self = $(this);
+						var selfIcon = self.find("i");
+						if(selfIcon.hasClass("icon-plus")) {
+							//alert("+");
+							selfIcon.removeClass("icon-plus");
+							selfIcon.addClass("icon-minus");
+						} else if(selfIcon.hasClass("icon-minus")) {
+							// alert("-");
+							selfIcon.removeClass("icon-minus");
+							selfIcon.addClass("icon-plus");
+						}
+
+						var selfUnit = $(".county-part");
+						if(selfUnit.css("display") == "none") {
+							selfUnit.css("display", "block");
+
+						} else if(selfUnit.css("display") == "block") {
+							selfUnit.css("display", "none");
+						}
+
+					});
+				}
+			});
+
+			Array.prototype.unique = function() {
+				var res = [];
+				var json = {};
+				for(var i = 0; i < this.length; i++) {
+					if(!json[this[i]]) {
+						res.push(this[i]);
+						json[this[i]] = 1;
+					}
+				}
+				return res;
+			}
+
+			$('.page-table').datagrid({
+				columns: [
+					[{
+							field: '',
+							title: '',
+							checkbox: true
+						},
+						{
+							field: 'CUNITNAME',
+							title: '检测站名称',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'CIPADDRESS',
+							title: '服务器IP地址',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'CDIRECTOR',
+							title: '负责人',
+							width: 50,
+							align: 'center'
+						},
+						{
+							field: 'CLINKMAN',
+							title: '联系人',
+							width: 50,
+							align: 'center'
+						},
+						{
+							field: 'CPHONE',
+							title: '联系电话',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'ISLOCK',
+							align: 'center',
+							title: '是否锁止',
+							width: 25,
+							formatter: function(value, row, index) {
+								return(value == '1' ? '是' : '否');
+							}
+						},
+						{
+							field: 'exec',
+							title: '操作',
+							width: 25,
+							formatter: function(value, row, index) {
+								var temp = value == '1' ? '解锁' : '锁定';
+								return "<div><input type='button' value='" + temp + "' onclick='alert(\"" + temp + "成功\")' /></div>";
+							}
+						}
+
+					]
+				],
+				fitColumns: true,
+				striped: true,
+				pagination: true,
+				rownumbers: true,
+				height: 635,
+				selectOnCheck: true,
+				resizable: true,
+				loadMsg: '...加载中',
+				pageSize: 50,
+				pageList: [20, 50, 100, 150],
+				singleSelect: true
+
+			});
+
+			function tablerefresh(_pagenumber, _pagesize) {
+				$.ajax({
+					url: "../../../AjaxHandler/AjaxService.ashx",
+					data: {
+						method: 'GetShuJuFanKongInfo',
+						pagenumber: _pagenumber,
+						pagesize: _pagesize,
+						cunitname: $('._cunitname').val(),
+						UnitName: $("#txtUnit").val()
+					},
+					async: false,
+					dataType: "json",
+					type: "post",
+					success: function(json) {
+
+						$('.page-table').datagrid('loadData', json);
+					},
+					error: function(xhr) {
+
+					}
+				});
+			}
+
+			tablerefresh(1, 50);
+
+			$('.page-search').click(function() {
+				tablerefresh(1, 50);
+			});
+
+			$('.page-table').datagrid('getPager').pagination({
+				onSelectPage: function(pageNumber, pageSize) {
+					tablerefresh(pageNumber, pageSize);
+				}
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,573 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天津市机动车排污检控中心监控平台</title>
+		<!-- Bootstrap Styles-->
+
+		<!-- Chart Js -->
+
+		<link href="css/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="css/easyui.css" rel="stylesheet" type="text/css">
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				background: #f4f4f4;
+			}
+			
+			* {
+				font-family: "微软雅黑";
+				font-size: 13px;
+				letter-spacing: 1px;
+			}
+			
+			.datagrid-cell {
+				overflow: hidden !important;
+				text-overflow: ellipsis !important;
+				white-space: nowrap !important;
+			}
+			input[type="text"],select{
+				height:26px;
+			}
+			.inputgrp{
+				float:left;
+				width:50%;
+				text-align: right;
+				margin:10px 0 0;
+			}
+			.inputgrp>.inputgrp_first{
+				width:50%;
+				float:left;
+				height:28px;
+				line-height:28px;
+			}
+			.inputgrp>.inputgrp_second{
+				float:left;
+				width:50%;
+				padding-right:10px;
+				line-height:28px;
+				height:28px;
+			}
+			.inputgrp_second>div{
+				width:50%;
+				float:left;
+				padding:0 10px;
+				position:relative;
+			}
+			.inputgrp_second>div>span{
+				position:absolute;
+				left:-10px;
+				top:0;
+				display:block;
+				width:20px;
+				text-align: center;	
+				
+			}
+			.inputgrp>.inputgrp_second input[type="text"],.inputgrp>.inputgrp_second select{
+				width:100%;
+			}
+			.btngrp_r{
+				width:100%;
+				text-align: right;
+				padding-right:20px;
+			}
+			.btngrp_r>a{
+				display:inline-block;
+				width:20px;
+				height:20px;
+				border:1px solid #999999;
+				background-color: #e0e0e0;
+				border-radius: 3px;
+				box-shadow: inset 0 3px 3px rgba(255,255,255,0.4), inset 0 -3px 3px rgba(0,0,0,0.1);
+			cursor:pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div style="width:100%;background:#f4f4f4;border-bottom:1px solid #d0d0d0;padding-bottom:10px;">
+			<div style="width:100%;height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;">
+				查询结果
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">车牌号码：</div>
+				<div class="inputgrp_second"><input onclick="WdatePicker()" id="txtlastdate" type="text" /></div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">车牌种类：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">车牌颜色：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">初登日期：</div>
+				<div class="inputgrp_second">
+					<div style="padding-left:0;"><input type="text"/></div><div style="padding-right:0;"><span>至</span><input type="text"/></div>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">最大质量（kg）：</div>
+				<div class="inputgrp_second">
+					<div style="padding-left:0;"><input type="text"/></div><div style="padding-right:0;"><span>-</span><input type="text"/></div>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">驱动形式：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">基准质量（kg）：</div>
+				<div class="inputgrp_second">
+					<div style="padding-left:0;"><input type="text"/></div><div style="padding-right:0;"><span>-</span><input type="text"/></div>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">变形器形式：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">厂牌-型号：</div>
+				<div class="inputgrp_second">
+					<div style="padding-left:0;"><input type="text"/></div><div style="padding-right:0;"><span>-</span><input type="text"/></div>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">燃油种类：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">供油方式：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">电喷方式：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">是否有OBD：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">是否电控：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">客/货：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">是否营运车：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">是否为特殊车辆：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">是否为免检车：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">标志类型：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">尾气检测日期：</div>
+				<div class="inputgrp_second">
+					<div style="padding-left:0;"><input type="text"/></div><div style="padding-right:0;"><span>至</span><input type="text"/></div>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">最近一次修改的检测站：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div style="clear:both;">
+			</div>
+			<div class="inputgrp">
+				<div style="text-align:left;float:left; padding-left:20px;cursor: pointer;">
+					隐藏更多查询信息&lt;&lt;&lt;
+				<!--隐藏更多查询信息&gt;&gt;&gt;-->
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="btngrp_r">
+					<a title="搜索"  style="background-image:url(../images/searchbtn.png);background-repeat: no-repeat;background-position: center;"></a>
+					<a title="重置" style="background-image:url(../images/cancelbtn.png);background-repeat: no-repeat;background-position: center;"></a>
+				</div> 
+			</div>
+			<div style="clear:both;"></div>
+				<!--<select id="UnitCode" style="height:27px;width:180px;" class="selectbox">
+					<option value="">全部</option>
+
+					<optgroup label="宁河区">
+
+						<option value="120221">宁河区</option>
+
+						<option value="016">宁河机动车检测站</option>
+
+					</optgroup>
+					<optgroup label="宝坻区">
+
+						<option value="120115">宝坻区</option>
+
+						<option value="033">天津福安机动车检测有限公司</option>
+
+						<option value="037">天津市宝坻区顺通机动车检测有限公司</option>
+
+						<option value="013">宝坻区益安机动车检测有限公司</option>
+
+					</optgroup>
+					<optgroup label="北辰区">
+
+						<option value="120113">北辰区</option>
+
+						<option value="039">天津市宇田机动车检测有限公司</option>
+
+						<option value="045">天津市丰汇机动车检测有限公司</option>
+
+						<option value="019">华同实业公司红桥公司</option>
+
+						<option value="003">福地机动车检测中心</option>
+
+						<option value="022">宜兴埠机动车检测站</option>
+
+					</optgroup>
+					<optgroup label="东丽区">
+
+						<option value="120110">东丽区</option>
+
+						<option value="043">天津市圣东机动车检测有限公司</option>
+
+						<option value="044">天津市瑞诚机动车检测有限公司</option>
+
+						<option value="029">益昌汽车服务有限公司</option>
+
+						<option value="001">金东机动车检测中心</option>
+
+					</optgroup>
+					<optgroup label="河北区">
+
+						<option value="120105">河北区</option>
+
+						<option value="030">天津市津盛机动车检测有限公司</option>
+
+					</optgroup>
+					<optgroup label="滨海新区">
+
+						<option value="120116">滨海新区</option>
+
+						<option value="031">天津市高客机动车检测有限公司</option>
+
+						<option value="041">天津弘康机动车检测服务有限公司</option>
+
+						<option value="042">天津市中环天安机动车检测有限公司</option>
+
+						<option value="048">天津市汉通机动车检测有限公司</option>
+
+						<option value="006">中石时化汽车检测有限公司</option>
+
+						<option value="007">渤海石油装备机动车检测有限公司</option>
+
+						<option value="008">塘沽经济开发区中汽机动车检测站</option>
+
+					</optgroup>
+					<optgroup label="西青区">
+
+						<option value="120111">西青区</option>
+
+						<option value="034">天津市大昌机动车检测有限公司</option>
+
+						<option value="040">天津市津维腾达机动车检测站</option>
+
+						<option value="024">瑞达机动车检测服务有限公司</option>
+
+						<option value="002">天直创业机动车检测服务有限公司</option>
+
+						<option value="009">天马汽车服务检测有限公司</option>
+
+						<option value="010">先达机动车检测站</option>
+
+						<option value="011">西青小型机动车检测站</option>
+
+						<option value="012">西青区润华机动车检测站</option>
+
+					</optgroup>
+					<optgroup label="静海区">
+
+						<option value="120223">静海区</option>
+
+						<option value="046">天津市大邱庄机动车检测有限公司</option>
+
+						<option value="047">天津市静塘机动车检测有限公司</option>
+
+						<option value="015">静文机动车检测站</option>
+
+					</optgroup>
+					<optgroup label="南开区">
+
+						<option value="120104">南开区</option>
+
+						<option value="027">公交三机动车检测有限公司</option>
+
+						<option value="020">小客机动车检测服务有限公司</option>
+
+					</optgroup>
+					<optgroup label="蓟州区">
+
+						<option value="120225">蓟州区</option>
+
+						<option value="032">蓟县超越机动车检测服务有限公司</option>
+
+						<option value="014">蓟县康顺达机动车检测站</option>
+
+					</optgroup>
+					<optgroup label="津南区">
+
+						<option value="120112">津南区</option>
+
+						<option value="035">天津市金角机动车检测有限公司</option>
+
+						<option value="017">津南区汽车综合性能检测中心</option>
+
+					</optgroup>
+					<optgroup label="武清区">
+
+						<option value="120114">武清区</option>
+
+						<option value="036">天津市武林机动车检测有限公司</option>
+
+						<option value="004">武清区机动车检测站</option>
+
+					</optgroup>
+					<optgroup label="河东区">
+
+						<option value="120102">河东区</option>
+
+						<option value="025">通维汽车检测服务有限公司</option>
+
+						<option value="028">公交四机动车检测有限公司</option>
+
+					</optgroup>
+					<optgroup label="河西区">
+
+						<option value="120103">河西区</option>
+
+						<option value="021">安达机动车检测服务有限公司</option>
+
+					</optgroup>
+					<optgroup label="和平区">
+						<option value="120101">和平区</option>
+					</optgroup>
+				</select>-->
+				
+			
+		</div>
+		<!--<div style="float:left;margin-left:20px;margin-top:7px;">
+            	<div style="float:left;height:27px;line-height:27px;">车辆种类：</div>
+                <div style="float:left;height:27px;"><input class="CFUELTYPE" style="height:27px;" type="text" /></div>
+            </div>-->
+
+		<!-- <div class="page-refresh" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">刷新</div>-->
+		
+		<div style="width:100%;height:635px;background:#f4f4f4;">
+			<div style="width:100%;height:100%;">
+				<table class="page-table"></table>
+			</div>
+		</div>
+		<script src="js/jquery-2.2.1.min.js"></script>
+		<script src="js/jquery.easyui.min.js"></script>
+		<script>
+			$(".page-search").click(function() {
+					fresh();
+				});
+
+				function fresh() {
+
+					var lastdate = $("#txtlastdate").val();
+					var nextdate = $("#txtnextdate").val();
+					var UnitCode = $("#UnitCode").val();
+					if(lastdate.length == 0 || nextdate.length == 0) {
+						alert("请选择日期");
+					}
+					lastdate += " 00:00:00";
+					nextdate += " 23:59:59";
+
+					//alert("./picture.html?date=" + data + "&UnitCode=" + CheckName);
+					$("#mainFrame").attr("src", "./picture.html?lastdate=" + lastdate + "&nextdate=" + nextdate + "&UnitCode=" + UnitCode);
+				}
+				Array.prototype.unique = function() {
+					var res = [];
+					var json = {};
+					for(var i = 0; i < this.length; i++) {
+						if(!json[this[i]]) {
+							res.push(this[i]);
+							json[this[i]] = 1;
+						}
+					}
+					return res;
+				}
+			$('.page-table').datagrid({
+				columns: [
+					[{
+							field: '',
+							title: '',
+							checkbox: true
+						},
+						{
+							field: 'CNUMBERPLATE',
+							title: '车牌号码',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'CPLATETYPE',
+							title: '车牌颜色',
+							width: 100,
+							align: 'center',
+							formatter: function(value, row, index) {
+								return value == '0' ? '蓝牌' : value == '1' ? "黄牌" : value == '2' ? "黑牌" : value == '3' ? "白牌" : "无";
+							}
+						},
+						{
+							field: 'CVIN',
+							align: 'center',
+							title: '车架号/VIN',
+							width: 100
+						},
+						{
+							field: 'DREGISTERSS',
+							align: 'center',
+							title: '初登日期',
+							width: 100
+						},
+						{
+							field: 'NVEHICLEMODELID',
+							align: 'center',
+							title: '厂牌型号',
+							width: 100
+						}
+
+					]
+				],
+				fitColumns: true,
+				striped: true,
+				pagination: true,
+				rownumbers: true,
+				height: 635,
+				selectOnCheck: true,
+				resizable: true,
+				loadMsg: '...加载中',
+				pageSize: 50,
+				pageList: [20, 50, 100, 150],
+				singleSelect: true
+
+			});
+
+			function tablerefresh(_pagenumber, _pagesize) {
+				$.ajax({
+					url: "../../AjaxHandler/AjaxService.ashx",
+					data: {
+						method: 'CheLiangFenXi',
+						pagenumber: _pagenumber,
+						pagesize: _pagesize,
+						CNUMBERPLATE: $('._CNUMBERPLATE').val(),
+						//CFUELTYPE: $( '.CFUELTYPE' ).val()
+					},
+					async: false,
+					dataType: "json",
+					type: "post",
+					success: function(json) {
+
+						$('.page-table').datagrid('loadData', json);
+					},
+					error: function(xhr) {
+
+					}
+				});
+			}
+
+			tablerefresh(1, 50);
+
+			$('.page-search').click(function() {
+				tablerefresh(1, 50);
+			});
+
+			$('.page-table').datagrid('getPager').pagination({
+				onSelectPage: function(pageNumber, pageSize) {
+					tablerefresh(pageNumber, pageSize);
+				}
+			});
+		</script>
+	</body>
+</html>

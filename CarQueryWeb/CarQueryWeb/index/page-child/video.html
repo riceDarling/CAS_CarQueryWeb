@@ -1,0 +1,88 @@
+﻿<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>天津市机动车排污检控中心监控平台</title>
+    <!-- Bootstrap Styles-->
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../assets/css/bootstrap-table.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="../../assets/css/custom-styles.css" rel="stylesheet" />
+    <link href="../../assets/css/select2.min.css" rel="stylesheet" />
+    <link href="../../assets/css/checkbox3.min.css" rel="stylesheet" />
+    <link href="../../css/query.css" rel="stylesheet" />
+
+
+    <script src="../../assets/js/jquery-2.2.1.min.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="../../assets/js/colResizable-1.6.js"></script>
+    <script src="../../assets/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/bootstrap-table.js"></script>
+    <script src="../../assets/js/bootstrap-table-zh-CN.js"></script>
+    <script src="../../assets/js/bootstrap-table-fixed-columns.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            //$('#wrapper').css({ 'margin-bottom': '0px' });
+            $('#page-wrapper').css({ 'margin-left': '0px' });
+            $('#page-wrapper').css({ 'margin-top': '0px' }); $('#page-wrapper').css({ 'top': '0px' });
+            var VideoUrl = GetQueryString("VideoUrl");
+            //$("#srcVideo").attr("src", VideoUrl + "1.avi");
+            $("#videoIFrame").attr("src", VideoUrl + "1.avi");
+        });
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            console.log(window.location.search);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        }
+    </script>
+
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <div id="page-wrapper">
+            <div class="header">
+                <br />
+                <ol class="breadcrumb">
+                    <li><a href="#">视频追溯</a></li>
+                </ol>
+
+            </div>
+            <div id="page-inner">
+                <div class="panel-body">
+                    <iframe name="videoIFrame" id="videoIFrame" style="width: 100%; height: 1000px;" frameborder="no" border="0"
+                            marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var VideoUrl = GetQueryString("VideoUrl");
+            console.log(GetQueryString("CheckMethod"));
+            $("#videoIFrame").attr("src", "meiti.html?VideoUrl=" + escape(VideoUrl) + "&CheckMethod=" + GetQueryString("CheckMethod"));
+        });
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            console.log(window.location.search);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        }
+
+    </script>
+</body>
+</html>

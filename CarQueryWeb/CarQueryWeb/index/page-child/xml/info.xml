@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<root>
+<!--     车架子号                   车型号	                    发动机型号         发动机编号     总质量         汽车分类         排放标准              厂牌-->
+  <vehicle VIN="LSYHBAAF89K063354" VehicleModelNo="SY6504WS3BH"  EngineModel="18K4G"  EngineNo="A134G792N42B20BZ" Weight="2800"  VehicleKind="汽油" Standard="国Ⅴ" VehicleModel="金杯"  />
+  <vehicle VIN="LFPX1ACA3A5A67446" VehicleModelNo="TJ7101AUE3"  EngineModel="CA4DF3-17E3" EngineNo="LJ465Q1AE6612496537" Weight="1170"  VehicleKind="汽油" Standard="国Ⅴ"         VehicleModel="夏利"  />
+  <vehicle VIN="LGBF1DE06BR071265" VehicleModelNo="CA5250XXYP1K15L7"  EngineModel="DURATORQ4D243H" EngineNo="L3460531019" Weight="2060"  VehicleKind="汽油" Standard="国Ⅴ"    VehicleModel="东风日产" />
+  <vehicle VIN="LGAX4A356DL006991" VehicleModelNo="EQ5252XXYWB3G"  EngineModel="S63B44A"  EngineNo="K24A12109270" Weight="24920"  VehicleKind="汽油" Standard="国Ⅴ"     VehicleModel="东风" />
+  <vehicle VIN="LKCAA1AB2AH046381" VehicleModelNo="CH6390LCE"  EngineModel="GW4G15"  EngineNo="B03070426" Weight="1670"  VehicleKind="汽油"  Standard="国Ⅴ"      VehicleModel="昌河" />
+  
+  <vehicle VIN="ILNYFBKA35FV600428" VehicleModelNo="NJ5044XXY3A"  EngineModel="DCI340-30"  EngineNo="Q120600814Z" Weight="1850"  VehicleKind="汽油"  Standard="国Ⅴ"      VehicleModel="依维柯牌" />
+  <vehicle VIN="ILDNM4LNE430017015" VehicleModelNo="DN7160"  EngineModel="4G15S"  EngineNo="8D42220488" Weight="2800"  VehicleKind="汽油"  Standard="国Ⅴ"      VehicleModel="东南" />
+  <vehicle VIN="ILWLDARHGXAL050751" VehicleModelNo="BXL5040XLC"  EngineModel="YC4E140-31"  EngineNo="SQR372FG5C09264" Weight="1270"  VehicleKind="汽油"  Standard="国Ⅴ"      VehicleModel="冰熊牌" />
+  <vehicle VIN="ILNJSBAA36AV502718" VehicleModelNo="NJ5046XXYNS"  EngineModel="CY4102-C3C"  EngineNo="DC177C4210" Weight="2060"  VehicleKind="汽油"  Standard="国Ⅴ"      VehicleModel="依维柯牌" />
+  <vehicle VIN="ILFV3A24F783056363" VehicleModelNo="FV7201TCVT"  EngineModel="271860"  EngineNo="G583615" Weight="1670"  VehicleKind="汽油"  Standard="国Ⅴ"      VehicleModel="奥迪" />
+</root>
+
+
+
+

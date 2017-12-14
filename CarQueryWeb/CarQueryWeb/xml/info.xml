@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<root>
+<!--     车架子号                   车型号	                    发动机型号         发动机编号     总质量         汽车分类         排放标准              厂牌-->
+  <vehicle VIN="LSYHBAAF89K063354" VehicleModelNo="SY6504WS3BH"  EngineModel=""  EngineNo="" Weight="2800"  VehicleKind="汽油" Standard="国Ⅴ" VehicleModel="金杯"  />
+  <vehicle VIN="LFPX1ACA3A5A67446" VehicleModelNo="TJ7101AUE3"  EngineModel="" EngineNo="" Weight="1170"  VehicleKind="汽油" Standard="国Ⅴ"         VehicleModel="夏利"  />
+  <vehicle VIN="LGBF1DE06BR071265" VehicleModelNo="CA5250XXYP1K15L7"  EngineModel="" EngineNo="" Weight="2060"  VehicleKind="汽油" Standard="国Ⅴ"    VehicleModel="东风日产" />
+  <vehicle VIN="LGAX4A356DL006991" VehicleModelNo="EQ5252XXYWB3G"  EngineModel=""  EngineNo="" Weight="24920"  VehicleKind="B" Standard="国Ⅴ"     VehicleModel="东风" />
+  <vehicle VIN="LKCAA1AB2AH046381" VehicleModelNo="CH6390LCE"  EngineModel="556"  EngineNo="" Weight="1670"  VehicleKind="汽油"  Standard="国Ⅴ"      VehicleModel="昌河" />
+  
+  <vehicle VIN="ILNYFBKA35FV600428" VehicleModelNo="NJ5044XXY3A"  EngineModel=""  EngineNo="" Weight=""  VehicleKind=""  Standard="国Ⅴ"      VehicleModel="依维柯牌" />
+  <vehicle VIN="ILDNM4LNE430017015" VehicleModelNo="DN7160"  EngineModel=""  EngineNo="" Weight="2800"  VehicleKind="汽油"  Standard="国Ⅴ"      VehicleModel="东南" />
+  <vehicle VIN="ILWLDARHGXAL050751" VehicleModelNo="BXL5040XLC"  EngineModel=""  EngineNo="" Weight="1270"  VehicleKind="汽油"  Standard="国Ⅴ"      VehicleModel="冰熊牌" />
+  <vehicle VIN="ILNJSBAA36AV502718" VehicleModelNo="NJ5046XXYNS"  EngineModel=""  EngineNo="" Weight="2060"  VehicleKind="汽油"  Standard="国Ⅴ"      VehicleModel="依维柯牌" />
+  <vehicle VIN="ILFV3A24F783056363" VehicleModelNo="FV7201TCVT"  EngineModel=""  EngineNo="" Weight="1670"  VehicleKind="汽油"  Standard="国Ⅴ"      VehicleModel="奥迪" />
+</root>

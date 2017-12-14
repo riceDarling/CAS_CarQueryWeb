@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天津市机动车排污检控中心监控平台</title>
+
+		<link href="css/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="css/easyui.css" rel="stylesheet" type="text/css">
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				background: #f4f4f4;
+			}
+			
+			* {
+				font-family: "微软雅黑";
+				font-size: 13px;
+				letter-spacing: 1px;
+			}
+			.datagrid-cell {
+				overflow: hidden !important;
+				text-overflow: ellipsis !important;
+				white-space: nowrap !important;
+			}
+		</style>
+        <script src="../../js/DatePicker/WdatePicker.js"></script>
+	</head>
+
+	<body>
+
+		<div class="pagewrap" style="width:100%;height:100%;">
+			<div style="width:100%;height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;">
+				遥感分析
+			</div>
+			<div style="width:100%;height:42px;background:#f4f4f4;border-bottom:1px solid #d0d0d0;">
+				<div style="float:left;margin-left:20px;margin-top:7px;">
+					<div style="float:left;height:27px;line-height:27px;">被检车辆牌照号：</div>
+					<div style="float:left;height:27px;"><input id="CNUMBERPLATE" style="height:27px;" type="text" /></div>
+				</div>
+				<div style="float:left;margin-left:20px;margin-top:7px;">
+					<div style="float:left;height:27px;line-height:27px;">车牌颜色：</div>
+					<div style="float:left;height:27px;">
+                        <select id="CPLATETYPE" style="height:27px;width:150px;">
+                            <option value="">请选择</option>
+                            <option value="0">蓝牌</option>
+                            <option value="1">黄牌</option>
+                            <option value="2">黑牌</option>
+                            <option value="3">白牌</option>
+                        </select>
+                    </div>
+				</div>
+				<div style="float:left;margin-left:20px;margin-top:7px;">
+					<div style="float:left;height:27px;line-height:27px;">检测地点：</div>
+					<div style="float:left;height:27px;"><input id="CHECKADDRESS" style="height:27px;" type="text" /></div>
+				</div>
+				<div style="float:left;margin-left:20px;margin-top:7px;">
+					<div style="float:left;height:27px;line-height:27px;">检测时间：</div>
+					<div style="float:left;height:27px;"><input id="CHECKTIME" onclick="WdatePicker()" style="height:27px;" type="text" /></div>
+				</div>
+				<!--<div style="float:left;margin-left:20px;margin-top:7px;">
+					<div style="float:left;height:27px;line-height:27px;">执行标准：</div>
+					<div style="float:left;height:27px;">
+                        <select id="EXESTANDARD" style="height:27px;width:150px;">
+                            <option value="">请选择</option>
+                            <option value="0">DB12/T 590-2015</option>
+                        </select>
+                    </div>
+				</div>-->
+				<div style="float:left;margin-left:20px;margin-top:7px;">
+					<div style="float:left;height:27px;line-height:27px;">结果评价：</div>
+					<div style="float:left;height:27px;">
+                        <select id="RESULTEVALUATE" style="height:27px;width:150px;">
+                            <option value="">请选择</option>
+                            <option value="1">达标</option>
+                            <option value="0">不达标</option>
+                        </select></div>
+				</div>
+				<div class="page-search" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">查询</div>
+				<!--<div class="page-refresh" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">刷新</div>-->
+			</div>
+			<div style="width:100%;height:635px;background:#f4f4f4;">
+				<div style="width:100%;height:100%;">
+					<table class="page-table"></table>
+				</div>
+			</div>
+		</div>
+
+		<script src="js/jquery-2.2.1.min.js"></script>
+		<script src="js/jquery.easyui.min.js"></script>
+		<script>
+            Date.prototype.pattern = function (fmt) {
+                var o = {
+                    "M+": this.getMonth() + 1, //月份         
+                    "d+": this.getDate(), //日         
+                    "h+": this.getHours() % 12 == 0 ? 12 : this.getHours() % 12, //小时         
+                    "H+": this.getHours(), //小时         
+                    "m+": this.getMinutes(), //分         
+                    "s+": this.getSeconds(), //秒         
+                    "q+": Math.floor((this.getMonth() + 3) / 3), //季度         
+                    "S": this.getMilliseconds() //毫秒         
+                };
+                var week = {
+                    "0": "/u65e5",
+                    "1": "/u4e00",
+                    "2": "/u4e8c",
+                    "3": "/u4e09",
+                    "4": "/u56db",
+                    "5": "/u4e94",
+                    "6": "/u516d"
+                };
+                if (/(y+)/.test(fmt)) {
+                    fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+                }
+                if (/(E+)/.test(fmt)) {
+                    fmt = fmt.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "/u661f/u671f" : "/u5468") : "") + week[this.getDay() + ""]);
+                }
+                for (var k in o) {
+                    if (new RegExp("(" + k + ")").test(fmt)) {
+                        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                    }
+                }
+                return fmt;
+            }       
+            $('.page-table').datagrid({
+                columns: [[
+                    { field: '', title: '', checkbox: true },
+                    { field: 'CNUMBERPLATE', title: '被检车辆牌照号', width: 100,align:'center' },
+                    {
+                        field: 'CPLATETYPE', title: '车牌颜色', width: 100, align: 'center', formatter: function (value, row, index) {
+                            return value == '0' ? '蓝牌' : value == '1' ? "黄牌" : value == '2' ? "黑牌" : value == '3' ? "白牌" : "无";
+                        }},
+                    {
+                        field: 'CHECKTIME', align: 'center', title: '检测时间', width: 100, sortable: true,
+
+                        formatter: function (value, row, index) {
+
+                            if (value) {
+                               // return ();//.pattern("yyyy-MM-dd");
+                                var date = eval(value.replace(/\/Date\((\d+)\)\//gi, "new Date($1)")).pattern("yyyy-MM-dd HH:mm:ss");
+                                return date;
+                               //return date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
+                            }
+
+                        } },
+                    { field: 'CHECKADDRESS', align: 'center', title: '检测地点', width: 100 },
+                    { field: 'MTEMPERATURE', align: 'center', title: '温度', width: 100 },
+                    { field: 'MHUMIDITY', align: 'center', title: '相对湿度', width: 100 },
+                    { field: 'WINDSPEED', align: 'center', title: '风速', width: 100 },
+                    { field: 'WINDDIRECTION', align: 'center', title: '风向', width: 100 },
+                    { field: 'TESTFIXTYPE', align: 'center', title: '测试设备型号', width: 100 },
+                    { field: 'CO', align: 'center', title: 'CO%', width: 100 },
+                    { field: 'NO', align: 'center', title: 'NO', width: 100 },
+                    { field: 'RB', align: 'center', title: 'YDZ%', width: 100 },
+                    {
+                        field: 'EXESTANDARD', align: 'center', title: '执行标准', width: 100, formatter: function (value, row, index) {
+                            return "DB12/T 590-2015";
+                        } },
+                    {
+                        field: 'RESULTEVALUATE', align: 'center', title: '结果评价', width: 100, formatter: function (value, row, index) {
+                            return value == "1" ? "达标" : "不达标";
+                        }
+                    }
+
+                ]],
+                fitColumns: true,
+                striped: true,
+                pagination: true,
+                rownumbers: true,
+                height: 635,
+                selectOnCheck: true,
+                resizable: true,
+                loadMsg: '...加载中',
+                pageSize: 50,
+                pageList: [20, 50, 100, 150],
+                singleSelect: true
+
+            });
+            function tablerefresh(_pagenumber, _pagesize) {
+                $.ajax({
+                    url: "../../AjaxHandler/AjaxService.ashx",
+                    data: {
+                        method: 'YaoGanFenXi',
+                        pagenumber: _pagenumber,
+                        pagesize: _pagesize,
+                        CNUMBERPLATE: $('#CNUMBERPLATE').val(),
+                        CPLATETYPE: $('#CPLATETYPE').val(),
+                        CHECKADDRESS: $('#CHECKADDRESS').val(),
+                        CHECKTIME: $('#CHECKTIME').val(),
+                        EXESTANDARD: $('#EXESTANDARD').val(),
+                        RESULTEVALUATE: $('#RESULTEVALUATE').val(),
+                    },
+                    async: false,
+                    dataType: "json",
+                    type: "post",
+                    success: function (json) {
+                        $('.page-table').datagrid('loadData', json);
+                    },
+                    error: function (xhr) {
+
+                    }
+                });
+            }
+
+
+            tablerefresh(1, 50);
+
+            $('.page-search').click(function () {
+                tablerefresh(1, 50);
+            });
+
+            $('.page-table').datagrid('getPager').pagination({
+                onSelectPage: function (pageNumber, pageSize) {
+                    tablerefresh(pageNumber, pageSize);
+                }
+            });
+            
+		</script>
+	</body>
+
+</html>

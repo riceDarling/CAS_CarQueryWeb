@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>天津市机动车排污检控中心监控平台</title>
+
+<link href="css/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="css/easyui.css" rel="stylesheet" type="text/css">
+<style>
+*{
+	box-sizing: border-box;
+	}
+html,body{
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+	background:#f4f4f4;
+	}
+*{
+	font-family:"微软雅黑";
+	font-size:13px;
+	letter-spacing:1px;
+	}
+</style>
+</head>
+
+<body>
+
+	<div class="pagewrap" style="width:100%;height:100%;">
+    	<div style="width:100%;height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;">
+        	登陆日志
+        </div>
+        <div style="width:100%;height:42px;background:#f4f4f4;border-bottom:1px solid #d0d0d0;">
+        	<div style="float:left;margin-left:20px;margin-top:7px;">
+            	<div style="float:left;height:27px;line-height:27px;">用户名：</div>
+                <div style="float:left;height:27px;"><input style="height:27px;" type="text" /></div>
+            </div>
+            <div style="float:left;margin-left:20px;margin-top:7px;">
+            	<div style="float:left;height:27px;line-height:27px;">登陆类型：</div>
+                <div style="float:left;height:27px;"><input style="height:27px;" type="text" /></div>
+            </div>
+            <div class="page-search" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">查询</div>
+            <div class="page-refresh" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">刷新</div>
+        </div>
+        <div style="width:100%;height:635px;background:#f4f4f4;">
+        	<div style="width:100%;height:100%;">
+            	<table class="page-table"></table>
+            </div>
+        </div>
+    </div>
+    
+	<script src="js/jquery-2.2.1.min.js"></script>
+    <script src="js/jquery.easyui.min.js"></script>
+    <script>
+	
+        $.ajax({
+            url: 'xml/log.xml',
+            type: 'GET',
+            dataType: 'xml',
+            timeout: 10000,  //设定超时
+            cache: false,   //禁用缓存
+            error: function (xml) {
+
+            },
+            success: function (xml) {
+                var arr = new Array();
+
+                $(xml).find("log").each(function (i) {
+                    var self = $(this);
+
+                    arr.push(
+                        {
+                            ID: self.attr('ID'),
+                            LoginDate: self.attr('LoginDate'),
+                            LogoutDate: self.attr('LogoutDate'),
+                            Date: self.attr('Date'),
+                            IPAddress: self.attr('IPAddress'),
+                            State: self.attr('State'),
+                            Address: self.attr('Address')
+                        }
+                    );
+
+                });
+
+                $('.page-table').datagrid({
+                    columns: [[
+                        { field: '', title: '', checkbox: true },
+                        { field: 'ID', title: '用户名', width: 100 },
+                        { field: 'LoginDate', title: '登陆时间', width: 100 },
+                        { field: 'LogoutDate', title: '下线时间', width: 100 },
+                        { field: 'Date', title: '登录时长', width: 100 },
+                        { field: 'IPAddress', title: 'IP地址', width: 100 },
+                        { field: 'State', title: '登录状态', width: 100 },
+                        { field: 'Address', title: '登录地址', width: 100 }
+
+                    ]],
+                    fitColumns: true,
+                    striped: true,
+                    data: arr,
+                    pagination: true,
+                    rownumbers: true,
+                    height: 635,
+                    selectOnCheck: true,
+                    pageSize: 20,
+                    pageList: [20, 50, 100, 150],
+                    singleSelect: true,
+
+                });
+
+            }
+        });
+
+    </script>
+</body>
+</html>

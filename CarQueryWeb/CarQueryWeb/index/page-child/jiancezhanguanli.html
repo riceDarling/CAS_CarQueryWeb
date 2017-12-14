@@ -1,0 +1,424 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天津市机动车排污检控中心监控平台</title>
+		<!-- Bootstrap Styles-->
+
+		<!-- Chart Js -->
+
+		<link href="css/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="css/easyui.css" rel="stylesheet" type="text/css">
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				background: #f4f4f4;
+			}
+			
+			* {
+				font-family: "微软雅黑";
+				font-size: 13px;
+				letter-spacing: 1px;
+			}
+			
+			.datagrid-cell {
+				overflow: hidden !important;
+				text-overflow: ellipsis !important;
+				white-space: nowrap !important;
+			}
+			input[type="text"],select{
+				height:26px;
+			}
+			.inputgrp{
+				float:left;
+				width:50%;
+				text-align: right;
+				margin:10px 0 0;
+			}
+			.inputgrp>.inputgrp_first{
+				width:50%;
+				float:left;
+				height:28px;
+				line-height:28px;
+			}
+			.inputgrp>.inputgrp_second{
+				float:left;
+				width:50%;
+				padding-right:10px;
+				line-height:28px;
+				height:28px;
+			}
+			.inputgrp_second>div{
+				width:50%;
+				float:left;
+				padding:0 10px;
+				position:relative;
+			}
+			.inputgrp_second>div>span{
+				position:absolute;
+				left:-10px;
+				top:0;
+				display:block;
+				width:20px;
+				text-align: center;	
+				
+			}
+			.inputgrp>.inputgrp_second input[type="text"],.inputgrp>.inputgrp_second select{
+				width:100%;
+			}
+			.btngrp_r{
+				width:100%;
+				text-align: right;
+				padding-right:20px;
+			}
+			.btngrp_r>a{
+				display:inline-block;
+				width:20px;
+				height:20px;
+				border:1px solid #999999;
+				background-color: #e0e0e0;
+				border-radius: 3px;
+				box-shadow: inset 0 3px 3px rgba(255,255,255,0.4), inset 0 -3px 3px rgba(0,0,0,0.1);
+			cursor:pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div style="width:100%;">
+				<div style="width:100%;height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;">
+					<!--检测分析-->
+				</div>
+				<div style="width:100%;background:#f4f4f4;margin-bottom:10px;">
+					<div style="float:left;margin-left:20px;margin-top:7px;">
+						<div style="float:left;height:27px;line-height:27px;">车牌号码：</div>
+						<div style="float:left;height:27px;"><input class="_license" style="height:27px;" id="txtLicense" type="text" /><input style="display:none" id="txtUnit" type="text" /></div>
+					</div>
+					<div style="float:left;margin-left:20px;margin-top:7px;">
+						<div style="float:left;height:27px;line-height:27px;">检查方法：</div>
+						<div style="float:left;height:27px;">
+							<select class="_checkmethod" style="height:27px;width:150px;">
+								<option value="">请选择</option>
+								<option value="B">稳态工况</option>
+								<option value="A">双怠速</option>
+								<option value="G">加载减速</option>
+								<option value="F">不透光烟度</option>
+							</select>
+						</div>
+					</div>
+					<div style="float:left;margin-left:20px;margin-top:7px;">
+						<div style="float:left;height:27px;line-height:27px;">检查结果：</div>
+						<div style="float:left;height:27px;">
+							<select class="_checkresult" style="height:27px;width:150px;">
+								<option value="">请选择</option>
+								<option value="1">合格</option>
+								<option value="0">不合格</option>
+							</select>
+						</div>
+					</div>
+					<div class="page-search" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">查询</div>
+					<div class="page-refresh" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">刷新</div>
+					<div style="clear:both;"></div>
+				</div>
+				<div style="width:100%;height:635px;background:#f4f4f4;">
+					<div style="width:100%;height:100%;">
+						<table class="page-table"></table>
+					</div>
+				</div>
+			</div>
+		<script src="js/jquery-2.2.1.min.js"></script>
+		<script src="js/jquery.easyui.min.js"></script>
+		<script type="text/javascript">
+			$.ajax({
+				url: '../../AjaxHandler/AjaxService.ashx?method=QueryJCZ',
+				type: 'post',
+				dataType: 'json',
+				timeout: 10000, //设定超时
+				cache: false, //禁用缓存
+				error: function(xml) {
+
+				},
+				success: function(json) {
+					//console.log(json);
+					var arrCounty = [];
+					var arrUnit = [];
+					for(var i = 0; i < json.rows.length; i++) {
+						arrCounty.push(json.rows[i].COUNTY);
+						arrUnit.push(json.rows[i]);
+						//$(".jcz").append("<div onclick=\" window.location.href='shipinzhongzhuan.html?UnitName=" + escape(json.rows[i].CUNITNAME)+"'\" style=\"width:100%;height: 27px; line-height:27px; text-indent:15px; \"><i class=\"icon-file\"></i>&nbsp;" + json.rows[i].CUNITNAME + "</div>");
+					}
+					//console.log(arrCounty);
+					arrCounty = arrCounty.unique();
+					//arrUnit = arrUnit.unique();
+					console.log(arrCounty);
+					console.log(arrUnit);
+					for(var i = 0; i < arrCounty.length; i++) {
+						//$(".jcz").append("<div class=\"county\" value=\"" + arrUnit[j].COUNTY+"\" name=\"county" + i +"\" style=\"width:100%;height:27px; line-height:27px;text-indent:15px;\"><i class=\"icon-plus\"></i>&nbsp;" + arrCounty[i] + "</div>");
+						var flag = true;
+						for(var j = 0; j < arrUnit.length; j++) {
+							if(flag && arrCounty[i] != "涉县") {
+								$(".jcz").append("<div class=\"county\" value=\"" + arrCounty[j].AREACODE + "\" name=\"county" + i + "\" style=\"width:100%;height:27px; line-height:27px;text-indent:15px;\"><i class=\"icon-plus\"></i>&nbsp;" + arrCounty[i] + "</div>");
+								flag = false;
+							}
+							if(arrUnit[j].COUNTY == arrCounty[i] && arrUnit[j].UNITNAME != "400" && arrUnit[j].UNITNAME != "测试检测站") {
+								$(".jcz").append("<div class=\"unit" + i + "\" value=\"" + arrUnit[j].UNITCODE + "\" name=\"unit\" onclick=\" tablerefresh(1, 50);\" style=\"display:none;width:100%;height: 27px; line-height:27px; text-indent:15px; \">&nbsp;&nbsp;&nbsp;&nbsp;<i class=\"icon-file\"></i>&nbsp;&nbsp;" + arrUnit[j].UNITNAME + "</div>");
+								arrUnit.splice(j, 1);
+								j--;
+							}
+						}
+					}
+					$(".county,div[name='unit']").click(function() {
+						var temp = $(this).attr("value");
+						console.log(temp);
+						$("#txtUnit").val(temp);
+					});
+					$(".county").click(function() {
+						var self = $(this);
+						var selfIcon = self.find("i");
+						if(selfIcon.hasClass("icon-plus")) {
+							//alert("+");
+							selfIcon.removeClass("icon-plus");
+							selfIcon.addClass("icon-minus");
+						} else if(selfIcon.hasClass("icon-minus")) {
+							// alert("-");
+							selfIcon.removeClass("icon-minus");
+							selfIcon.addClass("icon-plus");
+						}
+
+						$(".county").each(function() {
+							if($(this).attr("name") != self.attr("name")) {
+								$(this).find("i").removeClass("icon-minus");
+								$(this).find("i").addClass("icon-plus");
+							}
+						});
+
+						var temp = self.attr("name").substring(self.attr("name").indexOf('y') + 1, self.attr("name").length);
+						//console.log(temp);
+						var selfUnit = $(".unit" + temp);
+						if(selfUnit.css("display") == "none") {
+							selfUnit.css("display", "block");
+
+						} else if(selfUnit.css("display") == "block") {
+							selfUnit.css("display", "none");
+						}
+						$("div[name='unit']").each(function() {
+							if($(this).attr("class") != selfUnit.attr("class")) {
+								$(this).css("display", "none");
+							}
+						});
+
+					});
+				}
+			});
+
+			Array.prototype.unique = function() {
+				var res = [];
+				var json = {};
+				for(var i = 0; i < this.length; i++) {
+					if(!json[this[i]]) {
+						res.push(this[i]);
+						json[this[i]] = 1;
+					}
+				}
+				return res;
+			}
+
+			$('.page-table').datagrid({
+				columns: [
+					[{
+							field: '',
+							title: '',
+							checkbox: true
+						},
+						{
+							field: 'UNITCODE',
+							title: '检测站编号',
+							width: 100,
+							align: 'center'
+						},
+						//{ field: 'UNITCODE', title: '检测站名称', width: 100 ,align:'center'},
+						{
+							field: 'UNITNAME',
+							title: '检测站名称',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'IPADDRESS',
+							title: 'IP地址',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'LICENSE',
+							title: '车牌号',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'LICENSETYPE',
+							title: '车牌颜色',
+							width: 100,
+							align: 'center',
+							formatter: function(value, row, index) {
+								return value == '0' ? '蓝牌' : value == '1' ? "黄牌" : value == '2' ? "黑牌" : value == '3' ? "白牌" : "无";
+							}
+						},
+						{
+							field: 'User',
+							title: '车主',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'ADDRESS',
+							title: '地址',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'PHONE',
+							title: '联系电话',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'CHECKMETHOD',
+							title: '检测方法',
+							width: 100,
+							align: 'center',
+							align: 'center',
+							formatter: function(value, row, index) {
+								return value == 'B' ? '稳态工况' : value == 'A' ? "双怠速" : value == 'G' ? "加载减速" : value == 'F' ? "不透光烟度" : "其它";
+							}
+						},
+						{
+							field: 'CHECKDATE',
+							title: '检测日期',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'CheckResult',
+							title: '检测结果',
+							width: 100,
+							align: 'center',
+							formatter: function(value, row, index) {
+								return(value == '1' ? '合格' : '不合格')
+							}
+						},
+						{
+							field: 'VEHICLEMODEL',
+							title: '车型',
+							width: 100,
+							align: 'center',
+							formatter: function(value, row, index) {
+								return value == '0' ? '汽油车' : value == '1' ? "柴油车" : value == "无";
+							}
+						}
+
+					]
+				],
+				fitColumns: true,
+				striped: true,
+				pagination: true,
+				rownumbers: true,
+				height: 635,
+				selectOnCheck: true,
+				resizable: true,
+				loadMsg: '...加载中',
+				pageSize: 50,
+				pageList: [20, 50, 100, 150],
+				singleSelect: true
+
+			});
+
+			function tablerefresh(_pagenumber, _pagesize) {
+				$.ajax({
+					url: "../../AjaxHandler/AjaxService.ashx",
+					data: {
+						method: 'GetPingTaiInfo',
+						pagenumber: _pagenumber,
+						pagesize: _pagesize,
+						license: $('._license').val(),
+						checkmethod: $('._checkmethod').val(),
+						checkresult: $('._checkresult').val(),
+						UnitName: $("#txtUnit").val()
+					},
+					async: false,
+					dataType: "json",
+					type: "post",
+					success: function(json) {
+
+						$('.page-table').datagrid('loadData', json);
+					},
+					error: function(xhr) {
+
+					}
+				});
+			}
+
+			tablerefresh(1, 50);
+
+			$('.page-search').click(function() {
+				tablerefresh(1, 50);
+			});
+
+			$('.page-table').datagrid('getPager').pagination({
+				onSelectPage: function(pageNumber, pageSize) {
+					tablerefresh(pageNumber, pageSize);
+				}
+			});
+
+			//获取参数
+			function getQueryParams(queryParams) {
+				var License = document.getElementById("txtLicense").value;
+
+				queryParams.License = License;
+
+				return queryParams;
+
+			}
+			//增加查询参数，重新加载表格
+			function reloadgrid() {
+
+				//查询参数直接添加在queryParams中
+				var queryParams = $('#tt').datagrid('options').queryParams;
+				getQueryParams(queryParams);
+				$('#tt').datagrid('options').queryParams = queryParams;
+				$("#tt").datagrid('reload');
+
+			}
+
+			var tjwqTitleVal = $('.tjwqtitle').text().trim();
+			if($(".listbtnz").hasClass("tjwqActive")) {
+				var secVal = $('.tjwqActive').text();
+			}
+			$('#tjwqtitlenav').text('欢迎登陆本系统！您当前的位置为:' + tjwqTitleVal + ' > ' + secVal);
+
+			$('#tjwqBtn div').click(function() {
+				$('#tjwqBtn div').removeClass('tjwqActive');
+				$(this).addClass('tjwqActive');
+				var tjwqTitleVal = $('.tjwqtitle').text().trim();
+				if($(".listbtnz").hasClass("tjwqActive")) {
+					var secVal = $('.tjwqActive').text();
+				}
+				if(secVal == undefined) {
+					$('#tjwqtitlenav').text('欢迎登陆本系统！您当前的位置为:' + tjwqTitleVal);
+				} else {
+					$('#tjwqtitlenav').text('欢迎登陆本系统！您当前的位置为:' + tjwqTitleVal + ' > ' + secVal);
+				}
+
+			})
+		</script>			
+	</body>
+</html>

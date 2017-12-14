@@ -1,0 +1,428 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>天津市机动车排污检控中心监控平台</title>
+    <!-- Bootstrap Styles-->
+    <!-- Chart Js -->
+
+    <link href="css/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/easyui.css" rel="stylesheet" type="text/css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+
+        * {
+            font-family: "微软雅黑";
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .datagrid-cell {
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            white-space: nowrap !important;
+        }
+
+        input[type="text"],
+        select {
+            height: 26px;
+        }
+
+        .inputgrp {
+            float: left;
+            width: 50%;
+            text-align: right;
+            margin: 10px 0 0;
+        }
+
+            .inputgrp > .inputgrp_first {
+                width: 50%;
+                float: left;
+                height: 28px;
+                line-height: 28px;
+            }
+
+            .inputgrp > .inputgrp_second {
+                float: left;
+                width: 50%;
+                padding-right: 10px;
+                line-height: 28px;
+                height: 28px;
+            }
+
+        .inputgrp_second > div {
+            width: 50%;
+            float: left;
+            padding: 0 10px;
+            position: relative;
+        }
+
+            .inputgrp_second > div > span {
+                position: absolute;
+                left: -10px;
+                top: 0;
+                display: block;
+                width: 20px;
+                text-align: center;
+            }
+
+        .inputgrp > .inputgrp_second input[type="text"],
+        .inputgrp > .inputgrp_second select {
+            width: 100%;
+        }
+
+        .btngrp_r {
+            width: 100%;
+            text-align: right;
+            padding-right: 20px;
+        }
+
+            .btngrp_r > a {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border: 1px solid #999999;
+                background-color: #e0e0e0;
+                border-radius: 3px;
+                box-shadow: inset 0 3px 3px rgba(255, 255, 255, 0.4), inset 0 -3px 3px rgba(0, 0, 0, 0.1);
+                cursor: pointer;
+            }
+    </style>
+</head>
+
+<body>
+    <div style="width:100%;background:#f4f4f4;padding-bottom:10px;">
+        <div style="width:100%;height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;">
+            统计条件
+        </div>
+        <div class="inputgrp">
+            <div class="inputgrp_first">所在区县：</div>
+            <div class="inputgrp_second">
+
+                <select id="selUnitCode">
+                    <option value="">全部</option>
+
+                    <optgroup label="宁河区">
+
+                        <option value="120221">宁河区</option>
+
+                        <option value="016">宁河机动车检测站</option>
+
+                    </optgroup>
+                    <optgroup label="宝坻区">
+
+                        <option value="120115">宝坻区</option>
+
+                        <option value="033">天津福安机动车检测有限公司</option>
+
+                        <option value="037">天津市宝坻区顺通机动车检测有限公司</option>
+
+                        <option value="013">宝坻区益安机动车检测有限公司</option>
+
+                    </optgroup>
+                    <optgroup label="北辰区">
+
+                        <option value="120113">北辰区</option>
+
+                        <option value="039">天津市宇田机动车检测有限公司</option>
+
+                        <option value="045">天津市丰汇机动车检测有限公司</option>
+
+                        <option value="019">华同实业公司红桥公司</option>
+
+                        <option value="003">福地机动车检测中心</option>
+
+                        <option value="022">宜兴埠机动车检测站</option>
+
+                    </optgroup>
+                    <optgroup label="东丽区">
+
+                        <option value="120110">东丽区</option>
+
+                        <option value="043">天津市圣东机动车检测有限公司</option>
+
+                        <option value="044">天津市瑞诚机动车检测有限公司</option>
+
+                        <option value="029">益昌汽车服务有限公司</option>
+
+                        <option value="001">金东机动车检测中心</option>
+
+                    </optgroup>
+                    <optgroup label="河北区">
+
+                        <option value="120105">河北区</option>
+
+                        <option value="030">天津市津盛机动车检测有限公司</option>
+
+                    </optgroup>
+                    <optgroup label="滨海新区">
+
+                        <option value="120116">滨海新区</option>
+
+                        <option value="031">天津市高客机动车检测有限公司</option>
+
+                        <option value="041">天津弘康机动车检测服务有限公司</option>
+
+                        <option value="042">天津市中环天安机动车检测有限公司</option>
+
+                        <option value="048">天津市汉通机动车检测有限公司</option>
+
+                        <option value="006">中石时化汽车检测有限公司</option>
+
+                        <option value="007">渤海石油装备机动车检测有限公司</option>
+
+                        <option value="008">塘沽经济开发区中汽机动车检测站</option>
+
+                    </optgroup>
+                    <optgroup label="西青区">
+
+                        <option value="120111">西青区</option>
+
+                        <option value="034">天津市大昌机动车检测有限公司</option>
+
+                        <option value="040">天津市津维腾达机动车检测站</option>
+
+                        <option value="024">瑞达机动车检测服务有限公司</option>
+
+                        <option value="002">天直创业机动车检测服务有限公司</option>
+
+                        <option value="009">天马汽车服务检测有限公司</option>
+
+                        <option value="010">先达机动车检测站</option>
+
+                        <option value="011">西青小型机动车检测站</option>
+
+                        <option value="012">西青区润华机动车检测站</option>
+
+                    </optgroup>
+                    <optgroup label="静海区">
+
+                        <option value="120223">静海区</option>
+
+                        <option value="046">天津市大邱庄机动车检测有限公司</option>
+
+                        <option value="047">天津市静塘机动车检测有限公司</option>
+
+                        <option value="015">静文机动车检测站</option>
+
+                    </optgroup>
+                    <optgroup label="南开区">
+
+                        <option value="120104">南开区</option>
+
+                        <option value="027">公交三机动车检测有限公司</option>
+
+                        <option value="020">小客机动车检测服务有限公司</option>
+
+                    </optgroup>
+
+                    <optgroup label="蓟州区">
+
+                        <option value="120225">蓟州区</option>
+
+                        <option value="032">蓟县超越机动车检测服务有限公司</option>
+
+                        <option value="014">蓟县康顺达机动车检测站</option>
+
+                    </optgroup>
+                    <optgroup label="津南区">
+
+                        <option value="120112">津南区</option>
+
+                        <option value="035">天津市金角机动车检测有限公司</option>
+
+                        <option value="017">津南区汽车综合性能检测中心</option>
+
+                    </optgroup>
+                    <optgroup label="武清区">
+
+                        <option value="120114">武清区</option>
+
+                        <option value="036">天津市武林机动车检测有限公司</option>
+
+                        <option value="004">武清区机动车检测站</option>
+
+                    </optgroup>
+                    <optgroup label="河东区">
+
+                        <option value="120102">河东区</option>
+
+                        <option value="025">通维汽车检测服务有限公司</option>
+
+                        <option value="028">公交四机动车检测有限公司</option>
+
+                    </optgroup>
+                    <optgroup label="河西区">
+
+                        <option value="120103">河西区</option>
+
+                        <option value="021">安达机动车检测服务有限公司</option>
+
+                    </optgroup>
+                    <optgroup label="和平区">
+                        <option value="120101">和平区</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <div class="inputgrp">
+            <div class="inputgrp_first">统计时间：</div>
+            <div class="inputgrp_second">
+                <div style="padding-left:0;"><input onclick="WdatePicker()" id="txtLastDate" type="text" /></div>
+                <div style="padding-right:0;">
+                    <span>至</span>
+                    <input id="txtNextDate" onclick="WdatePicker()" type="text" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inputgrp" style="width:100%;">
+        <div class="btngrp_r">
+            <a title="统计" id="btnSure" style="background-image:url(../images/tongji.png);background-repeat: no-repeat;background-position: center;"></a>
+            <a title="重置" style="background-image:url(../images/cancelbtn.png);background-repeat: no-repeat;background-position: center;"></a>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+    <div style="width:100%;height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;">
+        统计结果
+    </div>
+
+    <div style="clear:both;"></div>
+
+
+
+    <div style="width:100%;height:635px;background:#f4f4f4;">
+        <div style="width:100%;height:100%;">
+            <iframe src="./jianceliangtongjibaobiao_month_tableframe.html" id="mainFrame" style="width:100%;height:100%;"></iframe>
+        </div>
+    </div>
+
+    <!--<script src="js/jquery-2.2.1.min.js"></script>
+    <script src="js/jquery.easyui.min.js"></script>-->
+
+    <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="../../js/DatePicker/WdatePicker.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btnSure").click(function () {
+                //console.log($('#selUnitCode').val());
+                $.ajax({
+                    url: "../../../AjaxHandler/AjaxService.ashx",
+                    data: {
+                        method: 'GetJianCeLiangTongJiShuJu',
+                        UnitCode: $('#selUnitCode').val(),
+                        LastDate: $('#txtLastDate').val(),
+                        NextDate: $('#txtNextDate').val(),
+                        Format: "yyyy-MM"
+                    },
+                    async: false,
+                    dataType: "json",
+                    type: "post",
+                    success: function (json) {
+                        console.log(json.rows);
+                        var html = "<tbody>";
+                        var flag = true;
+                        var count = 0;
+                        var arr = json.rows;
+                        console.log(arr);
+                        arr.sort(function (obj1, obj2) {
+                            if (obj1.CheckDate > obj2.CheckDate) {
+                                return 1;
+                            } else if (obj1.CheckDate < obj2.CheckDate) {
+                                return -1;
+                            } else {
+                                if (obj1.AreaCode > obj2.AreaCode) {
+                                    return 1;
+                                } else if (obj1.AreaCode < obj2.AreaCode) {
+                                    return -1;
+                                } else {
+                                    return 0;
+                                }
+                            }
+                        });
+                        console.log(arr);
+                        for (var i = 0; i < arr.length; i++) {
+                            //debugger;
+                            if (i == 0) {
+                                count++;
+                            } else {
+                                if (arr[i].CheckDate == arr[i - 1].CheckDate) {
+                                    count++;
+                                    flag = false;
+                                    if (i == arr.length - 1) {
+                                        debugger;
+                                        //$(".TDCheckDate:last").attr("rowspan", count + "");
+                                        html == html.substring(0, html.lastIndexOf("class='tdCheckDate'")) + html.substring(html.lastIndexOf("class='tdCheckDate'"), html.length);
+                                        html = html.substring(0, html.lastIndexOf("class='tdCheckDate'")) + " rowspan=" + count + " " + html.substring(html.lastIndexOf("class='tdCheckDate'"), html.length);
+                                        count = 1;
+                                    }
+                                } else {
+                                    flag = true;
+                                    //debugger;
+                                    html == html.substring(0, html.lastIndexOf("class='tdCheckDate'")) + html.substring(html.lastIndexOf("class='tdCheckDate'"), html.length);
+                                    //$(".TDCheckDate:last").attr("rowspan", count + "");
+                                    html = html.substring(0, html.lastIndexOf("class='tdCheckDate'")) + " rowspan=" + count + " " + html.substring(html.lastIndexOf("class='tdCheckDate'"), html.length);
+                                    count = 1;
+
+                                }
+
+                            }
+                            html += "<tr>";
+                            var DieselCount = arr[i].Diesel1Count + arr[i].Diesel2Count;
+                            var GasCount = arr[i].Gas1Count + arr[i].Gas2Count;
+                            var CheckCount = GasCount + DieselCount;
+                            var GasOKCount = arr[i].Gas1OKCount + arr[i].Gas2OKCount;
+                            var DieselOKCount = arr[i].Diesel1OKCount + arr[i].Diesel2OKCount;
+                            var CheckOKCount = GasOKCount + DieselOKCount;
+                            if (flag)
+                                html += "<td class='tdCheckDate'>" + arr[i].CheckDate + "</td>";
+                            html += "<td>" + $("#selUnitCode option[value='" + arr[i].AreaCode + "']").text() + "</td>" +
+                                "<td>" + arr[i].UnitName + "</td>" +
+                                "<td>" + CheckCount + "</td>" +
+                                "<td>" + CheckOKCount + "</td>" +
+                                "<td>" + GasCount + "</td>" +
+                                "<td>" + GasOKCount + "</td>" +
+                                "<td>" + arr[i].Gas1Count + "</td>" +
+                                "<td>" + arr[i].Gas1OKCount + "</td>" +
+                                "<td>" + arr[i].Gas2Count + "</td>" +
+                                "<td>" + arr[i].Gas2OKCount + "</td>" +
+                                "<td>" + DieselCount + "</td>" +
+                                "<td>" + DieselOKCount + "</td>" +
+                                "<td>" + arr[i].Diesel1Count + "</td>" +
+                                "<td>" + arr[i].Diesel1OKCount + "</td>" +
+                                "<td>" + arr[i].Diesel2Count + "</td>" +
+                                "<td>" + arr[i].Diesel2OKCount + "</td>" +
+                                "</tr>";
+                        }
+                        html += "</tbody>";
+                        $("#mainFrame").contents().find("#lblTip").css("display", "none");
+
+                        $("#mainFrame").contents().find("#tabReport").append(html);
+                    }, beforeSend: function () {
+                        $("#mainFrame").contents().find("#lblTip").css("display", "inline");
+                    },
+                    error: function (xhr) {
+                        $("#mainFrame").contents().find("#lblTip").css("display", "none");
+                        // alert(0)
+                    }
+                });
+            });
+
+        });
+
+
+    </script>
+</body>
+</html>

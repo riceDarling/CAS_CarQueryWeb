@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天津市机动车排污检控中心监控平台</title>
+
+		<link href="css/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="css/easyui.css" rel="stylesheet" type="text/css">
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				background: #f4f4f4;
+			}
+			
+			* {
+				font-family: "微软雅黑";
+				font-size: 13px;
+				letter-spacing: 1px;
+			}
+			
+			.datagrid-cell {
+				overflow: hidden !important;
+				text-overflow: ellipsis !important;
+				white-space: nowrap !important;
+			}
+			
+			#tjwq_header {
+				height: 120px;
+				background: url(../images/logo-2.png) no-repeat 20px top, url(../images/top-2.png) no-repeat;
+			}
+			
+			.tjwq_logo {
+				background: url(../images/logo-2.png) no-repeat;
+			}
+			
+			#nav {
+				color: #444444;
+				line-height: 18px;
+				height: 30px;
+				width: 100%;
+				position: absolute;
+				left: 0;
+				top: 102px;
+				font-size: 14px;
+				z-index: 5;
+			}
+			
+			#nav a {
+				color: #0196E3;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="tjwq_header"></div>
+		<div id="nav">
+			<span style="margin-left:16px;">欢迎登陆本系统！您当前的位置为：首页</span>
+			<div style="float:right;"><span style="margin-right:40px;">您好！天津市用户</span>
+				<a href="page-child/resetPwd.html" style="margin-right:16px;">[修改密码]</a>
+				<a href="../Login.aspx" style="margin-right:16px;">[登出]</a>
+			</div>
+		</div>
+		<div class="pagewrap" style="width:100%;height:100%;">
+			<div style="width:100%;height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;">
+				车型分析
+			</div>
+			<div style="width:100%;height:42px;background:#f4f4f4;border-bottom:1px solid #d0d0d0;">
+				<div style="float:left;margin-left:20px;margin-top:7px;">
+					<div style="float:left;height:27px;line-height:27px;">厂牌：</div>
+					<div style="float:left;height:27px;"><input class="_CNAME" style="height:27px;" type="text" /></div>
+				</div>
+				<div style="float:left;margin-left:20px;margin-top:7px;">
+					<div style="float:left;height:27px;line-height:27px;">型号：</div>
+					<div style="float:left;height:27px;"><input class="_VehicleModel" style="height:27px;" type="text" /></div>
+				</div>
+				<div class="page-search" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">查询</div>
+				<!--<div class="page-refresh" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">刷新</div>-->
+			</div>
+			<div style="width:100%;height:635px;background:#f4f4f4;">
+				<div style="width:100%;height:100%;">
+					<table class="page-table"></table>
+				</div>
+			</div>
+		</div>
+
+		<script src="js/jquery-2.2.1.min.js"></script>
+		<script src="js/jquery.easyui.min.js"></script>
+		<script>
+			$('.page-table').datagrid({
+				columns: [
+					[{
+							field: '',
+							title: '',
+							checkbox: true
+						},
+						{
+							field: 'NVEHICLEMODELID',
+							title: '厂牌-型号',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'NSTANDARDID',
+							title: '满足排放标准',
+							width: 100,
+							align: 'center',
+							formatter: function(value, row, index) {
+								return "国Ⅴ";
+							}
+						},
+						{
+							field: 'CVEHICLESTYLE',
+							title: '车型类别',
+							align: 'center',
+							width: 100,
+							formatter: function(value, row, index) {
+								return value == 'K1' ? '大型客车' : value == 'K2' ? "中型客车" : value == "K3" ? "小型客车" : value == "K4" ? "微型客车" :
+									value == 'H1' ? '重型货车' : value == 'H2' ? "中型货车" : value == 'H3' ? "轻型货车" : value == "H4" ? "微型货车" :
+									value == 'H5' ? '低速货车' : value == 'M1' ? "三轮摩托车" : value == "M2" ? "二轮摩托车" : value == "N1" ? "三轮汽车" : "无";
+							}
+						},
+						{
+							field: 'NMAXWEIGHT',
+							title: '最大总质量（kg）',
+							align: 'center',
+							width: 100
+						},
+						{
+							field: 'NSTDWEIGHT',
+							title: '标准质量（kg）',
+							align: 'center',
+							width: 100
+						},
+						{
+							field: 'CDRIVEFORM',
+							title: '驱动形式',
+							align: 'center',
+							width: 100,
+							formatter: function(value, row, index) {
+								return value == '0' ? '前驱' : value == '1' ? '后驱' : value == '2' ? '全时四驱' : value == '3' ? '分时四驱' : '无';
+							}
+						},
+						{
+							field: 'CGEARBOXTYPE',
+							align: 'center',
+							title: '变速器形式',
+							width: 100,
+							formatter: function(value, row, index) {
+								return value == '0' ? '手动' : value == '1' ? '自动' : '无';
+							}
+						}
+
+					]
+				],
+				fitColumns: true,
+				striped: true,
+				pagination: true,
+				rownumbers: true,
+				height: 635,
+				selectOnCheck: true,
+				resizable: true,
+				loadMsg: '...加载中',
+				pageSize: 50,
+				pageList: [20, 50, 100, 150],
+				singleSelect: true
+
+			});
+
+			function tablerefresh(_pagenumber, _pagesize) {
+				$.ajax({
+					url: "../../AjaxHandler/AjaxService.ashx",
+					data: {
+						method: 'GetCheXing',
+						pagenumber: _pagenumber,
+						pagesize: _pagesize,
+						CNAME: $('._CNAME').val(),
+						VehicleModel: $('._VehicleModel').val()
+					},
+					async: false,
+					dataType: "json",
+					type: "post",
+					success: function(json) {
+
+						$('.page-table').datagrid('loadData', json);
+					},
+					error: function(xhr) {
+
+					}
+				});
+			}
+
+			tablerefresh(1, 50);
+			$('.page-refresh').click(function() {
+				tablerefresh(1, 50);
+			});
+			$('.page-search').click(function() {
+				tablerefresh(1, 50);
+			});
+
+			$('.page-table').datagrid('getPager').pagination({
+				onSelectPage: function(pageNumber, pageSize) {
+					tablerefresh(pageNumber, pageSize);
+				}
+			});
+
+			//$.ajax({
+			//    url: 'xml/vehicleModel.xml',
+			//    type: 'GET',
+			//    dataType: 'xml',
+			//    timeout: 10000,  //设定超时
+			//    cache: false,   //禁用缓存
+			//    error: function (xml) {
+
+			//    },
+			//    success: function (xml) {
+			//        var arr = new Array();
+
+			//        $(xml).find("RECORD").each(function (i) {
+			//            var self = $(this);
+			//            console.log(self.find("NVEHICLEMODELID"));
+			//            arr.push(
+			//                {
+			//                    NVEHICLEMODELID: self.attr("NVEHICLEMODELID"),
+			//                    NSTANDARDID: self.attr("NSTANDARDID"),
+			//                    CVEHICLESTYLE: self.attr("CVEHICLESTYLE"),
+			//                    NMAXWEIGHT: self.attr('NMAXWEIGHT'),
+			//                    NSTDWEIGHT: self.attr('NSTDWEIGHT'),
+			//                    CDRIVEFORM: self.attr('CDRIVEFORM'),
+			//                    CGEARBOXTYPE: self.attr('CGEARBOXTYPE')
+			//                }
+			//            );
+
+			//        });
+
+			//        $('.page-table').datagrid({
+			//            columns: [[
+			//                { field: '', title: '', checkbox: true },
+			//                { field: 'NVEHICLEMODELID', title: '厂牌-型号', width: 100 },
+			//                { field: 'NSTANDARDID', title: '满足排放标准', width: 100 },
+			//                { field: 'CVEHICLESTYLE', title: '车型类别', width: 100 },
+			//                { field: 'NMAXWEIGHT', title: '最大总质量（kg）', width: 100 },
+			//                { field: 'NSTDWEIGHT', title: '标准质量（kg）', width: 100 },
+			//                { field: 'CDRIVEFORM', title: '驱动形式', width: 100 },
+			//                { field: 'CGEARBOXTYPE', title: '变速器形式', width: 100 },
+
+			//                {
+			//                    field: 'execute', title: '操作', width: 100, formatter: function (value, row, index) {
+			//                        return '<div><input type="button" value="查看详细"/></div>'
+			//                    }
+			//                }
+
+			//            ]],
+			//            fitColumns: true,
+			//            striped: true,
+			//            data: arr,
+			//            pagination: true,
+			//            rownumbers: true,
+			//            height: 635,
+			//            selectOnCheck: true,
+			//            pageSize: 20,
+			//            pageList: [20, 50, 100, 150],
+			//            singleSelect: true,
+
+			//        });
+
+			//    }
+			//});
+		</script>
+	</body>
+
+</html>

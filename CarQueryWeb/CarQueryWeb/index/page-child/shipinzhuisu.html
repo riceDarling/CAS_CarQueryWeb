@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天津市机动车排污检控中心监控平台</title>
+
+		<link href="css/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="css/easyui.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/header.css" />
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				background: #f4f4f4;
+			}
+			
+			* {
+				font-family: "微软雅黑";
+				font-size: 13px;
+				letter-spacing: 1px;
+			}
+			
+			.county:hover {
+				/*color:beige;*/
+				color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="tjwq_header">
+			<div></div>
+		</div>
+		<div class="roll" id="roll">
+			<a href="javascript:void(0);" class="btn_left"></a>
+			<a href="javascript:void(0);" class="btn_right"></a>
+			<div class="wrap">
+				<ul>
+					<li>
+						<a href="../index.html" target="">
+							<div class="target-button">
+								<img src="../images/home.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="jiankongpingtai.html" target="">
+							<div class="target-button">
+								<img src="../img/1.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="cheliangfenxi.html" target="">
+							<div class="target-button">
+								<img src="../img/2.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="xincheguanli.html">
+							<div class="target-button">
+								<img src="../img/3.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="zonghechaxun.html" target="">
+							<div class="target-button">
+								<img src="../img/4.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="shujufankong.html" target="">
+							<div class="target-button">
+								<img src="../img/5.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="pingtaijiankong.html" target="">
+							<div class="target-button">
+								<img src="../img/6.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="tongjifenxi.html" target="">
+							<div class="target-button">
+								<img src="../img/7.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="zhifajiandu.html" target="">
+							<div class="target-button">
+								<img src="../img/8.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="shipinzhuisu.html" target="">
+							<div class="target-button">
+								<img src="../img/9.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="shujuzidian.html" target="">
+							<div class="target-button">
+								<img src="../img/10.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="baojingjiankong.html" target="">
+							<div class="target-button">
+								<img src="../img/11.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="xitongguanli.html" target="">
+							<div class="target-button">
+								<img src="../img/13.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="xitongjiekou.html" target="">
+							<div class="target-button">
+								<img src="../img/14.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="xinxifabu.html" target="">
+							<div class="target-button fr">
+								<img src="../img/17.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="youqifenxi.html" target="">
+							<div class="target-button">
+								<img src="../img/16.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="nav">
+			<span id="tjwqtitlenav" style="margin-left:16px;">欢迎登陆本系统！您当前的位置为：首页</span>
+			<div style="float:right;"><span style="margin-right:40px;">您好！天津市用户</span>
+				<!--<a href="page-child/resetPwd.html" style="margin-right:16px;">[修改密码]</a>-->
+				<a href="../Login.aspx" style="margin-right:16px;">[登出]</a>
+			</div>
+		</div>
+		<div class="pagewrap" style="width:100%;height:100%;margin-top: 30px;">
+			<div id="tjwqBtn" class="jczjcz left_list">
+				<div class="tjwqtitle">
+					视频监控
+				</div>
+				<div class="listbtnz tjwqActive"><b></b>
+					<div>视频监控管理</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="js/jquery-2.2.1.min.js"></script>
+		<script src="js/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="js/column.js"></script>
+		<script type="text/javascript">
+			$.ajax({
+				url: '../../AjaxHandler/AjaxService.ashx?method=QueryJCZ',
+				type: 'post',
+				dataType: 'json',
+				timeout: 10000, //设定超时
+				cache: false, //禁用缓存
+				error: function(xml) {
+
+				},
+				success: function(json) {
+					//console.log(json);
+					var arrCounty = [];
+					var arrUnit = [];
+					for(var i = 0; i < json.rows.length; i++) {
+						arrCounty.push(json.rows[i].COUNTY);
+						arrUnit.push(json.rows[i]);
+						//$(".jcz").append("<div onclick=\" window.location.href='shipinzhongzhuan.html?UnitName=" + escape(json.rows[i].CUNITNAME)+"'\" style=\"width:100%;height: 27px; line-height:27px; text-indent:15px; \"><i class=\"icon-file\"></i>&nbsp;" + json.rows[i].CUNITNAME + "</div>");
+					}
+					//console.log(arrCounty);
+					arrCounty = arrCounty.unique();
+					//arrUnit = arrUnit.unique();
+					console.log(arrCounty);
+					console.log(arrUnit);
+					for(var i = 0; i < arrCounty.length; i++) {
+						if(arrCounty[i] != "涉县")
+							$(".jcz").append("<div class=\"county\" name=\"county" + i + "\" style=\"width:100%;height:27px; line-height:27px;text-indent:15px;\"><i class=\"icon-plus\"></i>&nbsp;" + arrCounty[i] + "</div>");
+						for(var j = 0; j < arrUnit.length; j++) {
+							if(arrUnit[j].COUNTY == arrCounty[i] && arrUnit[j].UNITNAME != "测试检测站" && arrUnit[j].UNITNAME != "400") {
+								$(".jcz").append("<div class=\"unit" + i + "\" name=\"unit\" onclick=\" window.location.href='shipinzhongzhuan.html?UnitName=" + escape(arrUnit[j].UNITNAME) + "'\" style=\"display:none;width:100%;height: 27px; line-height:27px; text-indent:15px; \">&nbsp;&nbsp;&nbsp;&nbsp;<i class=\"icon-file\"></i>&nbsp;&nbsp;" + arrUnit[j].UNITNAME + "</div>");
+								arrUnit.splice(j, 1);
+								j--;
+							}
+						}
+					}
+
+					$(".county").click(function() {
+						var self = $(this);
+						var selfIcon = self.find("i");
+						if(selfIcon.hasClass("icon-plus")) {
+							//alert("+");
+							selfIcon.removeClass("icon-plus");
+							selfIcon.addClass("icon-minus");
+						} else if(selfIcon.hasClass("icon-minus")) {
+							// alert("-");
+							selfIcon.removeClass("icon-minus");
+							selfIcon.addClass("icon-plus");
+						}
+
+						$(".county").each(function() {
+							if($(this).attr("name") != self.attr("name")) {
+								$(this).find("i").removeClass("icon-minus");
+								$(this).find("i").addClass("icon-plus");
+							}
+						});
+
+						var temp = self.attr("name").substring(self.attr("name").indexOf('y') + 1, self.attr("name").length);
+						//console.log(temp);
+						var selfUnit = $(".unit" + temp);
+						if(selfUnit.css("display") == "none") {
+							selfUnit.css("display", "block");
+
+						} else if(selfUnit.css("display") == "block") {
+							selfUnit.css("display", "none");
+						}
+						$("div[name='unit']").each(function() {
+							if($(this).attr("class") != selfUnit.attr("class")) {
+								$(this).css("display", "none");
+							}
+						});
+
+					});
+				}
+			});
+
+			Array.prototype.unique = function() {
+				var res = [];
+				var json = {};
+				for(var i = 0; i < this.length; i++) {
+					if(!json[this[i]]) {
+						res.push(this[i]);
+						json[this[i]] = 1;
+					}
+				}
+				return res;
+			}
+		</script>
+	</body>
+
+</html>

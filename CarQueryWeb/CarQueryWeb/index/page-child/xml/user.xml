@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<root>
+  <user name="admin"  username="天津市用户" email="" phone="" telphone="" fax="" desc="" password="admin"  authority="1,2,3,4,5,6,7,8,9,10" />
+  <user name="user01" username="天津市用户" email="" phone="" telphone="" fax="" desc="" password="user01" authority="1,2,3,4,5,6,7,8,9,10" />
+  <user name="user02" username="天津市用户" email="" phone="" telphone="" fax="" desc="" password="user02" authority="1,2,3,4,5,6,7,8,9,10" />
+  <user name="user03" username="天津市用户" email="" phone="" telphone="" fax="" desc="" password="user03" authority="1,2,3,4,5,6,7,8,9,10" />
+  <user name="user04" username="天津市用户" email="" phone="" telphone="" fax="" desc="" password="user04" authority="1,2,3,4,5,6,7,8,9,10" />
+</root>

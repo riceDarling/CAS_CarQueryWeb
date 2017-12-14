@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天津市机动车排污检控中心监控平台</title>
+
+		<link href="css/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="css/easyui.css" rel="stylesheet" type="text/css">
+		<link href="../css/header.css" rel="stylesheet" type="text/css" />
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				background: #f4f4f4;
+			}
+			
+			* {
+				font-family: "微软雅黑";
+				font-size: 13px;
+				letter-spacing: 1px;
+			}
+			
+			.datagrid-cell {
+				overflow: hidden !important;
+				text-overflow: ellipsis !important;
+				white-space: nowrap !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="tjwq_header">
+			<div></div>
+		</div>
+		<div class="roll" id="roll">
+			<a href="javascript:void(0);" class="btn_left"></a>
+			<a href="javascript:void(0);" class="btn_right"></a>
+			<div class="wrap">
+				<ul>
+					<li>
+						<a href="../index.html" target="">
+							<div class="target-button">
+								<img src="../images/home.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="jiankongpingtai.html" target="">
+							<div class="target-button">
+								<img src="../img/1.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="cheliangfenxi.html" target="">
+							<div class="target-button">
+								<img src="../img/2.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="xincheguanli.html">
+							<div class="target-button">
+								<img src="../img/3.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="zonghechaxun.html" target="">
+							<div class="target-button">
+								<img src="../img/4.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="shujufankong.html" target="">
+							<div class="target-button">
+								<img src="../img/5.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="pingtaijiankong.html" target="">
+							<div class="target-button">
+								<img src="../img/6.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="tongjifenxi.html" target="">
+							<div class="target-button">
+								<img src="../img/7.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="zhifajiandu.html" target="">
+							<div class="target-button">
+								<img src="../img/8.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="shipinzhuisu.html" target="">
+							<div class="target-button">
+								<img src="../img/9.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="shujuzidian.html" target="">
+							<div class="target-button">
+								<img src="../img/10.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="baojingjiankong.html" target="">
+							<div class="target-button">
+								<img src="../img/11.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="xitongguanli.html" target="">
+							<div class="target-button">
+								<img src="../img/13.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="xitongjiekou.html" target="">
+							<div class="target-button">
+								<img src="../img/14.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="xinxifabu.html" target="">
+							<div class="target-button fr">
+								<img src="../img/17.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="youqifenxi.html" target="">
+							<div class="target-button">
+								<img src="../img/16.png" width="70px" height="70px" />
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="nav">
+			<span id="tjwqtitlenav" style="margin-left:16px;">欢迎登陆本系统！您当前的位置为：首页</span>
+			<div style="float:right;"><span style="margin-right:40px;">您好！天津市用户</span>
+				<!--<a href="page-child/resetPwd.html" style="margin-right:16px;">[修改密码]</a>-->
+				<a href="../Login.aspx" style="margin-right:16px;">[登出]</a>
+			</div>
+		</div>
+		<div class="pagewrap" style="width:100%;height:100%;margin-top: 30px;">
+			<div id="tjwqBtn" class="jczjcz left_list">
+				<div class="tjwqtitle">
+					执法监督
+				</div>
+				<div class="listbtnz tjwqActive"><b></b>
+					<div>执法监督管理</div>
+				</div>
+			</div>
+			<div style="width:100%;height:42px;background:#f4f4f4;border-bottom:1px solid #d0d0d0;">
+				<div style="float:left;margin-left:20px;margin-top:7px;">
+					<div style="float:left;height:27px;line-height:27px;">车牌号码：</div>
+					<div style="float:left;height:27px;"><input class="_CNUMBERPLATE" style="height:27px;" type="text" /></div>
+				</div>
+				<!--<div style="float:left;margin-left:20px;margin-top:7px;">
+            	<div style="float:left;height:27px;line-height:27px;">车辆种类：</div>
+                <div style="float:left;height:27px;"><input class="CFUELTYPE" style="height:27px;" type="text" /></div>
+            </div>-->
+				<div class="page-search" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">查询</div>
+				<!-- <div class="page-refresh" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">刷新</div>-->
+			</div>
+			
+			<div style="width:100%;height:635px;background:#f4f4f4;">
+				<div style="width:100%;height:100%;">
+					<table class="page-table"></table>
+				</div>
+			</div>
+		</div>
+
+		<script src="js/jquery-2.2.1.min.js"></script>
+		<script src="js/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="js/column.js"></script>
+		<script>
+			$('.page-table').datagrid({
+				columns: [
+					[{
+							field: '',
+							title: '',
+							checkbox: true
+						},
+						{
+							field: 'CNUMBERPLATE',
+							title: '车牌号码',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'CPLATETYPE',
+							title: '车牌颜色',
+							width: 100,
+							align: 'center',
+							formatter: function(value, row, index) {
+								return value == '0' ? '蓝牌' : value == '1' ? "黄牌" : value == '2' ? "黑牌" : value == '3' ? "白牌" : "无";
+							}
+						},
+						{
+							field: 'CVIN',
+							align: 'center',
+							title: '车架号/VIN',
+							width: 100
+						},
+						{
+							field: 'DREGISTERSS',
+							align: 'center',
+							title: '初登日期',
+							width: 100
+						},
+						{
+							field: 'NVEHICLEMODELID',
+							align: 'center',
+							title: '厂牌型号',
+							width: 100
+						}
+
+					]
+				],
+				fitColumns: true,
+				striped: true,
+				pagination: true,
+				rownumbers: true,
+				height: 635,
+				selectOnCheck: true,
+				resizable: true,
+				loadMsg: '...加载中',
+				pageSize: 50,
+				pageList: [20, 50, 100, 150],
+				singleSelect: true
+
+			});
+
+			function tablerefresh(_pagenumber, _pagesize) {
+				$.ajax({
+					url: "../../AjaxHandler/AjaxService.ashx",
+					data: {
+						method: 'CheLiangFenXi',
+						pagenumber: _pagenumber,
+						pagesize: _pagesize,
+						CNUMBERPLATE: $('._CNUMBERPLATE').val(),
+						//CFUELTYPE: $( '.CFUELTYPE' ).val()
+					},
+					async: false,
+					dataType: "json",
+					type: "post",
+					success: function(json) {
+
+						$('.page-table').datagrid('loadData', json);
+					},
+					error: function(xhr) {
+
+					}
+				});
+			}
+
+			tablerefresh(1, 50);
+
+			$('.page-search').click(function() {
+				tablerefresh(1, 50);
+			});
+
+			$('.page-table').datagrid('getPager').pagination({
+				onSelectPage: function(pageNumber, pageSize) {
+					tablerefresh(pageNumber, pageSize);
+				}
+			});
+		</script>
+	</body>
+
+</html>

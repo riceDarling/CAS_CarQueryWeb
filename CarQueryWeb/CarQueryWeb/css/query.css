@@ -1,0 +1,25 @@
+﻿.query-table tr td {
+    width: 210px;
+}
+
+    .query-table tr td select {
+        width: 200px;
+        height: 30px;
+    }
+
+    .query-table tr td input {
+        width: 200px;
+        height: 30px;
+    }
+
+.query-table .field {
+    text-align: right;
+}
+
+.query-table .content {
+    text-align: left;
+}
+
+#main-menu {
+    font-size: 25px;
+}

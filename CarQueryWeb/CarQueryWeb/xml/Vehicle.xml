@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<root>
+   <!--   车架号                   车牌类型        车型号                         车牌               车辆类型                 车主                           地址                                                电话                车辆分类              注册日期                          厂牌         -->
+  <vehicle VIN="LSVAR4BR9EN262619" PlateType="蓝牌" VehicleModelNo="SVW71612RS" License="津A6773警" LicenseType="汽油"       User="天津市公安局东丽分局"   Address="天津市东丽区津塘二线商贸城东"               Phone="13752198965" VehicleKind="小型客车" Date="2014-12-04 00:00:00.000" VehicleModel="大众"  />
+  <vehicle VIN="LSVAR4BR2EN261070" PlateType="蓝牌" VehicleModelNo="SVW71612RS" License="津A6772警" LicenseType="汽油"       User="天津市公安局东丽分局"   Address="天津市东丽区津塘二线"                       Phone="18622749874" VehicleKind="小型客车" Date="2014-12-02 00:00:00.000" VehicleModel="大众汽车牌"  />
+  <vehicle VIN="LGDXWA1T7FH102563" PlateType="黄牌" VehicleModelNo="DFA5161CCYL10D74C" License="津AX5660" LicenseType="柴油" User="苏安辉"                 Address="天津市滨海新区第四大街67号鸿发工业园" 		Phone="15822559745" VehicleKind="轻型货车" Date="2015-05-26 00:00:00.000" VehicleModel="东风牌"  />
+  <vehicle VIN="LZWACAGA1D6042001" PlateType="蓝牌" VehicleModelNo="LZW6407BAF" License="津ADH797" LicenseType="汽油"        User="李昌春" 					Address="天津市东丽区新立街西杨场村海河西6区9号" 	Phone="18222286974" VehicleKind="小型客车" Date="2013-04-23 00:00:00.000" VehicleModel="五菱牌"  />
+  <vehicle VIN="LVTDB12A0AB026982" PlateType="蓝牌" VehicleModelNo="SQR6401S226" License="津GFB866" LicenseType="汽油"       User="张晓霞" 					Address="天津市东丽区新立街四合庄" 					Phone="15902254765" VehicleKind="小型客车" Date="2010-04-13 00:00:00.000" VehicleModel="开瑞牌"  />
+  <vehicle VIN="LJ16AA23967027214" PlateType="蓝牌" VehicleModelNo="HFC6470AE3" License="津RM3131" LicenseType="汽油"        User="谷海坡" 					Address="天津市东丽区华明镇华明家园建设工地新工地二号" Phone="13512765478" VehicleKind="小型客车" Date="2006-10-30 00:00:00.000" VehicleModel="江淮牌"  />
+  <vehicle VIN="KMHHN61F15U150205" PlateType="蓝牌" VehicleModelNo="KMHHN611" License="津MJL555" LicenseType="汽油"          User="天津友坤汽车销售有限公司" Address="北辰区科技园区" 							Phone="17702275364" VehicleKind="小型客车" Date="2004-08-08 00:00:00.000" VehicleModel="酷派"  />
+  <vehicle VIN="LFV2A11G4A3044311" PlateType="蓝牌" VehicleModelNo="FV7160FG" License="津GVB988" LicenseType="汽油"          User="赵风明" 					Address="天津市东丽区无暇街新袁庄村4区106号" 		Phone="15822668584" VehicleKind="小型客车" Date="2010-03-30 00:00:00.000" VehicleModel="捷达牌"  />
+  <vehicle VIN="LVSHCAAE4AF471581" PlateType="蓝牌" VehicleModelNo="CAF7180B38" License="津GAE999" LicenseType="汽油"        User="窦玉燕" 					Address="天津市东丽区新立街新立村6区1排16号" 		Phone="13302275065" VehicleKind="小型客车" Date="2010-01-07 00:00:00.000" VehicleModel="福克斯牌"  />
+  <vehicle VIN="LFPX2ACA1A5C21598" PlateType="蓝牌" VehicleModelNo="TJ7133UE3" License="津JFX728" LicenseType="汽油"         User="邢敬飞" 					Address="天津市红桥区芥园道新春花苑" 				Phone="18222558684" VehicleKind="小型客车" Date="2010-09-03 00:00:00.000" VehicleModel="夏利"  />
+  
+
+</root>

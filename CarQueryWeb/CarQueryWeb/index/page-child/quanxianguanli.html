@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>天津市机动车排污检控中心监控平台</title>
+
+<link href="css/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="css/easyui.css" rel="stylesheet" type="text/css">
+<style>
+*{
+	box-sizing: border-box;
+	}
+html,body{
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+	background:#f4f4f4;
+	}
+*{
+	font-family:"微软雅黑";
+	font-size:13px;
+	letter-spacing:1px;
+	}
+</style>
+</head>
+
+<body>
+
+	<div class="pagewrap" style="width:100%;height:100%;">
+    	<div style="width:100%;height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;">
+        	权限管理
+        </div>
+        <div style="width:100%;height:42px;background:#f4f4f4;border-bottom:1px solid #d0d0d0;">
+        	<div style="float:left;margin-left:20px;margin-top:7px;">
+            	<div style="float:left;height:27px;line-height:27px;">角色名称：</div>
+                <div style="float:left;height:27px;"><input id="txtName" style="height:27px;" type="text" /></div>
+            </div>
+            <div class="page-search" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">查询</div>
+    
+        </div>
+        <div style="width:100%;height:635px;background:#f4f4f4;">
+        	<div style="width:100%;height:100%;">
+            	<table class="page-table"></table>
+            </div>
+        </div>
+    </div>
+    
+	<script src="js/jquery-2.2.1.min.js"></script>
+    <script src="js/jquery.easyui.min.js"></script>
+    <script>
+        /* Copyright (c) 2010-2016 Marcus Westin */
+        (function (f) { if (typeof exports === "object" && typeof module !== "undefined") { module.exports = f() } else if (typeof define === "function" && define.amd) { define([], f) } else { var g; if (typeof window !== "undefined") { g = window } else if (typeof global !== "undefined") { g = global } else if (typeof self !== "undefined") { g = self } else { g = this } g.store = f() } })(function () {
+            var define, module, exports; return (function e(t, n, r) { function s(o, u) { if (!n[o]) { if (!t[o]) { var a = typeof require == "function" && require; if (!u && a) return a(o, !0); if (i) return i(o, !0); var f = new Error("Cannot find module '" + o + "'"); throw f.code = "MODULE_NOT_FOUND", f } var l = n[o] = { exports: {} }; t[o][0].call(l.exports, function (e) { var n = t[o][1][e]; return s(n ? n : e) }, l, l.exports, e, t, n, r) } return n[o].exports } var i = typeof require == "function" && require; for (var o = 0; o < r.length; o++)s(r[o]); return s })({
+                1: [function (require, module, exports) {
+                    (function (global) {
+                        "use strict"; module.exports = function () { function e() { try { return o in n && n[o] } catch (e) { return !1 } } var t, r = {}, n = "undefined" != typeof window ? window : global, i = n.document, o = "localStorage", a = "script"; if (r.disabled = !1, r.version = "1.3.20", r.set = function (e, t) { }, r.get = function (e, t) { }, r.has = function (e) { return void 0 !== r.get(e) }, r.remove = function (e) { }, r.clear = function () { }, r.transact = function (e, t, n) { null == n && (n = t, t = null), null == t && (t = {}); var i = r.get(e, t); n(i), r.set(e, i) }, r.getAll = function () { }, r.forEach = function () { }, r.serialize = function (e) { return JSON.stringify(e) }, r.deserialize = function (e) { if ("string" == typeof e) try { return JSON.parse(e) } catch (t) { return e || void 0 } }, e()) t = n[o], r.set = function (e, n) { return void 0 === n ? r.remove(e) : (t.setItem(e, r.serialize(n)), n) }, r.get = function (e, n) { var i = r.deserialize(t.getItem(e)); return void 0 === i ? n : i }, r.remove = function (e) { t.removeItem(e) }, r.clear = function () { t.clear() }, r.getAll = function () { var e = {}; return r.forEach(function (t, r) { e[t] = r }), e }, r.forEach = function (e) { for (var n = 0; n < t.length; n++) { var i = t.key(n); e(i, r.get(i)) } }; else if (i && i.documentElement.addBehavior) { var c, u; try { u = new ActiveXObject("htmlfile"), u.open(), u.write("<" + a + ">document.w=window</" + a + '><iframe src="/favicon.ico"></iframe>'), u.close(), c = u.w.frames[0].document, t = c.createElement("div") } catch (l) { t = i.createElement("div"), c = i.body } var f = function (e) { return function () { var n = Array.prototype.slice.call(arguments, 0); n.unshift(t), c.appendChild(t), t.addBehavior("#default#userData"), t.load(o); var i = e.apply(r, n); return c.removeChild(t), i } }, d = new RegExp("[!\"#$%&'()*+,/\\\\:;<=>?@[\\]^`{|}~]", "g"), s = function (e) { return e.replace(/^d/, "___$&").replace(d, "___") }; r.set = f(function (e, t, n) { return t = s(t), void 0 === n ? r.remove(t) : (e.setAttribute(t, r.serialize(n)), e.save(o), n) }), r.get = f(function (e, t, n) { t = s(t); var i = r.deserialize(e.getAttribute(t)); return void 0 === i ? n : i }), r.remove = f(function (e, t) { t = s(t), e.removeAttribute(t), e.save(o) }), r.clear = f(function (e) { var t = e.XMLDocument.documentElement.attributes; e.load(o); for (var r = t.length - 1; r >= 0; r--)e.removeAttribute(t[r].name); e.save(o) }), r.getAll = function (e) { var t = {}; return r.forEach(function (e, r) { t[e] = r }), t }, r.forEach = f(function (e, t) { for (var n, i = e.XMLDocument.documentElement.attributes, o = 0; n = i[o]; ++o)t(n.name, r.deserialize(e.getAttribute(n.name))) }) } try { var v = "__storejs__"; r.set(v, v), r.get(v) != v && (r.disabled = !0), r.remove(v) } catch (l) { r.disabled = !0 } return r.enabled = !r.disabled, r }();
+                    }).call(this, typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+                }, {}]
+            }, {}, [1])(1)
+        });
+    </script>
+    <script>
+        $('.page-table').datagrid({
+            columns: [[
+                { field: '', title: '', checkbox: true },
+                { field: 'ID', title: '账号', width: 100 },
+                { field: 'NAME', title: '姓名', width: 100 },
+                { field: 'EMAIL', title: '邮箱地址', width: 100 },
+                { field: 'PHONE', title: '移动电话', width: 100 },
+                { field: 'TELPHONE', title: '家庭电话', width: 100 },
+                { field: 'FAX', title: '传真', width: 100 },
+                { field: 'DESC', title: '描述', width: 100 }
+
+            ]],
+            fitColumns: true,
+            striped: true,
+            pagination: true,
+            rownumbers: true,
+            height: 635,
+            selectOnCheck: true,
+            resizable: true,
+            loadMsg: '...加载中',
+            //pageSize: 50,
+            //pageList: [20, 50, 100, 150],
+            singleSelect: true,
+            onDblClickRow: function (rowIndex, rowData) {
+                //alert();
+               
+                   
+                           
+                           
+                            
+                           
+                        
+                           
+     //                       <a href="page-child/quanxianguanli.html" target="_blank">
+     //                           <div class="target-button" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+     //                               <div style="width:70px;height:90px;margin:0 auto;">
+     //                                   <img src="img/10.png" width="100%" height="100%" />
+     //                               </div>
+     //                               <div class="mt-10" style="width:120px;height:20px;line-height:20px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+     //                                   权限管理
+					//</div>
+     //                           </div>
+     //                       </a>
+     //                       <a href="page-child/cheliangfenxi.html" target="_blank">
+     //                           <div class="target-button" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+     //                               <div style="width:70px;height:90px;margin:0 auto;">
+     //                                   <img src="img/11.png" width="100%" height="100%" />
+     //                               </div>
+     //                               <div class="mt-10" style="width:120px;height:20px;line-height:20px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+     //                                   车辆分析
+					//</div>
+     //                           </div>
+     //                       </a>
+     //                       <a href="page-child/chexingfenxi.html" target="_blank">
+     //                           <div class="target-button" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+     //                               <div style="width:70px;height:90px;margin:0 auto;">
+     //                                   <img src="img/12.png" width="100%" height="100%" />
+     //                               </div>
+     //                               <div class="mt-10" style="width:120px;height:20px;line-height:20px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+     //                                   车型分析
+					//</div>
+     //                           </div>
+     //                       </a>
+     //                       <a href="page-child/zonghefenxi.html" target="_blank">
+     //                           <div class="target-button" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+     //                               <div style="width:70px;height:90px;margin:0 auto;">
+     //                                   <img src="img/13.png" width="100%" height="100%" />
+     //                               </div>
+     //                               <div class="mt-10" style="width:120px;height:20px;line-height:20px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+     //                                   综合分析
+					//</div>
+     //                           </div>
+     //                       </a>
+     //                       <a href="page-child/shujufankong.html" target="_blank">
+     //                           <div class="target-button" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+     //                               <div style="width:70px;height:90px;margin:0 auto;">
+     //                                   <img src="img/14.png" width="100%" height="100%" />
+     //                               </div>
+     //                               <div class="mt-10" style="width:120px;height:20px;line-height:20px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+     //                                   数据反控
+					//</div>
+     //                           </div>
+     //                       </a>
+     //                       <a href="page-child/tongjifenxi.html" target="_blank">
+     //                           <div class="target-button" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+     //                               <div style="width:70px;height:90px;margin:0 auto;">
+     //                                   <img src="img/15.png" width="100%" height="100%" />
+     //                               </div>
+     //                               <div class="mt-10" style="width:120px;height:20px;line-height:20px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+     //                                   统计分析
+					//</div>
+     //                           </div>
+     //                       </a>
+     //                       <a href="page-child/youqifenxi.html" target="_blank">
+     //                           <div class="target-button" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+     //                               <div style="width:70px;height:90px;margin:0 auto;">
+     //                                   <img src="img/16.png" width="100%" height="100%" />
+     //                               </div>
+     //                               <div class="mt-10" style="width:120px;height:20px;line-height:20px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+     //                                   油气分析
+					//</div>
+     //                           </div>
+     //                       </a>
+     //                       <a href="page-child/xinchefenxi.html" target="_blank">
+     //                           <div class="target-button fr" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+     //                               <div style="width:70px;height:90px;margin:0 auto;">
+     //                                   <img src="img/17.png" width="100%" height="100%" />
+     //                               </div>
+     //                               <div class="mt-10" style="width:120px;height:20px;line-height:20px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+     //                                   新车分析
+					//</div>
+     //                           </div>
+     //                       </a>
+     //                       <a href="page-child/shujuzidian.html" target="_blank">
+     //                           <div class="target-button fr" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+     //                               <div style="width:70px;height:90px;margin:0 auto;">
+     //                                   <img src="img/18.png" width="100%" height="100%" />
+     //                               </div>
+     //                               <div class="mt-10" style="width:120px;height:20px;line-height:20px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+     //                                   数据字典
+					//</div>
+     //                           </div>
+     //                       </a>
+     //                       <a href="page-child/xitongjiekou.html" target="_blank">
+     //                           <div class="target-button fr" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+     //                               <div style="width:70px;height:90px;margin:0 auto;">
+     //                                   <img src="img/19.png" width="100%" height="100%" />
+     //                               </div>
+     //                               <div class="mt-10" style="width:120px;height:20px;line-height:20px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+     //                                   系统接口
+					//</div>
+     //                           </div>
+     //                       </a>
+     //                       <a href="page-child/xitongguanli.html" target="_blank">
+     //                           <div class="target-button fr" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+     //                               <div style="width:70px;height:90px;margin:0 auto;">
+     //                                   <img src="img/20.png" width="100%" height="100%" />
+     //                               </div>
+     //                               <div class="mt-10" style="width:120px;height:20px;line-height:20px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+     //                                   系统管理
+					//</div>
+     //                           </div>
+     //                       </a>
+
+
+
+
+                EditAuthority(rowData.ID);
+            }
+
+        });
+
+
+
+        function tablerefresh() {
+            $.ajax({
+                url: "../../AjaxHandler/AjaxService.ashx",
+                data: {
+                    method: 'GetUser',
+                    name: $('#txtName').val()
+                },
+                async: false,
+                dataType: "json",
+                type: "post",
+                success: function (json) {
+                    $('.page-table').datagrid('loadData', json);
+                },
+                error: function (xhr) {
+
+                }
+            });
+        }
+
+
+        tablerefresh();
+
+        $('.page-search').click(function () {
+            tablerefresh();
+        });
+
+
+        function ShowDialog(url) {
+            var iWidth =600; //窗口宽度
+            var iHeight = 500;//窗口高度
+            var iTop = (window.screen.height - iHeight) / 2;
+            var iLeft = (window.screen.width - iWidth) / 2;
+            window.open(url, "Detail", "Scrollbars=no,Toolbar=no,Location=no,Direction=no,Resizeable=no,Width= " + iWidth + ", Height = " + iHeight + ", top = " + iTop + ", left = " + iLeft);
+        }
+        function EditAuthority(name) {
+            store.set('yonghu', name);
+            ShowDialog("../../newcar/EditAuthority.html?user=" + name);
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+﻿
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>天津市机动车排污检控中心监控平台</title>
+    <!-- Bootstrap Styles-->
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../assets/css/bootstrap-table.min.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="../../assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="../../assets/css/custom-styles.css" rel="stylesheet" />
+    <link href="../../assets/css/select2.min.css" rel="stylesheet" />
+    <link href="../../assets/css/checkbox3.min.css" rel="stylesheet" />
+    <link href="../../css/query.css" rel="stylesheet" />
+
+
+    <script src="../../assets/js/jquery-2.2.1.min.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="../../assets/js/colResizable-1.6.js"></script>
+    <script src="../../assets/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/bootstrap-table.js"></script>
+    <script src="../../assets/js/bootstrap-table-zh-CN.js"></script>
+    <script src="../../assets/js/bootstrap-table-fixed-columns.js"></script>
+
+    <!-- Metis Menu Js -->
+    <script src="../../assets/js/jquery.metisMenu.js"></script>
+    <script src="../../assets/js/select2.full.min.js"></script>
+
+
+
+    <script src="../../js/DatePicker/WdatePicker.js"></script>
+    <script>
+        $(document).ready(function () {
+            //$('#wrapper').css({ 'margin-bottom': '0px' });
+            $('#page-wrapper').css({ 'margin-left': '0px' });
+            $('#page-wrapper').css({ 'margin-top': '0px' }); $('#page-wrapper').css({ 'top': '0px' });
+        });
+    </script>
+
+</head>
+<body>
+
+    <div id="wrapper">
+        
+        <div id="page-wrapper">
+            <div class="header">
+                <br />
+                <ol class="breadcrumb">
+                    <li><a href="#">天津市环保局</a></li>
+                </ol>
+
+            </div>
+            <div id="page-inner">
+                <div class="panel-body">
+                    <div style="margin: 0 auto;" class="col-md-12 col-sm-12">
+                        <div>
+                            <span class="field">车型:&nbsp;&nbsp;</span>
+                            <input type="text" id="txtVehicleModel" name="txtVehicleModel" />
+                            <button id="btnQuery" class="btn btn-default">查 询</button>
+                        </div>
+                        <div>
+                            <p class="field">车辆信息<label id="lblResult"></label>&nbsp;&nbsp;</p>
+                        </div>
+                        <table class="query-table">
+                            <tr>
+                                <td class="field">车辆识别代码:&nbsp;&nbsp;</td>
+                                <td class="content">
+                                    <input type="text" id="txtVINout" name="txtVIN" />
+                                </td>
+
+                                <td class="field">汽车分类:&nbsp;&nbsp;</td>
+                                <td class="content">
+                                    <select id="selVehicleKind" class="selectbox">
+                                        <option value="-1">无</option>
+                                        <option value="N1">N1</option>
+                                        <option value="N2">N2</option>
+                                        <option value="N3">N3</option>
+                                        <option value="M1">M1</option>
+                                        <option value="M2">M2</option>
+                                        <option value="M3">M3</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="field">商标:&nbsp;&nbsp;</td>
+                                <td class="content">
+                                    <select id="selVehicleModel" class="selectbox">
+                                        <option value="-1">无</option>
+                                        <option value="1">奥迪牌</option>
+                                        <option value="2">奔驰牌</option>
+                                        <option value="3">宝马牌</option>
+                                        <option value="4">丰田牌</option>
+                                        <option value="5">本田牌</option>
+                                    </select>
+                                </td>
+                                <td class="field">车辆型号:&nbsp;&nbsp;</td>
+                                <td class="content">
+                                    <input type="text" id="txtVehicleModelNo" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="field">发动机型号:&nbsp;&nbsp;</td>
+                                <td class="content">
+                                    <select id="selEngineModel" class="selectbox">
+                                        <option value="-1">无</option>
+                                        <option value="1">0909809</option>
+                                        <option value="2">4587908</option>
+                                        <option value="3">3452348</option>
+                                        <option value="4">8945367</option>
+                                    </select>
+                                </td>
+                                <td class="field">发动机编号:&nbsp;&nbsp;</td>
+                                <td class="content">
+                                    <input type="text" id="txtEngineNo" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="field">总质量:&nbsp;&nbsp;</td>
+                                <td class="content">
+                                    <input type="text" id="txtWeight" />
+                                </td>
+                                <td class="field">燃料种类:&nbsp;&nbsp;</td>
+                                <td class="content">
+                                    <input type="text" id="txtFuelType" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="field">排放标准:&nbsp;&nbsp;</td>
+                                <td class="content">
+                                    <input type="text" id="txtStandard" />
+                                </td>
+
+                            </tr>
+                        </table>
+                        <div>
+                            <!--审核结果：<label id="lblResult"></label>-->
+                            <button id="btnInsert" class="btn btn-default">录入</button>
+                            &nbsp;
+                            <button id="btnSure" style="display:none;" class="btn btn-default">生成报告单</button>
+                        </div>
+                        <div>
+                            <p class="field">车主信息&nbsp;&nbsp;</p>
+                        </div>
+                        <table class="query-table">
+                            <tr>
+                                <td class="field">姓名:&nbsp;&nbsp;</td>
+                                <td class="content">
+                                    <input type="text" id="txtUser" />
+                                </td>
+
+                                <td class="field">电话:&nbsp;&nbsp;</td>
+                                <td class="content">
+                                    <input type="text" id="txtPhone" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="field">地址:&nbsp;&nbsp;</td>
+                                <td colspan="3" class="content">
+                                    <input type="text" style="width: 510px;" id="txtAddress" />
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div>
+                    <iframe src="" id="ReportFrame" style="height: 500px; width: 100%" frameborder="no" border="0"
+                            marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
+                </div>
+
+
+                <footer>
+                    <p>Copyright &copy; 2016.Company name All rights reserved.环保局检测数据统计</p>
+                </footer>
+            </div>
+
+            <!-- /. PAGE INNER  -->
+
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+
+    <script src="../../js/common.js" type="text/javascript"></script>
+    <script src="../../js/vaildateVIN.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $("#btnQuery").click(function () {
+            clear();
+
+            var VehicleModel = $("#txtVehicleModel").val();
+
+            if (VehicleModel.length == 0) {
+                alert("请输入车型号！");
+                return false;
+            }
+            var data = {
+                VehicleModel: encodeURIComponent(VehicleModel),
+                method: "VehicleModelQuery"
+            };
+
+            $.ajax({
+                url: "../../AjaxHandler/NewCarHandler.ashx",
+                data: data,
+                dataType: "json",
+                type: "post",
+                success: function (json) {
+                    //alert("success");
+                    //if (json.code == "300")
+                    //{
+                    //    alert(json.message);
+                    //}
+                    var carList = json.rows;
+                    var result = json.result;
+                    var car = {};
+                    if (carList.length > 0) {
+                        car = carList[0];
+                        //$("#txtVINout").val(car.VIN);
+                        //$("#selVehicleKind").val(car.QCFL);
+                        //$("#selVehicleModel").val(car.BRAND);
+                        $("#txtVehicleModelNo").val(car.VEHICLEMODEL);
+                        $("#selEngineModel").val(car.FDJXH);
+                        $("#txtEngineNo").val(car.FDJXH);
+                        $("#txtWeight").val(car.ZDZZL);
+                        $("#txtFuelType").val(car.FUELTYPE);
+                        $("#txtStandard").val(car.STANDARD);
+
+                    } else {
+                        alert("无结果，请前往行政许可中心审核");
+                    }
+
+                    //{"rows":[{"":"1","":"1","ZDZZL":1,"STANDARD":"1"}],"totals":1,"result":"1"}
+                },
+                error: function (xhr) {
+                    alert("无结果");
+                }
+            });
+
+        });
+        $("#btnInsert").click(function () {
+            $("#lblResult").text();
+            $("#btnSure").css("display", "none");
+            var VIN = $("#txtVINout").val();
+            if (VIN.trim().length == 0) {
+                alert("请输入车架号");
+                return;
+            }
+            if (VIN.trim().length != 17) {
+                alert("车架号位数错误，为" + VIN.trim().length + "位");
+                return;
+            }
+            if (!vaildateVIN(VIN)) {
+                alert("车架号格式错误");
+                return;
+            }
+            var VehicleKind = $("#selVehicleKind").val();//汽车分类
+            var VehicleModel = $("#selVehicleModel").val();//商标
+            var VehicleModelNo = $("#txtVehicleModelNo").val();//型号
+            var User = $("#txtUser").val();
+            var Phone = $("#txtPhone").val();
+            var Address = $("#txtAddress").val();
+            var data = {
+                VIN: VIN,
+                VehicleKind: encodeURIComponent(VehicleKind),//汽车分类
+                VehicleModel: encodeURIComponent(VehicleModel),//商标
+                VehicleModelNo: encodeURIComponent(VehicleModelNo),//型号
+                User: encodeURIComponent(User),
+                Phone: encodeURIComponent(Phone),
+                Address: encodeURIComponent(Address),
+                method: "VINInsert"
+            };
+
+            $.ajax({
+                url: "../../AjaxHandler/NewCarHandler.ashx",
+                data: data,
+                dataType: "json",
+                type: "post",
+                success: function (json) {
+                    alert(json.message);
+                    if (json.code == "1") {
+                        $("#lblResult").css("color", "green");
+                        $("#lblResult").text("通过");
+                        $("#btnSure").css("display", "inline");
+                    } else {
+                        $("#lblResult").css("color", "red");
+                        $("#lblResult").text("不通过");
+                        $("#btnSure").css("display", "none");
+                    }
+                },
+                error: function (xhr) {
+                    alert("暂时无法录入，请检查网络");
+                }
+            });
+        });
+        $("#btnSure").click(function () {
+            var VIN = $("#txtVINout").val();
+            var date = new Date();
+            var ReportNumber = "" + date.getFullYear() + (date.getMonth() + 1) + date.getDate() + date.getHours() + date.getMinutes() + date.getSeconds() + date.getMilliseconds();
+            //"M+": this.getMonth() + 1, //月份
+            //    "d+": this.getDate(), //日
+            //        "h+": this.getHours(), //小时
+            //            "m+": this.getMinutes(), //分
+            //                "s+": this.getSeconds(), //秒
+            //                    "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            //                        "S": this.getMilliseconds() //毫秒
+            //console.log(ReportNumber);
+            //var Standard = $("#txtStandard").val();+ "&Standard=" + Standard
+
+            var VehicleKind = escape($("#selVehicleKind").find("option:selected").text());
+            var VehicleModel = escape($("#selVehicleModel").find("option:selected").text());
+            var VehicleModelNo = escape($("#txtVehicleModelNo").val());
+            var EngineModel = escape($("#selEngineModel").find("option:selected").text());
+            var EngineNo = escape($("#txtEngineNo").val());
+            var Weight = escape($("#txtWeight").val());
+            var data = {
+                XXGKBH: encodeURIComponent(ReportNumber),
+                VIN: encodeURIComponent(VIN),
+                method: "GenerateReprot"
+            };
+            $.ajax({
+                url: "../../AjaxHandler/NewCarHandler.ashx",
+                data: data,
+                dataType: "json",
+                type: "post",
+                success: function (json) {
+                    if (json.code == "2") {
+                        $("#ReportFrame").attr("src", "newCarReport.html?VIN=" + json.message
+                            + "&VehicleKind=" + VehicleKind + "&VehicleModel=" + VehicleModel
+                            + "&VehicleModelNo=" + VehicleModelNo + "&EngineModel=" + EngineModel + "&EngineNo=" + EngineNo + "&Weight=" + Weight);
+                    } else if (json.code == "1") {
+                        $("#ReportFrame").attr("src", "newCarReport.html?VIN=" + VIN
+                            + "&VehicleKind=" + VehicleKind + "&VehicleModel=" + VehicleModel
+                            + "&VehicleModelNo=" + VehicleModelNo + "&EngineModel=" + EngineModel + "&EngineNo=" + EngineNo + "&Weight=" + Weight);
+                    } else {
+                        alert(json.message);
+                    }
+
+                },
+                error: function (xhr) {
+                }
+            });
+
+        });
+        function clear() {
+            $("#txtVINout").val("");
+            $("#selVehicleKind").val("-1");
+            $("#selVehicleModel").val("-1");
+            $("#txtVehicleModelNo").val("");
+            $("#selEngineModel").val("-1");
+            $("#txtEngineNo").val("");
+            $("#txtWeight").val("");
+            $("#txtFuelType").val("");
+            $("#txtStandard").val("");
+            $("#lblResult").text("");
+            $("#btnSure").css("display", "none");
+        }
+
+
+    </script>
+</body>
+</html>

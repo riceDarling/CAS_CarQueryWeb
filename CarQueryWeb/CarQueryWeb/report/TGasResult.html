@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天津市机动车排污检控中心监控平台</title>
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+				font-family: "宋体";
+			}
+			
+			.body {
+				width: 165mm;
+				height: 250mm;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				-o-box-sizing: border-box;
+				-ms-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				padding: 16mm;
+			}
+			
+			table {
+				border-collapse: collapse;
+				width: 100%;
+				max-height: 100%;
+				line-height: 6mm;
+				table-layout: fixed;
+				white-space: nowrap;
+			}
+			
+			.br {
+				height: 6mm;
+			}
+			
+			thead td {
+				text-align: center;
+				font-size: 4.8mm;
+				height: 9mm;
+			}
+			
+			tbody {
+				font-size: 3.4mm;
+			}
+			
+			.ul {
+				border-bottom: 0.1mm solid #000;
+			}
+			
+			tbody td:nth-child(2n+1) {
+				text-align: right;
+			}
+			
+			tbody td:nth-child(2n) {
+				text-align: center;
+			}
+			
+			tbody td.tt {
+				text-align: left !important;
+			}
+			
+			.ttb {
+				width: 100%;
+			}
+			
+			.ttb td {
+				text-align: center!important;
+                height:7mm;
+			}
+			
+			.imggrp {
+				height: 50mm;
+			}
+			
+			.imggrp td {
+				text-align: center !important;
+				overflow: hidden;
+			}
+			
+			.imggrp img {
+				width: 100%;
+				vertical-align: middle;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="body">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+                        <td colspan="4" style="font-weight: bold;">点燃式发动机汽车稳态工况法排气污染物测试报告</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="height:12mm;">
+						<td colspan="4"> </td>
+					</tr>
+					<tr>
+						<td>计量认证证号：</td>
+                        <td style="text-align:left;" id="MANo"></td>
+						<td>检测报告编号：</td>
+                        <td id="CFACECHECKID" style="text-align:left;">-</td>
+					</tr>
+
+					<tr>
+						<td>检测站名称：</td>
+                        <td colspan="3" id="CheckName" class="tt">-</td>
+					</tr>
+					<tr>
+						<td>承检范围：</td>
+						<td>总质量&le;3500kg的轻型汽油车</td>
+						<td>检测日期：</td>
+                        <td id="dCheckBeginDate" class="ul">-</td>
+					</tr>
+					<tr>
+						<td>检测操作员：</td>
+                        <td><div class="ul" id="CheckOperator"></div>
+                            <!--<input name="CheckOperator" id="CheckOperator" class="ul" type="text" />-->
+                        </td>
+						<td>检测驾驶员：</td>
+                        <td><div class="ul" id="CheckDriver"></div>
+                            <!--<input name="CheckDriver" id="CheckDriver" class="ul" type="text" />-->
+                        </td>
+					</tr>
+					<tr>
+						<td class="br" colspan="4"> </td>
+					</tr>
+					<tr>
+						<td class="tt" colspan="4">1.车辆信息：</td>
+					</tr>                   
+					<tr>
+						<td >车辆型号：</td>
+                        <td><div class="ul" id="NVEHICLEMODELID">-</div></td>
+						<td>排放标准：</td>
+                        <td><div class="ul" id="EXT_COL1">-</div></td>
+					</tr>
+                    <tr>
+                        <td>基准质量(kg)：</td>
+                        <td><div class="ul" id="NSTDWEIGHT">-</div></td>
+                        <td>最大总质量(kg)：</td>
+                        <td><div class="ul" id="NMAXWEIGHT">-</div></td>
+                    </tr>
+					<tr>
+						<td>驱动方式：</td>
+                        <td><div class="ul" id="CDRIVEFORM">-</div></td>
+						<td>变速器形式：</td>
+                        <td><div class="ul" id="CGEARBOXTYPE">-</div></td>
+					</tr>
+					<tr>
+						<td>气缸数：</td>
+                        <td><div class="ul" id="NCYLINDER">-</div></td>
+						<td>发动机排量(L)：</td>
+                        <td><div class="ul" id="NLETOUT">-</div></td>
+					</tr>
+					<tr>
+						<td>燃油型式：</td>
+                        <td><div class="ul" id="CFUELTYPE">-</div></td>
+						<td>催化转化器情况：</td>
+                        <td><div class="ul" id="BHASPURGE">-</div></td>
+					</tr>
+                    <tr>
+                        <td>车牌号码：</td>
+                        <td><div class="ul" id="CNUMBERPLATE">-</div></td>
+                        <td>车辆识别码：</td>
+                        <td><div class="ul" id="CVIN">-</div></td>
+                    </tr>
+					<tr>
+						<td>车辆登记日期：</td>
+                        <td><div class="ul" id="DREGISTER">-</div></td>
+						<td>累计行驶里程(km)：</td>
+                        <td><div class="ul" id="NODOMETER">-</div></td>
+					</tr>
+					<tr>
+						<td>车主姓名：</td>
+                        <td><div class="ul" style="word-break:break-all;" id="CUSER">-</div></td>
+						<td>联系方式：</td>
+                        <td><div class="ul" id="CPHONE">-</div></td>
+					</tr>
+					<tr>
+						<td class="br" colspan="4"> </td>
+					</tr>
+					<tr>
+						<td class="tt" colspan="4">2.检查设备：</td>
+					</tr>
+					<tr>
+						<td>设备认证编码：</td>
+                        <td><div class="ul" id="DEVICEVERIFYCODE">-</div></td>
+						<td>设备名称：</td>
+                        <td><div class="ul" id="DEVICENAME">-</div></td>
+					</tr>
+					<tr>
+						<td>型号：</td>
+                        <td><div class="ul" id="DEVICETYPE">-</div></td>
+						<td>制造厂：</td>
+                        <td><div class="ul" id="CheckDeviceMadeFactory">-</div></td>
+					</tr>
+					<tr>
+						<td>底盘测功机：</td>
+                        <td><div class="ul" id="EXT_COL1_STR">-</div></td>						
+					</tr>
+                    <tr>
+                        <td>排气分析仪：</td>
+                        <td><div class="ul" id="EXT_COL2_STR">-</div></td>
+                    </tr>
+					<tr>
+						<td class="br" colspan="4"> </td>
+					</tr>
+					<tr>
+						<td class="tt" colspan="4">3.检查环境状态：</td>
+					</tr>
+                    <tr style="height:3mm;"><td colspan="4"></td></tr>
+					<tr>
+						<td colspan="4">
+							<table style="width:100%;">
+								<tbody>
+									<tr>
+										<td>相对湿度(%):</td>
+                                        <td><div class="ul" id="nHumidity">-</div></td>
+										<td>大气压(kPa):</td>
+                                        <td><div class="ul" id="nAtmosphere">-</div></td>
+										<td>温度(℃):</td>
+                                        <td><div class="ul" id="nTemperature">-</div></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+                    <tr style="height:3mm;"><td colspan="4"></td></tr>
+					<tr>
+						<td class="br" colspan="4"> </td>
+					</tr>
+					<tr>
+						<td class="tt" colspan="4">4.稳态工况检测结果及裁决：</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+                            <table class="ttb" border="1" bordercolor="#000000">
+                                <tbody>
+                                    <tr>
+                                        <td rowspan="2" style="width:35%;">排气污染物</td>
+                                        <td colspan="2">CO(%)</td>
+                                        <td colspan="2">HC(10<sup>-6</sup>)</td>
+                                        <td colspan="2">NO(10<sup>-6</sup>)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ASM5025</td>
+                                        <td>ASM2540</td>
+                                        <td>ASM5025</td>
+                                        <td>ASM2540</td>
+                                        <td>ASM5025</td>
+                                        <td>ASM2540</td>
+                                    </tr>
+                                    <tr>
+                                        <td>测试结果</td>
+                                        <td id="nCO_5024">-</td>
+                                        <td id="nCO_2540">-</td>
+                                        <td id="nHC_5024">-</td>
+                                        <td id="nHC_2540">-</td>
+                                        <td id="nNO_5024">-</td>
+                                        <td id="nNO_2540">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>排放限值</td>
+                                        <td id="nCO_5024_limit">-</td>
+                                        <td id="nCO_2540_limit">-</td>
+                                        <td id="nHC_5024_limit">-</td>
+                                        <td id="nHC_2540_limit">-</td>
+                                        <td id="nNO_5024_limit">-</td>
+                                        <td id="nNO_2540_limit">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="white-space: normal;">判定结果（合格/不合格）</td>
+                                        <td id="nCO_5024_isPass">-</td>
+                                        <td id="nCO_2540_isPass">-</td>
+                                        <td id="nHC_5024_isPass">-</td>
+                                        <td id="nHC_2540_isPass">-</td>
+                                        <td id="nNO_5024_isPass">-</td>
+                                        <td id="nNO_2540_isPass">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="white-space: normal;">裁决（通过/未通过）</td>
+                                        <td id="cIsPass" colspan="6">-</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+						</td>
+					</tr>				
+                    <tr style="height:6mm;">
+                        <td colspan="4"> </td>
+                    </tr>
+                   
+					<tr>
+						<td>审核员：</td>
+                        <td class="ul"></td>
+						<td>批准人：</td>
+                        <td class="ul"></td>
+					</tr>
+					<tr style="height:6mm;">
+						<td colspan="4"></td>
+					</tr>                   
+					<tr>
+						<td>检测机构地址：</td>
+                        <td id="CheckOrganAddr" colspan="3" class="tt"></td>
+					</tr>
+					
+					<tr>
+						<td style="vertical-align: top;">检验依据：</td>
+                        <td colspan="3" id="SteadyStateStandardGB" class="tt" style="font-size: 3.5mm;white-space: normal;"></td>                
+                        </tr>
+                    <tr>
+                        <td style="vertical-align: top;"></td>
+                        <td colspan="3" id="SteadyStateStandardDB" class="tt" style="font-size: 3.5mm;white-space: normal;"></td>
+                    </tr>
+              
+				</tbody>
+			</table>
+		</div>
+	</body>
+
+</html> 

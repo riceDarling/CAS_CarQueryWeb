@@ -1,0 +1,378 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天津市机动车排污检控中心监控平台</title>
+		<style>
+			img {
+				border-radius: 2px !important;
+				border: 0;
+			}
+			
+			html {
+				height: 100%;
+				font-size: 13px;
+				background: url(5983ddeb3dcee.jpg) top left no-repeat;
+				margin:0;
+				padding:0;
+			}
+			
+			* {
+				box-sizing: border-box;
+			}
+			
+			body {
+				margin:0;
+				padding:0;
+			}
+			
+			.mt-10 {
+				margin-top: 10px;
+			}
+			
+			a {
+				color: #eee;
+			}
+			#listBtn>a{
+				width:12.5%;
+				min-width:90px;
+				float:left;
+				text-decoration: none;
+			}
+			#listBtn>a>.target-button{
+				width:100%;
+				margin-bottom:10px;
+			}
+			#listBtn>a>.target-button>div:first-child{
+				width:100%;max-width:70px;margin:0 auto;
+			}
+			#listBtn>a>.target-button>.mt-10{
+				letter-spacing:1px;text-align:center;margin-top:5px;font-size:12px;
+				white-space:nowrap;
+			}
+			.chartmapbox_xk{
+				width:100%;
+				overflow:hidden;
+				padding:0 3%;
+			}
+			.chartmapbox_xk>div{
+				width:300px;
+				height:220px;
+				background:#ffffff;
+			}
+			#chartbox_xk{
+				float:left;
+			}
+			#mapbox_xk{
+				float:right;
+			}
+		</style>
+		<script src="page-child/js/echarts.min.js"></script>
+		<!--<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>-->
+	</head>
+
+	<body style="width:100%;height:100%;min-width:922px;position:relative;">
+		<h1 style="color: #fff;text-align: center;font-size: 46px;position:absolute;top:50px;left:0;width:100%;">天津市机动车排污检控中心监控平台</h1>
+		<!--<div style="position:fixed; bottom:0; width:700px;height:500px;">
+			<img src="timg (4).png" width="100%" height="100%;">
+		</div>-->
+		<div style="position:absolute;left:0;top:0;right:0;bottom:0;width:100%;height:100%;padding-top:180px;padding-left:100px;padding-right:100px;">
+			<div style="width:100%;height:100%;position:relative;">
+				<div id="listBtn" style="position:absolute;width:100%;height:100%;">
+					<a href="page-child/jiankongpingtai.html" target="">
+						<div class="target-button">
+							<div>
+								<img src="img/1.png" width="70px" height="70px" />
+							</div>
+							<div class="mt-10">
+								<!--检测分析-->
+								检测站管理
+							</div>
+						</div>
+					</a>
+					<a href="page-child/cheliangfenxi.html" target="">
+						<div class="target-button">
+							<div>
+								<img src="img/2.png" width="70px" height="70px" />
+							</div>
+							<div class="mt-10">
+								<!--视频追溯-->
+								车辆管理
+							</div>
+						</div>
+					</a>
+					<a onclicks="Run('file:///c:\work\a.bat')" href="page-child/xincheguanli.html">
+						<!--<a onclick="Run('file:///c:\work\a.bat)">-->
+						<!--<a href="page-child/shipinshishijiankong.html" target="_blank">  -->
+						<div class="target-button">
+							<div>
+								<img src="img/3.png" width="70px" height="70px" />
+							</div>
+							<div class="mt-10">
+								<!--视频实时监控-->
+								新车管理
+							</div>
+						</div>
+					</a>
+					<a href="page-child/zonghechaxun.html" target="">
+						<div class="target-button">
+							<div>
+								<img src="img/4.png" width="70px" height="70px" />
+							</div>
+							<div class="mt-10">
+								<!--遥感分析-->
+								综合查询
+							</div>
+						</div>
+					</a>
+					<a href="page-child/shujufankong.html" target="">
+						<div class="target-button">
+							<div>
+								<img src="img/5.png" width="70px" height="70px" />
+							</div>
+							<div class="mt-10">
+								<!--车辆审核-->
+								数据反控
+							</div>
+						</div>
+					</a>
+					<a href="page-child/pingtaijiankong.html" target="">
+						<div class="target-button">
+							<div>
+								<img src="img/6.png"  width="70px" height="70px" />
+							</div>
+							<div class="mt-10">
+								<!--车辆审核录入-->
+								平台监控
+							</div>
+						</div>
+					</a>
+					<a href="page-child/tongjifenxi.html" target="">
+						<div class="target-button">
+							<div>
+								<img src="img/7.png" width="70px" height="70px" />
+							</div>
+							<div class="mt-10">
+								<!--车辆信息维护-->
+								统计分析
+							</div>
+						</div>
+					</a>
+					<a href="page-child/zhifajiandu.html" target="">
+						<div class="target-button">
+							<div>
+								<img src="img/8.png" width="70px" height="70px" />
+							</div>
+							<div class="mt-10" >
+								<!--环保部信息归集-->
+								执法监督
+							</div>
+						</div>
+					</a>
+					<a href="page-child/shipinzhuisu.html" target="">
+						<div class="target-button">
+							<div>
+								<img src="img/9.png" width="70px" height="70px" />
+							</div>
+							<div class="mt-10">
+								<!--日志管理-->
+								视频监控
+							</div>
+						</div>
+					</a>
+					<a href="page-child/shujuzidian.html" target="">
+						<div class="target-button">
+							<div>
+								<img src="img/10.png" width="70px" height="70px" />
+							</div>
+							<div class="mt-10">
+								<!--权限管理-->
+								数据管理
+							</div>
+						</div>
+					</a>
+					<a href="page-child/baojingjiankong.html" target="">
+						<div class="target-button">
+							<div>
+								<img src="img/11.png" width="70px" height="70px" />
+							</div>
+							<div class="mt-10">
+								<!--车辆分析-->
+								报警监控
+							</div>
+						</div>
+					</a>
+					<!--<a href="page-child/chexingfenxi.html" target="">
+						<div class="target-button" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+							<div style="width:70px;margin:0 auto;">
+								<img src="img/12.png" width="100%" height="100%" />
+							</div>
+							<div class="mt-10" style="width:120px;height:20px;line-height:50px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+								总量减排
+							</div>
+						</div>
+					</a>-->
+					<a href="page-child/xitongguanli.html" target="">
+						<div class="target-button">
+							<div>
+								<img src="img/13.png" width="70px" height="70px" />
+							</div>
+							<div class="mt-10">
+								<!--综合分析-->
+								<div>系统管理及</div>
+								<div>日志管理</div>
+							</div>
+						</div>
+					</a>
+					<a href="page-child/xitongjiekou.html" target="">
+						<div class="target-button">
+							<div>
+								<img src="img/14.png" width="70px" height="70px" />
+							</div>
+							<div class="mt-10">
+								<!--数据反控-->
+								系统接口
+							</div>
+						</div>
+					</a>
+					<!--<a href="page-child/tongjifenxi.html" target="">
+						<div class="target-button" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+							<div style="width:70px;margin:0 auto;">
+								<img src="img/15.png" width="100%" height="100%" />
+							</div>
+							<div class="mt-10" style="width:120px;height:20px;line-height:50px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+		
+								日志管理
+							</div>
+						</div>
+					</a>-->
+					<a href="page-child/xinxifabu.html" target="">
+						<div class="target-button fr">
+							<div>
+								<img src="img/17.png" width="70px" height="70px" />
+							</div>
+							<div class="mt-10">
+								<!--新车分析-->
+								信息发布
+							</div>
+						</div>
+					</a>
+					<a href="page-child/youqifenxi.html" target="">
+						<div class="target-button">
+							<div>
+								<img src="img/16.png" width="70px" height="70px" />
+							</div>
+							<div class="mt-10" >
+								油气分析
+							</div>
+						</div>
+					</a>
+					<!--<a href="page-child/shujuzidian.html" target="">
+						<div class="target-button fr" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+							<div style="width:70px;margin:0 auto;">
+								<img src="img/18.png" width="100%" height="100%" />
+							</div>
+							<div class="mt-10" style="width:120px;height:20px;line-height:50px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+								数据字典
+							</div>
+						</div>
+					</a>-->
+					<!--<a href="page-child/xitongjiekou.html" target="">
+						<div class="target-button fr" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+							<div style="width:70px;margin:0 auto;">
+								<img src="img/19.png" width="100%" height="100%" />
+							</div>
+							<div class="mt-10" style="width:120px;height:20px;line-height:50px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+								系统接口
+							</div>
+						</div>
+					</a>
+					<a href="page-child/xitongguanli.html" target="">
+						<div class="target-button fr" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+							<div style="width:70px;margin:0 auto;">
+								<img src="img/20.png" width="100%" height="100%" />
+							</div>
+							<div class="mt-10" style="width:120px;height:20px;line-height:50px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+								系统管理
+							</div>
+						</div>
+					</a>-->
+					<div style="clear: both;"></div>
+					<div class="chartmapbox_xk">
+						<div id="chartbox_xk"></div>
+						<div id="mapbox_xk"><iframe src="test.html" width="100%" height="100%"></iframe></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--<div class="container">
+			<h2>使用Bootstrap创建模态框</h2>
+			<div id="example" class="modal hide fade in" style="display: none; ">
+				<div class="modal-header">
+					<a class="close" data-dismiss="modal">×</a>
+					<h3>这是一个模态框标题</h3>
+				</div>
+				<div class="modal-body">
+					<h4>模态框中的文本</h4>
+					<p>你可以在这添加一些文本。</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="btn btn-success">唤醒活动</a>
+					<a href="#" class="btn" data-dismiss="modal">关闭</a>
+				</div>
+			</div>
+			<p>
+				<a data-toggle="modal" href="#example" class="btn btn-primary btn-large">发动演示模态框</a>
+			</p>
+		</div>-->
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
+		<!--<script src="/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-modal.js"></script>-->
+		<script type="text/javascript">
+			function Run(strPath) {
+				var objShell = new ActiveXObject("wscript.shell");
+
+				objShell.Run(strPath);
+				//关闭进程
+				objShell = null;
+			}
+			
+			    var myChart = echarts.init(document.getElementById('chartbox_xk'));
+
+        option = {
+    
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    
+    series : [
+        {
+            name: '访问来源',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:[
+                {value:335, name:'直接访问'},
+                {value:310, name:'邮件营销'},
+                {value:234, name:'联盟广告'},
+                {value:135, name:'视频广告'},
+                {value:1548, name:'搜索引擎'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+		</script>
+	</body>
+
+</html>

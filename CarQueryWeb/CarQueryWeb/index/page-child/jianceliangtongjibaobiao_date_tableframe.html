@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天津市机动车排污检控中心监控平台</title>
+		<!-- Bootstrap Styles-->
+
+		<!-- Chart Js -->
+
+		<link href="css/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="css/easyui.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="../css/header.css"/>
+		<style>
+			*{
+				box-sizing: border-box;
+			}
+			body{
+				margin:0;
+				padding:20px 20px 0;
+				width:100%;
+				height:100%;
+			}
+			.frametable{
+				width:100%;
+				border-collapse: collapse;
+				color:#666666;
+				font-size:12px;
+				text-align: center;
+			}
+			.frametable td{
+				border:1px solid #999999;
+				white-space: nowrap;
+				padding:3px;
+			}
+			.frametable thead td{
+				background:#f8f8f8;
+			}
+			td.tabletitle,td.tableblank{
+				background:transparent !important;
+				border:none;
+			}
+			td.tabletitle{
+				border-bottom:3px solid #444444;
+				font-size:20px;
+				color:#286090;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="btngrp_r" style="position:absolute;top:0;left:0;">
+		</div>
+        <label id="lblTip" style="display:none;">正在加载...</label>
+	<table id="tabReport" class="frametable">
+		<thead>
+			<tr>
+				<td colspan="27" class="tabletitle" style="text-align: left;">检测量统计日报</td>
+			</tr>
+			<tr>
+				<td class="tableblank" colspan="27"></td>
+			</tr>
+			<tr>
+				<td rowspan="3">日期</td>
+				<td rowspan="3">地区</td>
+				<td rowspan="3">检测站</td>
+				<td rowspan="3">总检车数</td>
+				<td rowspan="3">总合格数</td>
+				<td colspan="6">汽油车检车数</td>
+				<td colspan="6">柴油车检车数</td>
+			</tr>
+			<tr>
+				<td colspan="2">合计</td>
+				<td colspan="2">工况</td>
+				<td colspan="2">非工况</td>
+				<td colspan="2">合计</td>
+				<td colspan="2">工况</td>
+				<td colspan="2">非工况</td>
+			</tr>
+			<tr>
+				<td>检车数</td>
+				<td>合格量</td>
+				<td>检车数</td>
+				<td>合格量</td>
+				<td>检车数</td>
+				<td>合格量</td>
+				<td>检车数</td>
+				<td>合格量</td>
+				<td>检车数</td>
+				<td>合格量</td>
+				<td>检车数</td>
+				<td>合格量</td>
+			</tr>
+		</thead>
+	</table>
+		<script src="js/jquery-2.2.1.min.js"></script>
+		<script src="js/jquery.easyui.min.js"></script>
+	</body>
+</html>

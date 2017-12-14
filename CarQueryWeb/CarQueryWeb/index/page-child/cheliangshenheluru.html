@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天津市机动车排污检控中心监控平台</title>
+
+		<link href="css/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="css/easyui.css" rel="stylesheet" type="text/css">
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				background: #f4f4f4;
+			}
+			
+			* {
+				font-family: "微软雅黑";
+				font-size: 13px;
+				letter-spacing: 1px;
+			}
+			
+			.datagrid-cell {
+				overflow: hidden !important;
+				text-overflow: ellipsis !important;
+				white-space: nowrap !important;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="pagewrap" style="width:100%;height:100%;">
+			<div style="width:100%;height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;">
+				新车审核
+			</div>
+			<div style="width:100%;height:42px;background:#f4f4f4;border-bottom:1px solid #d0d0d0;">
+				<div style="float:left;margin-left:20px;margin-top:7px;">
+					<div style="float:left;height:27px;line-height:27px;">车辆识别代码</div>
+					<div style="float:left;height:27px;"><input class="_CNUMBERPLATE" style="height:27px;" type="text" /></div>
+				</div>
+				<div class="page-search" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">查询</div>
+				<div class="page-search" style="margin-top:7px;width:auto;float:left;margin-left:20px;height:27px;padding-left:15px;padding-right:15px;border-radius:4px;background:linear-gradient( to bottom, #458fef , #091CC6 );color:#fff;line-height:27px;">录入</div>
+			</div>
+			<div style="width:100%;height:635px;background:#f4f4f4;">
+				<div style="width:100%;height:100%;">
+					<table class="page-table"></table>
+				</div>
+			</div>
+		</div>
+
+		<script src="js/jquery-2.2.1.min.js"></script>
+		<script src="js/jquery.easyui.min.js"></script>
+		<script>
+			$('.page-table').datagrid({
+				columns: [
+					[{
+							field: '',
+							title: '',
+							checkbox: true
+						},
+						{
+							field: 'VIN',
+							title: '车辆识别代码',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'XXGKBH',
+							title: '汽车分类',
+							width: 100,
+							align: 'center'
+						},
+
+						{
+							field: 'SB',
+							align: 'center',
+							title: '商标',
+							width: 100
+						}, {
+							field: 'VEHICLEMODEL',
+							align: 'center',
+							title: '车辆型号',
+							width: 100
+						},
+						{
+							field: 'ZDZZL',
+							align: 'center',
+							title: '发动机型号',
+							width: 100
+						},
+						{
+							field: 'ZDZZL',
+							align: 'center',
+							title: '发动机编号',
+							width: 100
+						}
+						,
+						{
+							field: 'ZDZZL',
+							align: 'center',
+							title: '总质量',
+							width: 100
+						}
+						,
+						{
+							field: 'ZDZZL',
+							align: 'center',
+							title: '燃料种类',
+							width: 100
+						}
+						,
+						{
+							field: 'ZDZZL',
+							align: 'center',
+							title: '排放标准',
+							width: 100
+						}
+
+					]
+				],
+				fitColumns: true,
+				striped: true,
+				pagination: true,
+				rownumbers: true,
+				height: 635,
+				selectOnCheck: true,
+				resizable: true,
+				loadMsg: '...加载中',
+				pageSize: 50,
+				pageList: [20, 50, 100, 150],
+				singleSelect: true
+
+			});
+
+			function tablerefresh(_pagenumber, _pagesize) {
+				$.ajax({
+					url: "../../AjaxHandler/AjaxService.ashx",
+					data: {
+						method: 'XinCheFenXi',
+						pagenumber: _pagenumber,
+						pagesize: _pagesize,
+						VIN: $('._CNUMBERPLATE').val(),
+						//CFUELTYPE: $( '.CFUELTYPE' ).val()
+					},
+					async: false,
+					dataType: "json",
+					type: "post",
+					success: function(json) {
+
+						$('.page-table').datagrid('loadData', json);
+					},
+					error: function(xhr) {
+
+					}
+				});
+			}
+
+			tablerefresh(1, 50);
+
+			$('.page-search').click(function() {
+				tablerefresh(1, 50);
+			});
+
+			$('.page-table').datagrid('getPager').pagination({
+				onSelectPage: function(pageNumber, pageSize) {
+					tablerefresh(pageNumber, pageSize);
+				}
+			});
+		</script>
+	</body>
+
+</html>

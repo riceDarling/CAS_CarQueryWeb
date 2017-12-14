@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天津市机动车排污检控中心监控平台</title>
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+				font-family: "宋体";
+			}
+			
+			.body {
+				width: 210mm;
+				height: 297mm;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				-o-box-sizing: border-box;
+				-ms-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				padding: 16mm;
+			}
+			
+			table {
+				border-collapse: collapse;
+				width: 100%;
+				max-height: 100%;
+				line-height: 6mm;
+				table-layout: fixed;
+				white-space: nowrap;
+			}
+
+            td {
+                word-break: break-all;
+                word-wrap: break-word;
+            }
+			td .br {
+				height: 8mm;
+			}
+			
+			thead td {
+				text-align: center;
+				font-size: 4.8mm;
+				height: 9mm;
+			}
+			
+			tbody {
+				font-size: 3.4mm;
+			}
+			
+			.ul {
+				border-bottom: 0.1mm solid #000;
+			}
+			
+			tbody td:nth-child(2n+1) {
+				text-align: right;
+			}
+			
+			tbody td:nth-child(2n) {
+				text-align: center;
+			}
+			
+			tbody td.tt {
+				text-align: left !important;
+			}
+			
+			.ttb {
+				width: 100%;
+			}
+			
+			.ttb td {
+				text-align: center!important;
+                height:7mm;
+			}
+			
+			.imggrp {
+				height: 50mm;
+			}
+			
+			.imggrp td {
+				text-align: center !important;
+				overflow: hidden;
+			}
+			
+			.imggrp img {
+				width: 100%;
+				vertical-align: middle;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="body">
+			<table border="0" cellspacing="10" cellpadding="10">
+				<thead>
+					<tr>
+                        <td colspan="4" style="font-weight: bold;">在用汽车加载减速法排气烟度检测报告</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="height:12mm;">
+						<td colspan="4"> </td>
+					</tr>
+					<tr>
+						<td>计量认证证号：</td>
+						<td style="text-align:left;" id="MANo"></td>
+						<td>检测报告编号：</td>
+                        <td id="CFACECHECKID" style="text-align:left;">-</td>
+					</tr>
+
+					<tr>
+						<td>检测站名称：</td>
+                        <td id="CheckName">-</td>						
+					</tr>
+                    <tr>
+                        <td>检测日期：</td>
+                        <td><div id="dCheckDate" class="ul">-</div></td>
+                    </tr>
+					<tr>
+						<td class="br" colspan="4"> </td>
+					</tr>
+					<tr>
+						<td class="tt" colspan="4">1.测试车辆信息：</td>
+					</tr>
+					<tr>
+						<td>车辆号牌号码：</td>
+                        <td><div id="CNUMBERPLATE" class="ul">-</div></td>
+						<td>车辆识别代码（VIN）：</td>
+                        <td><div id="CVIN" class="ul">-</div></td>
+					</tr>
+					<tr>
+						<td>登记年月：</td>
+                        <td><div id="DREGISTER" class="ul">-</div></td>
+						<td>车型与生产厂：</td>
+                        <td><div id="NVEHICLEMODELID" class="ul">-</div></td>
+					</tr>
+					<tr>
+						<td>基准质量(kg)：</td>
+                        <td><div id="NSTDWEIGHT" class="ul">-</div></td>
+						<td>最大总质量(kg)：</td>
+                        <td><div id="NMAXWEIGHT" class="ul">-</div></td>
+					</tr>
+					<tr>
+						<td>发动机型号/排量(L)：</td>
+                        <td><div class="ul"><span id="CENGINEMODEL">-</span>/<span id="NLETOUT">-</span></div></td>
+						<td>试验用燃料牌号：</td>
+                        <td><div class="ul">0#</div></td>
+					</tr>
+					<tr>
+						<td>进气方式：</td>
+                        <td><div id="CADMISSION" class="ul">-</div></td>
+						<td>累计行程里程(km)：</td>
+                        <td><div id="NODOMETER" class="ul">-</div></td>
+					</tr>
+					<tr>
+						<td>供油系统型式：</td>
+                        <td><div id="CSUPPLYMODE" class="ul">-</div></td>
+						<td>排气后处理装置(有/无)：</td>
+                        <td><div id="BHASPURGE" class="ul">-</div></td>
+					</tr>
+                    <tr style="height:6mm;">
+                        <td colspan="4"> </td>
+                    </tr>
+					<tr>
+						<td class="tt" colspan="4">2.车主：</td>
+					</tr>
+                    <tr style="height:2mm;">
+                        <td colspan="4"> </td>
+                    </tr>
+					<tr>
+						<td>姓名：</td>
+                        <td><div id="CUSER" class="ul" style="word-break:break-all;">-</div></td>
+						<td>联系地址：</td>
+                        <td><div id="CADDRESS" style="word-break:break-all;" class="ul">-</div></td>
+					</tr>
+					<tr style="height:6mm;">
+						<td colspan="4"> </td>
+					</tr>
+					<tr>
+						<td class="tt" colspan="4">3.测试现场环境条件：</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<table style="width:100%;">
+								<tbody>
+									<tr>
+                                        <td>环境温度（℃）：</td>
+                                        <td><div id="nTemperature" class="ul">-</div></td>
+                                        <td>大气压（kPa）：</td> 
+                                        <td><div id="nAtmosphere" class="ul">-</div></td>                                      
+									</tr>
+                                    <tr>
+                                        <td>相对湿度（%）：</td>
+                                        <td><div id="nHumidity" class="ul">-</div></td>
+                                    </tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+                    <tr style="height:6mm;">
+                        <td colspan="4"> </td>
+                    </tr>
+					<tr>
+						<td class="tt" colspan="4">4.检测结果：</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+                            <table class="ttb" style="width:100%;height:80mm;" border="1" bordercolor="#000000">
+                                <tbody>
+                                    <tr>
+                                        <td width="13%" rowspan="2"></td>
+                                        <td width="50%" colspan="3">k/m<sup>-1</sup></td>
+                                        <td rowspan="2">实测最大轮边功率/KW</td>
+                                    </tr>
+                                    <tr>
+                                        <td>100%点</td>
+                                        <td>90%点</td>
+                                        <td>80%点</td>
+                                    </tr>
+                                    <tr>
+                                        <td>测量结果</td>
+                                        <td id="nK100">-</td>
+                                        <td id="nK90">-</td>
+                                        <td id="nK80">-</td>
+                                        <td id="nPower">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>限&nbsp;&nbsp;值</td>
+                                        <td id="fasmokek" colspan="3"></td>
+                                        <td id="limitValue">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>判定结果</td>
+                                        <td id="cIsPass" colspan="4">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+						</td>
+					</tr>
+			    	<tr style="height:6mm;">
+						<td colspan="4"> </td>
+					</tr>
+					<tr>
+						<td>测试仪器型号：</td>
+                        <td><div id="DEVICETYPE" class="ul"></div></td>
+                        </tr>
+                    <tr style="height:3mm;">
+                        <td colspan="4"> </td>
+                    </tr>
+                    <tr>
+						<td>检验员：</td>
+                        <td><div name="CheckOperator" id="CheckOperator" class="ul"></div>
+                            <!--<input name="CheckOperator" id="CheckOperator" class="ul" type="text" />-->
+                        </td>
+                    </tr>
+                    <tr style="height:3mm;">
+                        <td colspan="4"> </td>
+                    </tr>
+					<tr>
+						<td>审核员：</td>
+						<td class="ul"></td></tr>
+                    <tr style="height:3mm;">
+                        <td colspan="4"> </td>
+                    </tr>
+                    <tr>                                               
+						<td>批准人：</td>
+						<td class="ul"></td>
+					</tr>
+                    <tr style="height:12mm;">
+                        <td colspan="4"> </td>
+                    </tr>
+					<tr>
+						<td>检测机构地址：</td>
+                        <td id="CheckOrganAddr" colspan="3" class="tt"></td>
+					</tr>
+					<tr>
+						<td style="vertical-align:top;">检验依据：</td>
+                        <td colspan="3" id="LugDownGB" class="tt" style="font-size: 3.5mm;"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+
+</html>

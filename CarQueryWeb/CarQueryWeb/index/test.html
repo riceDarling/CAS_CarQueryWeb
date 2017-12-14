@@ -1,0 +1,53 @@
+﻿<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>demo</title>
+		<link rel="stylesheet" href="https://js.arcgis.com/3.22/esri/css/esri.css">
+		<script src="https://js.arcgis.com/3.22/"></script>
+
+		<style type="text/css">
+			.MapClass {
+				width: 900px;
+				height: 600px;
+				border: 1px solid #000;
+			}
+			
+			body {
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+		</style>
+		<script type="text/javascript">
+			dojo.require("esri/basemaps", "esri.map");
+			dojo.addOnLoad(function() {
+
+				var delorme = {
+					baseMapLayers: [{
+						url: "https://services.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer"
+					}],
+					thumbnailUrl: "https://www.example.com/images/thumbnail_2014-11-25_61051.png",
+					title: "Delorme"
+				};
+
+				var MyMap = new esri.Map("MyMapDiv", {
+					basemap: delorme,
+					zoom: 6,
+					center: [116.23, 39.54]
+				});
+				var MyTiledMapServiceLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://172.16.1.14:6080/arcgis/rest/services/jjj_city/MapServer?token=FLqIUkgf63DnQgw-kEImT4YY4RD8TCImmTwULWo8mS1WBbovqZ-JULJ899yXOWVy");
+				//服务地址  ?token=【java中获取到的token值】
+				MyMap.addLayer(MyTiledMapServiceLayer);
+
+			});
+		</script>
+	</head>
+
+	<body class="tundra">
+		<div id="MyMapDiv" class="MapClass"></div>
+	</body>
+
+</html>
+
+});

@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天津市机动车排污检控中心监控平台</title>
+
+		<link href="css/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="css/easyui.css" rel="stylesheet" type="text/css">
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				background: #f4f4f4;
+			}
+			
+			* {
+				font-family: "微软雅黑";
+				font-size: 13px;
+				letter-spacing: 1px;
+			}
+			
+			.datagrid-cell {
+				overflow: hidden !important;
+				text-overflow: ellipsis !important;
+				white-space: nowrap !important;
+			}
+			
+			input[type="text"],
+			select {
+				height: 26px;
+			}
+			
+			.inputgrp {
+				float: left;
+				width: 50%;
+				text-align: right;
+				margin: 10px 0 0;
+			}
+			
+			.inputgrp>.inputgrp_first {
+				width: 50%;
+				float: left;
+				height: 28px;
+				line-height: 28px;
+			}
+			
+			.inputgrp>.inputgrp_second {
+				float: left;
+				width: 50%;
+				padding-right: 10px;
+				line-height: 28px;
+				height: 28px;
+			}
+			
+			.inputgrp_second>div {
+				width: 50%;
+				float: left;
+				padding: 0 10px;
+				position: relative;
+			}
+			
+			.inputgrp_second>div>span {
+				position: absolute;
+				left: -10px;
+				top: 0;
+				display: block;
+				width: 20px;
+				text-align: center;
+			}
+			
+			.inputgrp>.inputgrp_second input[type="text"],
+			.inputgrp>.inputgrp_second select {
+				width: 100%;
+			}
+			
+			.btngrp_r {
+				width: 100%;
+				text-align: right;
+				padding-right: 20px;
+			}
+			
+			.btngrp_r>a {
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				border: 1px solid #999999;
+				background-color: #e0e0e0;
+				border-radius: 3px;
+				box-shadow: inset 0 3px 3px rgba(255, 255, 255, 0.4), inset 0 -3px 3px rgba(0, 0, 0, 0.1);
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div style="width:100%;background:#f4f4f4;border-bottom:1px solid #d0d0d0;padding-bottom:10px;">
+			<div style="width:100%;height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;">
+				外转车查询
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">区县：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">车辆种类：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">车牌号码：</div>
+				<div class="inputgrp_second"><input id="txtlastdate" type="text" /></div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">车牌颜色：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">车辆用途：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">车辆类别：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">燃油种类：</div>
+				<div class="inputgrp_second">
+					<select>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="inputgrp_first">初登日期：</div>
+				<div class="inputgrp_second">
+					<div style="padding-left:0;"><input type="text" onclick="WdatePicker()" /></div>
+					<div style="padding-right:0;"><span>至</span><input type="text" onclick="WdatePicker()" /></div>
+				</div>
+			</div>
+			<!--<div class="inputgrp">
+				<div style="text-align:left;float:left; padding-left:20px;cursor: pointer;">
+					隐藏更多查询信息&lt;&lt;&lt;
+				</div>
+			</div>
+			<div class="inputgrp">
+				<div class="btngrp_r">
+					<a title="搜索" style="background-image:url(../images/searchbtn.png);background-repeat: no-repeat;background-position: center;"></a>
+					<a title="撤销" style="background-image:url(../images/cancelbtn.png);background-repeat: no-repeat;background-position: center;"></a>
+				</div>
+			</div>-->
+			<div style="clear:both;"></div>
+		</div>
+		<div style="width:100%;height:635px;background:#f4f4f4;">
+			<div style="width:100%;height:100%;">
+				<table class="page-table"></table>
+			</div>
+		</div>
+		<script src="js/jquery-2.2.1.min.js"></script>
+		<script src="js/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../js/DatePicker/WdatePicker.js" ></script>
+		<script>
+			$('.page-table').datagrid({
+				columns: [
+					[{
+							field: '',
+							title: '',
+							checkbox: true
+						},
+						{
+							field: 'CNUMBERPLATE',
+							title: '车牌号码',
+							width: 100,
+							align: 'center'
+						},
+						{
+							field: 'CPLATETYPE',
+							title: '车架号/VIN',
+							width: 100,
+							align: 'center',
+							formatter: function(value, row, index) {
+								return value == '0' ? '蓝牌' : value == '1' ? "黄牌" : value == '2' ? "黑牌" : value == '3' ? "白牌" : "无";
+							}
+						},
+						{
+							field: 'CVIN',
+							align: 'center',
+							title: '车牌颜色',
+							width: 100
+						},
+						{
+							field: 'DREGISTERSS',
+							align: 'center',
+							title: '车辆种类',
+							width: 100
+						},
+						{
+							field: 'NVEHICLEMODELID',
+							align: 'center',
+							title: '登记日期',
+							width: 100
+						},
+						{
+							field: 'NVEHICLEMODELID',
+							align: 'center',
+							title: '是否允许发标',
+							width: 100
+						}
+						,
+						{
+							field: 'NVEHICLEMODELID',
+							align: 'center',
+							title: '车型号',
+							width: 100
+						},
+						{
+							field: 'NVEHICLEMODELID',
+							align: 'center',
+							title: '尾气检查日期',
+							width: 100
+						},
+						{
+							field: 'NVEHICLEMODELID',
+							align: 'center',
+							title: '操作',
+							width: 100
+						}
+
+					]
+				],
+				fitColumns: true,
+				striped: true,
+				pagination: true,
+				rownumbers: true,
+				height: 635,
+				selectOnCheck: true,
+				resizable: true,
+				loadMsg: '...加载中',
+				pageSize: 50,
+				pageList: [20, 50, 100, 150],
+				singleSelect: true
+
+			});
+
+			function tablerefresh(_pagenumber, _pagesize) {
+				$.ajax({
+					url: "../../AjaxHandler/AjaxService.ashx",
+					data: {
+						method: 'CheLiangFenXi',
+						pagenumber: _pagenumber,
+						pagesize: _pagesize,
+						CNUMBERPLATE: $('._CNUMBERPLATE').val(),
+						//CFUELTYPE: $( '.CFUELTYPE' ).val()
+					},
+					async: false,
+					dataType: "json",
+					type: "post",
+					success: function(json) {
+
+						$('.page-table').datagrid('loadData', json);
+					},
+					error: function(xhr) {
+
+					}
+				});
+			}
+
+			tablerefresh(1, 50);
+
+			$('.page-search').click(function() {
+				tablerefresh(1, 50);
+			});
+
+			$('.page-table').datagrid('getPager').pagination({
+				onSelectPage: function(pageNumber, pageSize) {
+					tablerefresh(pageNumber, pageSize);
+				}
+			});
+		</script>
+	</body>
+
+</html>

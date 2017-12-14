@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
+    <style>
+        html, body {
+            width:100%;
+            height:100%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="video">
+        <label>视频下载：</label>
+        <a href="">前置录像</a>&nbsp;&nbsp;&nbsp;
+        <a href="">后置录像</a>
+    </div>
+    <div style="height: 10px;"></div>
+    <table id="imggrp" style="width:100%;height:auto;border:1px solid #d0d0d0;">
+        <tbody></tbody>
+    </table>
+    <script type="text/javascript">
+         function GetQueryString(name) {
+             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+             var r = window.location.search.substr(1).match(reg);
+             console.log(window.location.search);
+             if (r != null) {
+                 return unescape(r[2]);
+             }
+             return null;
+         }
+         var url = GetQueryString("VideoUrl");
+         var CheckMethod = GetQueryString("CheckMethod");
+         var frontVideoUrl = url + "1.avi";
+
+         var behindVideoUrl = url + "2.avi";
+
+         var pathUrl1 = "", pathUrl2 = "", pathUrl3 = "", pathUrl4 = "", pathUrl5 = "", pathUrl6 = "";
+         if (CheckMethod == "B")//稳态
+         {
+             pathUrl1 = url + "start5025photo_1.bmp";
+
+             pathUrl2 = url + "start5025photo_2.bmp";
+
+             pathUrl3 = url + "start2540photo_1.bmp";
+
+             pathUrl4 = url + "start2540photo_2.bmp";
+
+         }
+         else if (CheckMethod == "G")//加载减速
+         {
+             pathUrl1 = url + "startk80photo_1.bmp";
+
+             pathUrl2 = url + "startk80photo_2.bmp";
+
+             pathUrl3 = url + "startk90photo_1.bmp";
+
+             pathUrl4 = url + "startk90photo_2.bmp";
+
+             pathUrl5 = url + "startk100photo_1.bmp";
+
+             pathUrl6 = url + "startk100photo_2.bmp";
+
+         }
+         var arrayPhoto = [
+             [pathUrl1, pathUrl2],
+             [pathUrl3, pathUrl4],
+             [pathUrl5, pathUrl6]
+         ];
+         $(".video a").eq(0).attr("href", frontVideoUrl);
+         $(".video a").eq(1).attr("href", behindVideoUrl);
+         var arr = new Array();
+         for (var i = 0; i < arrayPhoto.length; i++) {
+             arr.push('<tr style="border-bottom:1px solid #d0d0d0;">');
+             
+             for (var j = 0; j < arrayPhoto[i].length; j++) {
+                 arr.push('<td style="height:200px;"><img src="' + arrayPhoto[i][j] + '" /></td>');
+             }
+             arr.push("</tr>");
+         }
+         $('#imggrp > tbody').html(arr.join(''));
+    </script>
+</body>
+</html>

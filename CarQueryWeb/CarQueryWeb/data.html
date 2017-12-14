@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>天津市机动车排污检控中心监控平台</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+
+    <link href="assets/css/select2.min.css" rel="stylesheet" />
+    <link href="assets/css/checkbox3.min.css" rel="stylesheet" />
+
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="assets/js/select2.full.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".selectbox").select2();
+        });
+    </script>
+    <!-- Chart Js -->
+    <script type="text/javascript" src="assets/js/chartjs.js"></script>
+    <script type="text/javascript" src="assets/js/Chart.min.js"></script>
+
+    <script src="assets/js/easypiechart.js"></script>
+    <script src="assets/js/easypiechart-data.js"></script>
+    <script src="assets/js/morris/morris.js"></script>
+    <!-- Custom Js -->
+    <script src="assets/js/custom-scripts.js"></script>
+</head>
+<body>
+    <div id="page-wrapper" style="margin-left:0;top:0;">
+        <div id="page-inner" style="margin-top:0px;">
+            <div class="row">
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            详细数据
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" style="margin:0 auto;">
+                                    <thead>
+                                        <tr>
+                                            <th>车牌号码</th>
+                                            <th>车辆型号</th>
+                                            <td>所属地区</td>
+                                            <th>检测站</th>
+                                            <th>车辆类型</th>
+                                            <th>检测时间</th>
+                                            <th>检测方法</th>
+                                            <th>检测结果</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>津JDB112</td>
+                                            <td>奔驰</td>
+                                            <td>南开区</td>
+                                            <td>公交三厂检测站</td>
+                                            <td>汽油车</td>
+                                            <td>2016-6-6</td>
+                                            <td>稳态</td>
+                                            <td>合格</td>
+                                        </tr>
+                                        <tr>
+                                            <td>津JDB112</td>
+                                            <td>奔驰</td>
+                                            <td>南开区</td>
+                                            <td>公交三厂检测站</td>
+                                            <td>汽油车</td>
+                                            <td>2016-6-6</td>
+                                            <td>稳态</td>
+                                            <td>合格</td>
+                                        </tr>
+                                        <tr>
+                                            <td>津JDB112</td>
+                                            <td>奔驰</td>
+                                            <td>南开区</td>
+                                            <td>公交三厂检测站</td>
+                                            <td>汽油车</td>
+                                            <td>2016-6-6</td>
+                                            <td>稳态</td>
+                                            <td>合格</td>
+                                        </tr>
+                                        <tr>
+                                            <td>津JDB112</td>
+                                            <td>奔驰</td>
+                                            <td>南开区</td>
+                                            <td>公交三厂检测站</td>
+                                            <td>汽油车</td>
+                                            <td>2016-6-6</td>
+                                            <td>稳态</td>
+                                            <td>合格</td>
+                                        </tr>
+                                        <tr>
+                                            <td>津JDB112</td>
+                                            <td>奔驰</td>
+                                            <td>南开区</td>
+                                            <td>公交三厂检测站</td>
+                                            <td>汽油车</td>
+                                            <td>2016-6-6</td>
+                                            <td>稳态</td>
+                                            <td>合格</td>
+                                        </tr>
+                                        <tr>
+                                            <td>津JDB112</td>
+                                            <td>奔驰</td>
+                                            <td>南开区</td>
+                                            <td>公交三厂检测站</td>
+                                            <td>汽油车</td>
+                                            <td>2016-6-6</td>
+                                            <td>稳态</td>
+                                            <td>合格</td>
+                                        </tr>
+                                        <tr>
+                                            <td>津JDB112</td>
+                                            <td>奔驰</td>
+                                            <td>南开区</td>
+                                            <td>公交三厂检测站</td>
+                                            <td>汽油车</td>
+                                            <td>2016-6-6</td>
+                                            <td>稳态</td>
+                                            <td>合格</td>
+                                        </tr>
+                                        <tr>
+                                            <td>津JDB112</td>
+                                            <td>奔驰</td>
+                                            <td>南开区</td>
+                                            <td>公交三厂检测站</td>
+                                            <td>汽油车</td>
+                                            <td>2016-6-6</td>
+                                            <td>稳态</td>
+                                            <td>合格</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="8">
+                                                <ul class="pagination" style="float: right;">
+                                                    <li><a href="#">&laquo;</a></li>
+                                                    <li><a href="#">1</a></li>
+                                                    <li><a href="#">2</a></li>
+                                                    <li><a href="#">3</a></li>
+                                                    <li><a href="#">4</a></li>
+                                                    <li><a href="#">5</a></li>
+                                                    <li><a href="#">6</a></li>
+                                                    <li><a href="#">&raquo;</a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+</body>
+</html>

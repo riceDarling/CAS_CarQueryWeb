@@ -1,0 +1,937 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>天津市机动车排污检控中心监控平台</title>
+		<link rel="stylesheet" href="css/header.css" />
+		<link rel="stylesheet" href="https://js.arcgis.com/3.22/esri/css/esri.css">
+		<style type="text/css">
+            html {
+                height: 100%;
+                font-size: 13px;
+                margin: 0;
+                padding: 0;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background: url(images/main-bg.JPG) repeat 0 0;
+                background-size: 100% 100%;
+                overflow: auto;
+            }
+
+            .mt-10 {
+                margin-top: 10px;
+            }
+
+            a {
+                color: #eee;
+            }
+
+            #listBtn > .btngrp > a {
+                width: 12.5%;
+                min-width: 90px;
+                float: left;
+                text-decoration: none;
+            }
+
+                #listBtn > .btngrp > a > .target-button {
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+
+                    #listBtn > .btngrp > a > .target-button > div:first-child {
+                        width: 100%;
+                        max-width: 70px;
+                        margin: 0 auto;
+                    }
+
+                    #listBtn > .btngrp > a > .target-button > .mt-10 {
+                        letter-spacing: 1px;
+                        text-align: center;
+                        margin-top: 5px;
+                        font-size: 12px;
+                        color: #2222FF;
+                        font-size: 16px;
+                    }
+
+            #listBtn > .btngrp {
+                width: 100%;
+                border: 1px solid #a7a7a7;
+                margin-bottom: 10px;
+                padding: 8px;
+                padding-top: 12px;
+            }
+
+            .chartmapbox_xk {
+                width: 100%;
+                position: relative;
+                margin-bottom: 10px;
+                height: 460px;
+            }
+
+            #chartbox_xk {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 400px;
+                height: 100%;
+                z-index: 2;
+                border-right: 1px solid #a7a7a7;
+                ;
+                box-sizing: content-box;
+            }
+
+            #mapbox_xk {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+                border: 1px solid #a7a7a7;
+                padding: 50px 10px 10px 410px;
+            }
+
+            #MyMapDiv {
+            }
+
+            .mainlist {
+                overflow: hidden;
+                width: 100%;
+            }
+
+            .mainlist_title {
+                background: #555566;
+                color: #ffffff;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+            }
+
+            .mainlist_content_box {
+                width: 25%;
+                height: 250px;
+                padding: 18px;
+                float: left;
+            }
+
+            .mainlist_content {
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.5);
+                color: #0000dd;
+                border: 1px solid #666666;
+                -webkit-border-top-left-radius: 8px;
+                border-top-left-radius: 8px;
+                -webkit-border-top-right-radius: 8px;
+                border-top-right-radius: 8px;
+            }
+
+            .mainlist_content_top {
+                border-bottom: 1px solid #666666;
+                height: 28px;
+                text-align: left;
+                text-indent: 2em;
+                line-height: 28px;
+                color: #666666;
+                position: relative;
+            }
+
+                .mainlist_content_top > a {
+                    font-style: normal;
+                    margin-right: 10px;
+                    color: #666666;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                }
+
+            .mainlist_content_article {
+            }
+
+            #nav {
+                color: #444444;
+                line-height: 30px;
+                height: 30px;
+                width: 100%;
+                position: absolute;
+                left: 0;
+                top: 102px;
+                font-size: 14px;
+                z-index: 5;
+            }
+
+                #nav a {
+                    color: #0196E3;
+                    cursor: pointer;
+                }
+
+            .chartmapbox_xk ul {
+                position: absolute;
+            }
+
+                .chartmapbox_xk ul > li {
+                    float: left;
+                    padding: 8px;
+                }
+
+                    .chartmapbox_xk ul > li > a {
+                        border-radius: 5px;
+                        padding: 5px;
+                        color: #6878c7;
+                        border: 1px solid #6878c7;
+                    }
+
+                        .chartmapbox_xk ul > li > a.on_xk {
+                            background: #6878c7;
+                            color: #ffffff;
+                        }
+
+            .box-shadow2 {
+                box-shadow: 0px -2px 6px rgba(0,0,0,0.2) inset;
+            }
+		</style>
+		<script src="../js/jquery-1.8.3.js"></script>
+		<script src="page-child/js/echarts.min.js"></script>
+		<script src="https://js.arcgis.com/3.22/"></script>
+	</head>
+
+	<body>
+		<div id="tjwq_header" class="box-shadow2">
+			<div></div>
+		</div>
+		<div id="nav">
+			<span style="margin-left:16px;">欢迎登陆本系统！您当前的位置为：首页</span>
+			<div style="float:right;"><span style="margin-right:40px;">您好！天津市用户</span>
+				<a href="page-child/resetPwd.html" style="margin-right:16px;">[修改密码]</a>
+				<a href="../Login.aspx" style="margin-right:16px;">[登出]</a>
+			</div>
+		</div>
+		<div style="position:absolute;left:0;top:0;right:0;bottom:0;width:100%;height:100%;padding-top:180px;padding-left:100px;padding-right:100px;">
+			<div style="width:100%;height:100%;position:relative;">
+				<div id="listBtn" style="position:absolute;width:100%;height:100%;">
+					<div class="btngrp">
+						<a href="page-child/jiankongpingtai.html" target="">
+							<div class="target-button">
+								<div>
+									<img src="img/1.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									<!--检测分析-->
+									检测站管理
+								</div>
+							</div>
+						</a>
+						<a href="page-child/cheliangfenxi.html" target="">
+							<div class="target-button">
+								<div>
+									<img src="img/2.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									<!--视频追溯-->
+									车辆管理
+								</div>
+							</div>
+						</a>
+						<a onclick="Run('file:///c:\work\a.bat')" href="page-child/xincheguanli.html">
+							<!--<a onclick="Run('file:///c:\work\a.bat)">-->
+							<!--<a href="page-child/shipinshishijiankong.html" target="_blank">  -->
+							<div class="target-button">
+								<div>
+									<img src="img/3.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									<!--视频实时监控-->
+									新车管理
+								</div>
+							</div>
+						</a>
+						<a href="page-child/zonghechaxun.html" target="">
+							<div class="target-button">
+								<div>
+									<img src="img/4.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									<!--遥感分析-->
+									综合查询
+								</div>
+							</div>
+						</a>
+						<a href="page-child/shujufankong.html" target="">
+							<div class="target-button">
+								<div>
+									<img src="img/5.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									<!--车辆审核-->
+									数据反控
+								</div>
+							</div>
+						</a>
+						<a href="page-child/pingtaijiankong.html" target="">
+							<div class="target-button">
+								<div>
+									<img src="img/6.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									<!--车辆审核录入-->
+									平台监控
+								</div>
+							</div>
+						</a>
+						<a href="page-child/tongjifenxi.html" target="">
+							<div class="target-button">
+								<div>
+									<img src="img/7.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									<!--车辆信息维护-->
+									统计分析
+								</div>
+							</div>
+						</a>
+						<a href="page-child/yaocefenxi.html" target="">
+							<div class="target-button">
+								<div>
+									<img src="img/8.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									<!--环保部信息归集-->
+									<!--执法监督-->
+									遥感分析
+								</div>
+							</div>
+						</a>
+						<a href="page-child/shipinzhuisu.html" target="">
+							<div class="target-button">
+								<div>
+									<img src="img/9.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									<!--日志管理-->
+									视频监控
+								</div>
+							</div>
+						</a>
+						<a href="page-child/shujuzidian.html" target="">
+							<div class="target-button">
+								<div>
+									<img src="img/10.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									<!--权限管理-->
+									数据管理
+								</div>
+							</div>
+						</a>
+						<a href="page-child/baojingjiankong.html" target="">
+							<div class="target-button">
+								<div>
+									<img src="img/11.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									<!--车辆分析-->
+									报警监控
+								</div>
+							</div>
+						</a>
+						<!--<a href="page-child/chexingfenxi.html" target="">
+						<div class="target-button" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+							<div style="width:70px;margin:0 auto;">
+								<img src="img/12.png" width="100%" height="100%" />
+							</div>
+							<div class="mt-10" style="width:120px;height:20px;line-height:50px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+								总量减排
+							</div>
+						</div>
+					</a>-->
+						<a href="page-child/xitongguanli.html" target="">
+							<div class="target-button">
+								<div>
+									<img src="img/13.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									<!--综合分析-->
+									<div>系统管理及</div>
+									<div>日志管理</div>
+								</div>
+							</div>
+						</a>
+						<a href="page-child/xitongjiekou.html" target="">
+							<div class="target-button">
+								<div>
+									<img src="img/14.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									<!--数据反控-->
+									系统接口
+								</div>
+							</div>
+						</a>
+						<!--<a href="page-child/tongjifenxi.html" target="">
+						<div class="target-button" style="width:120px;height:110px;float:left;margin-right:25px;margin-bottom:25px;">
+							<div style="width:70px;margin:0 auto;">
+								<img src="img/15.png" width="100%" height="100%" />
+							</div>
+							<div class="mt-10" style="width:120px;height:20px;line-height:50px;letter-spacing:1px;text-align:center;margin-top:-10px;">
+		
+								日志管理
+							</div>
+						</div>
+					</a>-->
+						<a href="page-child/xinxifabu.html" target="">
+							<div class="target-button fr">
+								<div>
+									<img src="img/17.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									<!--新车分析-->
+									信息发布
+								</div>
+							</div>
+						</a>
+						<a href="page-child/youqifenxi.html" target="">
+							<div class="target-button">
+								<div>
+									<img src="img/16.png" width="70px" height="70px" />
+								</div>
+								<div class="mt-10">
+									油气分析
+								</div>
+							</div>
+						</a>
+						<div style="clear: both;"></div>
+					</div>
+					<div class="chartmapbox_xk">
+						<div id="chartbox_xk"></div>
+                        <div id="mapbox_xk">
+                            <ul style="left: 0;top: 0;width: 100%;padding: 10px 0 0 410px;">
+                                <li>
+                                    <a href="javascript:void()" class="on_xk">检测站</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void()">加油站</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void()">门站</a>
+                                </li>
+                            </ul>
+
+                            <div style="width:100%;height:100%;overflow:hidden;">
+                                <div id="MyMapDiv" class="MapClass"></div>
+                            </div>
+
+                        </div>
+                        <ul style="left: 0;bottom: 0;z-index: 3;">
+                            <li>
+                                <a href="javascript:void()" class="on_xk">机动车检测总体情况</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void()">油气总体情况</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void()">遥测总体情况</a>
+                            </li>
+                        </ul>
+					</div>
+					<div class="mainlist">
+						<div class="mainlist_title">天津市排污监控中心重要工作完成情况</div>
+						<div class="mainlist_content_box">
+							<div class="mainlist_content">
+								<div class="mainlist_content_top">
+									机动车检测机构监管工作
+									<a style="cursor: pointer;">&gt;&gt;</a>
+								</div>
+								<div id="noticeA" class="mainlist_content_article">
+									<ul class="car-content-source" style="width:100%;height:auto;display:table;margin:0;padding:0;border:1px solid #ccc;border-radius:2px;overflow:auto;height:183px;">
+										<li style="width:100%;height:auto; display:table;margin:0;padding:0;background:#f8f8f8;">
+											<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">主题</div>
+											<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">内容</div>
+											<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">发布人</div>
+											<div style="width:25%;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">发布日期</div>
+										</li>
+										<li class="car-content-nosource" style="width:100%;height:auto; display:table;margin:0;padding:0;background:#f8f8f8;">
+											<!--<div style="height:60px;line-height:60px;text-align:center;letter-spacing:1px;background:#f2f2f2;color:#aaa">无数据</div>-->
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="mainlist_content_box">
+							<div class="mainlist_content">
+								<div class="mainlist_content_top">
+									遥测信息归集
+									<a style="cursor: pointer;">&gt;&gt;</a>
+								</div>
+								<div id="noticeB" class="mainlist_content_article">
+									<ul class="car-content-source" style="width:100%;height:auto;display:table;margin:0;padding:0;border:1px solid #ccc;border-radius:2px;overflow:auto;height:183px">
+										<li style="width:100%;height:auto; display:table;margin:0;padding:0;background:#f8f8f8;">
+											<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">主题</div>
+											<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">内容</div>
+											<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">发布人</div>
+											<div style="width:25%;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">发布日期</div>
+										</li>
+										<li class="car-content-nosource" style="width:100%;height:auto; display:table;margin:0;padding:0;background:#f8f8f8;">
+											<!--<div style="height:60px;line-height:60px;text-align:center;letter-spacing:1px;background:#f2f2f2;color:#aaa">无数据</div>-->
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="mainlist_content_box">
+							<div class="mainlist_content">
+								<div class="mainlist_content_top">
+									油气回收管理
+									<a style="cursor: pointer;">&gt;&gt;</a>
+								</div>
+								<div id="noticeC" class="mainlist_content_article">
+									<ul class="car-content-source" style="width:100%;height:auto;display:table;margin:0;padding:0;border:1px solid #ccc;border-radius:2px;overflow:auto;height:183px">
+										<li style="width:100%;height:auto; display:table;margin:0;padding:0;background:#f8f8f8;">
+											<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">主题</div>
+											<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">内容</div>
+											<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">发布人</div>
+											<div style="width:25%;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">发布日期</div>
+										</li>
+										<li class="car-content-nosource" style="width:100%;height:auto; display:table;margin:0;padding:0;background:#f8f8f8;">
+											<!--<div style="height:60px;line-height:60px;text-align:center;letter-spacing:1px;background:#f2f2f2;color:#aaa">无数据</div>-->
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="mainlist_content_box">
+							<div class="mainlist_content">
+								<div class="mainlist_content_top">
+									新车审核管理
+									<a style="cursor: pointer;">&gt;&gt;</a>
+								</div>
+								<div id="noticeD" class="mainlist_content_article">
+									<ul class="car-content-source" style="width:100%;height:auto;display:table;margin:0;padding:0;border:1px solid #ccc;border-radius:2px;overflow:auto;height:183px;">
+										<li style="width:100%;height:auto; display:table;margin:0;padding:0;background:#f8f8f8;">
+											<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">主题</div>
+											<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">内容</div>
+											<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">发布人</div>
+											<div style="width:25%;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;line-height:33px;float:left;font-size:12px;text-align:center;">发布日期</div>
+										</li>
+										<li class="car-content-nosource" style="width:100%;height:auto; display:table;margin:0;padding:0;background:#f8f8f8;">
+											<!--<div style="height:60px;line-height:60px;text-align:center;letter-spacing:1px;background:#f2f2f2;color:#aaa">无数据</div>-->
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="page-child/js/column.js"></script>
+		<script type="text/javascript">
+			function Run(strPath) {
+				var objShell = new ActiveXObject("wscript.shell");
+
+				objShell.Run(strPath);
+				//关闭进程
+				objShell = null;
+			}
+
+			function GetDateStr(AddDayCount) {
+				var dd = new Date();
+				dd.setDate(dd.getDate() + AddDayCount); //获取AddDayCount天后的日期
+				var y = dd.getFullYear();
+				var m = dd.getMonth() + 1; //获取当前月份的日期
+				var d = dd.getDate();
+				return y + "-" + m + "-" + d;
+			}
+			var myChart = echarts.init(document.getElementById('chartbox_xk'));
+
+			$.ajax({
+				url: '../../AjaxHandler/AjaxService.ashx',
+				type: 'POST',
+				async: false,
+				data: {
+					method: 'GetChartData',
+					lastdate: GetDateStr(-1),
+					nextdate: GetDateStr(-1)
+
+				},
+				error: function(a) {
+
+				},
+				success: function(json) {
+					console.log(json);
+					json = eval('(' + json + ')');
+					option = {
+						title: {
+							text: '检测方法分析',
+							subtext: GetDateStr(-1),
+							x: 'center'
+						},
+						tooltip: {
+							trigger: 'item',
+							formatter: "{a} <br/>{b} : {c} ({d}%)"
+						},
+						legend: {
+							orient: 'vertical',
+							left: 'left',
+							data: ['稳态工况', '双怠速', '加载减速', '不透光烟度']
+						},
+						series: [{
+							name: '检测方法分析',
+							type: 'pie',
+							radius: '55%',
+							center: ['50%', '60%'],
+							data: [{
+									value: json.gas1all,
+									name: '稳态工况'
+								},
+								{
+									value: json.gas2all,
+									name: '双怠速'
+								},
+								{
+									value: json.diesel1all,
+									name: '加载减速'
+								},
+								{
+									value: json.diesel2all,
+									name: '不透光烟度'
+								}
+							],
+							itemStyle: {
+								emphasis: {
+									shadowBlur: 10,
+									shadowOffsetX: 0,
+									shadowColor: 'rgba(0, 0, 0, 0.5)'
+								}
+							}
+						}]
+					};
+					//var gas1all = parseInt(json.gas1all);
+					//var gas2all = parseInt(json.gas2all);
+					//var diesel1all = parseInt(json.diesel1all);
+					//var diesel2all =parseInt(json.diesel2all);
+					//var gas1ok = parseInt(json.gas1ok);
+					//var gas2ok = parseInt(json.gas2ok);
+					//var diesel1ok = parseInt(json.diesel1ok);
+					//var diesel2ok = parseInt(json.diesel2ok);
+
+					//var allok = gas1ok + gas2ok + diesel1ok + diesel2ok;
+
+					//var gas1nok = gas1all - gas1ok;
+					//var gas2nok = gas2all - gas2ok;
+					//var diesel1nok = diesel1all - diesel1ok;
+					//var diesel2nok = diesel2all - diesel2ok;
+					//var allnok = gas1nok + gas2nok + diesel1nok + diesel2nok;
+					//option = {
+					//    tooltip: {
+					//        trigger: 'axis',
+					//        //formatter: "{a} <br/>{b} : {c} ",
+					//        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+					//            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+					//        }
+					//    },
+					//    legend: {
+					//        data: ['合格数', '不合格数']
+					//    },
+					//    grid: {
+					//        left: '3%',
+					//        right: '4%',
+					//        bottom: '3%',
+					//        containLabel: true
+					//    },
+					//    xAxis: [
+					//        {
+					//            type: 'category',
+					//            data: ['总数','稳态','双怠速','加载减速','不透光']
+					//        }
+					//    ],
+					//    yAxis: [
+					//        {
+					//            type: 'value'
+					//        }
+					//    ],
+					//    series: [
+
+					//        {
+					//            name: '合格数',
+					//            type: 'bar',
+					//            stack: '数量',
+					//            data: [allok, gas1ok, gas2ok, diesel1ok, diesel2ok]
+					//        }, {
+					//            name: '不合格数',
+					//            type: 'bar',
+					//            stack: '数量',
+					//            data: [allnok, gas1nok, gas2nok, diesel1nok, diesel2nok]
+					//        }
+
+					//        //{
+					//        //    name: '所有验车合格数',
+					//        //    type: 'bar',
+					//        //    stack: '所有验车',
+					//        //    data: [allok]
+					//        //}, {
+					//        //    name: '所有验车不合格数',
+					//        //    type: 'bar',
+					//        //    stack: '所有验车',
+					//        //    data: [allnok]
+					//        //}
+					//        //,
+					//        //{
+					//        //    name: '稳态工况合格数',
+					//        //    type: 'bar',
+					//        //    stack: '稳态工况',
+					//        //    data: [gas1ok]
+					//        //},
+					//        //{
+					//        //    name: '稳态工况不合格数',
+					//        //    type: 'bar',
+					//        //    stack: '稳态工况',
+					//        //    data: [gas1nok]
+					//        //}
+					//        //,
+					//        //{
+					//        //    name: '双怠速合格数',
+					//        //    type: 'bar',
+					//        //    stack: '双怠速',
+					//        //    data: [gas2ok]
+					//        //},
+					//        //{
+					//        //    name: '双怠速不合格数',
+					//        //    type: 'bar',
+					//        //    stack: '双怠速',
+					//        //    data: [gas2nok]
+					//        //}
+					//        //,
+					//        //{
+					//        //    name: '加载减速合格数',
+					//        //    type: 'bar',
+					//        //    stack: '加载减速',
+					//        //    data: [diesel1ok]
+					//        //},
+					//        //{
+					//        //    name: '加载减速不合格数',
+					//        //    type: 'bar',
+					//        //    stack: '加载减速',
+					//        //    data: [diesel1nok]
+					//        //}
+					//        //,
+					//        //{
+					//        //    name: '不透光烟度合格数',
+					//        //    type: 'bar',
+					//        //    stack: '不透光烟度',
+					//        //    data: [diesel2ok]
+					//        //},
+					//        //{
+					//        //    name: '不透光烟度不合格数',
+					//        //    type: 'bar',
+					//        //    stack: '不透光烟度',
+					//        //    data: [diesel2nok]
+					//        //}
+					//    ]
+					//};
+
+				}
+			});
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+		</script>
+		<script type="text/javascript">
+			
+
+			$.ajax({
+				url: '../../AjaxHandler/AjaxService.ashx',
+				type: 'POST',
+				async: false,
+				data: {
+					method: 'GGLB'
+				},
+				error: function(a) {
+
+				},
+				success: function(json) {
+					$('.carinfo-dis').remove();
+					//console.log(json);
+					json = eval('(' + json + ')');
+					for(var c = 0; c < json.rows.length; c++) {
+						//console.log(json.rows[c]);
+						//console.log('#notice' + json.rows[c].TYPE + ' .car-content-source');
+						$('#notice' + json.rows[c].TYPE + ' .car-content-source').append(
+							'<li class="carinfo-dis" style="width:100%;height:auto; display:table;margin:0;padding:0;background:#f8f8f8;">' +
+							'<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;height:41px;line-height:20px;float:left;font-size:12px;text-align:center;">' + json.rows[c].TITLE + '</div>' +
+							'<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;height:41px;line-height:20px;float:left;font-size:12px;text-align:center;">' + json.rows[c].CONTENT + '</div>' +
+							'<div style="width:25%;border-right:1px solid #ccc;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;height:41px;line-height:20px;float:left;font-size:12px;text-align:center;">' + json.rows[c].STARTDATE + '</div>' +
+							'<div style="width:25%;border-bottom:1px solid #ccc;color:#383838;letter-spacing:1px;height:41px;line-height:20px;float:left;font-size:12px;text-align:center;">' + json.rows[c].PSN + '</div>' +
+							'</li>'
+						);
+					}
+				}
+			});
+		</script>
+        <script>
+            var map, graphicLayer;
+            //标记数组
+            var allMarkers = [];
+
+
+
+            require([
+                "esri/map", "esri/geometry/Circle", "esri/symbols/SimpleFillSymbol",
+                "esri/graphic", "esri/layers/GraphicsLayer",
+                "dojo/dom", "dojo/dom-attr", "dojo/domReady!"
+            ], function (
+                Map, Circle, SimpleFillSymbol,
+                Grahpic, GraphicsLayer,
+                dom, domAttr
+            ) {
+
+                    map = new esri.Map("MyMapDiv", {
+                        basemap: {
+                            baseMapLayers: [{
+                                url: "https://services.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer"
+                            }],
+                            thumbnailUrl: "https://www.example.com/images/thumbnail_2014-11-25_61051.png",
+                            title: "Delorme"
+                        },
+                        zoom: 10,
+                        center: [117.20, 39.12]
+                    });
+
+                    var MyTiledMapServiceLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://172.16.1.14:6080/arcgis/rest/services/jjj_city/MapServer?token=FLqIUkgf63DnQgw-kEImT4YY4RD8TCImmTwULWo8mS1WBbovqZ-JULJ899yXOWVy");
+                    map.addLayer(MyTiledMapServiceLayer);
+                    //创建图层
+                    graphicLayer = new GraphicsLayer();
+                    //把图层添加到地图上
+                    map.addLayer(graphicLayer);
+                    setTimeout(function () {
+                        $.ajax({
+                            url: "../AjaxHandler/AjaxService.ashx",
+                            data: {
+                                method: 'GetMapData',
+                                pagenumber: '',
+                                pagesize: '',
+                                CUNITNAME: ''
+                            },
+                            async: false,
+                            dataType: "json",
+                            type: "post",
+                            success: function (json) {
+                                for (var c = 0; c < json.length; c++) {
+                                    var xx = json[c].CMEMO.split(',');
+                                    addMarkers(xx[0] * 1, xx[1] * 1,json[c]);
+                                }
+                            },
+                            error: function (xhr) {
+
+                            }
+                        });
+
+                    }, 2000);
+                   
+                        
+                    
+
+                    map.showZoomSlider();
+
+                });
+            function addMarkers(xx, yy, obj) {
+
+                //设置标注的经纬度
+                //方法一
+                var pt = new esri.geometry.Point(xx, yy, map.spatialReference);
+                //方法二
+                //  var pt = new esri.geometry.geographicToWebMercator(new esri.geometry.Point({
+                //    "x": 118.0605760000,
+                //    "y": 36.8424320000,
+                //    "spatialReference": { "wkid": 102113 }
+                //            }));
+
+                //设置标注显示的图标
+                //var symbol = new esri.symbol.SimpleMarkerSymbol();
+                var symbol1;
+                if (obj.ISLOCK == 1) {
+                    symbol1 = new esri.symbol.PictureMarkerSymbol("img/icon2.png", 25, 25);
+                } else {
+                    symbol1 = new esri.symbol.PictureMarkerSymbol("img/icon.png", 25, 25);
+                }
+                
+
+                //要在模版中显示的参数
+                var attr = { "address": "测试" };
+
+                //创建模版
+                var infoTemplate = new esri.InfoTemplate("信息详情", "<div><ul><li>名称：" + obj.CUNITNAME + "</li><li>状态：" + (obj.ISLOCK == 1 ? '断开' : '正常') + "</li><li>负责人：" + obj.CDIRECTOR + "</li><li>联系电话：" + obj.CPHONE + "</li></ul></div>");
+                //创建图像
+                var graphic = new esri.Graphic(pt, symbol1, attr, infoTemplate);
+                //把图像添加到刚才创建的图层上
+                graphicLayer.add(graphic);
+                setMapCenter(xx, yy, 10);
+
+
+
+
+            }
+
+
+
+            function addMarker(xx, yy) {
+
+                //设置标注的经纬度
+                //方法一
+                var pt = new esri.geometry.Point(xx, yy, map.spatialReference);
+                //方法二
+                //  var pt = new esri.geometry.geographicToWebMercator(new esri.geometry.Point({
+                //    "x": 118.0605760000,
+                //    "y": 36.8424320000,
+                //    "spatialReference": { "wkid": 102113 }
+                //            }));
+
+                //设置标注显示的图标
+                //var symbol = new esri.symbol.SimpleMarkerSymbol();
+                var symbol1 = new esri.symbol.PictureMarkerSymbol("img/icon.png", 25, 25);
+
+                //要在模版中显示的参数
+                var attr = { "address": "测试" };
+
+                //创建模版
+                var infoTemplate = new esri.InfoTemplate("信息详情", "地址:${address}");
+                //创建图像
+                var graphic = new esri.Graphic(pt, symbol1, attr, infoTemplate);
+                //把图像添加到刚才创建的图层上
+                graphicLayer.add(graphic);
+                setMapCenter(xx, yy, 10);
+            }
+
+            function setMapCenter(xx, yy, level) {
+                var point = new esri.geometry.Point(xx, yy, map.spatialReference);
+                map.centerAndZoom(point, level);
+            }
+
+            //添加标注
+            function mapAddOverLay(xx, yy, id, labelname) {
+                var point = new BMap.Point(xx, yy);
+                var marker = new BMap.Marker(point);
+                map.addOverlay(marker); //添加标注
+
+                allMarkers.push(marker); //记录覆盖物句柄
+
+                if (labelname != "") {
+                    var label = new BMap.Label(labelname, { offset: new BMap.Size(20, -10) });
+                    marker.setLabel(label); //添加Label
+                }
+
+                //添加标注回调
+                addOverlayCallback(marker, xx, yy, id);
+            }
+
+        </script>
+
+	</body>
+
+</html>

@@ -1,0 +1,300 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>天津市机动车排污检控中心监控平台</title>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+
+    <link href="assets/css/select2.min.css" rel="stylesheet" />
+    <link href="assets/css/checkbox3.min.css" rel="stylesheet" />
+
+
+
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="assets/js/select2.full.min.js"></script>
+    <script type="text/javascript">
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            //alert(r);
+            //console.log(r);
+            if (r != null) {
+                //console.log("adgvsdfvbgsadf"+unescape(r[2]));
+                return unescape(r[2]);
+            }
+            return null;
+        }
+        $(function () {
+            $.ajax({
+                type: "post", //要用post方式                 
+                url: 'CarQueryIndex.aspx/getchartdata?date=' + GetQueryString("date") + "&UnitCode=" + GetQueryString("UnitCode"),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    var result = eval("(" + data.d + ")");
+                    console.log(result);
+                    $("#page-inner").show();
+
+                    var gas1all = parseInt(result.gas1all);
+                    var gas1ok = parseInt(result.gas1ok);
+                    var gas2all = parseInt(result.gas2all);
+                    var gas2ok = parseInt(result.gas2ok);
+                    var diesel1all = parseInt(result.diesel1all);
+                    var diesel1ok = parseInt(result.diesel1ok);
+                    var diesel2all = parseInt(result.diesel2all);
+                    var diesel2ok = parseInt(result.diesel2ok);
+
+                    $("#all").html((gas1all + gas2all + diesel1all +diesel2all).toString() );
+                    $("#ok").html((gas1ok + gas2ok + diesel1ok + diesel2ok).toString());
+
+                    $("#gasall").html((gas1all + gas2all).toString());
+                    $("#dieselall").html((diesel1all + diesel2all).toString());
+
+                    var pergas1 = (gas1ok / gas1all * 100).toFixed(0);
+                    pergas1 = isNaN(pergas1) ? 0 : pergas1;
+                    $("#gas1").attr("data-percent", pergas1);
+                    $("#gas1 span").html(pergas1 + "%");
+
+                    var pergas2 = (gas2ok / gas2all * 100).toFixed(0);
+                    pergas2 = isNaN(pergas2) ? 0 : pergas2;
+                    $("#gas2").attr("data-percent", pergas2);
+                    $("#gas2 span").html(pergas2 + "%");
+
+                    var perdiesel1 = (diesel1ok / diesel1all * 100).toFixed(0);
+                    perdiesel1 = isNaN(perdiesel1) ? 0 : perdiesel1;
+                    $("#diesel1").attr("data-percent", perdiesel1);
+                    $("#diesel1 span").html(perdiesel1 + "%");
+
+                    var perdiesel2 = (diesel2ok / diesel2all * 100).toFixed(0);
+                    perdiesel2 = isNaN(perdiesel2) ? 0 : perdiesel2;
+                    $("#diesel2").attr("data-percent", perdiesel2);
+                    $("#diesel2 span").html(perdiesel2 + "%");
+
+                    $.getScript("assets/js/easypiechart.js",function(){  //加载test.js,成功后，并执行回调函数
+                        $.getScript("assets/js/easypiechart-data.js", function () {
+                                $('#gas1').easyPieChart({
+                                    scaleColor: false,
+                                    barColor: '#1ebfae'
+                                });
+
+                                $('#gas2').easyPieChart({
+                                    scaleColor: false,
+                                    barColor: '#ffb53e'
+                                });
+
+                                $('#diesel1').easyPieChart({
+                                    scaleColor: false,
+                                    barColor: '#f9243f'
+                                });
+
+                                $('#diesel2').easyPieChart({
+                                    scaleColor: false,
+                                    barColor: '#30a5ff'
+                                });
+
+                        });
+                    });
+                    
+                },
+                error: function (err) {
+                }
+            });
+        });
+    </script>
+    <!-- Chart Js -->
+
+    <style>
+       *{
+           margin:0;
+           padding:0;
+       }
+    </style>
+</head>
+<body>
+        <div id="page-wrapper" style="margin-left:0;top:0;margin-top:0">
+            <div id="page-inner" style="margin-top:0px;display:none">
+                <!-- /. ROW  -->
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="board">
+                            <div class="panel panel-primary">
+                                <div class="number">
+                                    <h3>
+                                        <h3 id="all">0</h3>
+                                        <small>验车总数</small>
+                                    </h3>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-wrench fa-5x yellow"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="board">
+                            <div class="panel panel-primary">
+                                <div class="number">
+                                    <h3>
+                                        <h3 id="ok"></h3>
+                                        <small>通过数量</small>
+                                    </h3>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-check fa-5x green"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="board">
+                            <div class="panel panel-primary">
+                                <div class="number">
+                                    <h3>
+                                        <h3 id="gasall">150</h3>
+                                        <small>汽油车</small>
+                                    </h3>
+                                </div>
+                                <div class="icon">
+                                    <i class="icon fa fa-car fa-2x"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="board">
+                            <div class="panel panel-primary">
+                                <div class="number">
+                                    <h3>
+                                        <h3 id="dieselall">300</h3>
+                                        <small>柴油车</small>
+                                    </h3>
+                                </div>
+                                <div class="icon">
+                                    <i class="icon fa fa-truck fa-2x"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row" style="display:none">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="panel panel-default chartJs">
+                            <div class="panel-heading">
+                                <div class="card-title">
+                                    <div class="title">汽油车检测方法统计<span id="line-chart-gas-checkMethod-legend"></span></div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <canvas id="line-chart-gas-checkMethod" class="chart"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="panel panel-default chartJs">
+                            <div class="panel-heading">
+                                <div class="card-title">
+                                    <div class="title">柴油车检测方法统计<span id="line-chart-diesel-checkMethod-legend"></span></div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <canvas id="line-chart-diesel-checkMethod" class="chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body easypiechart-panel">
+                                <h4>稳态</h4>
+                                <div class="easypiechart" id="gas1" data-percent="17">
+                                    <span class="percent">82%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body easypiechart-panel">
+                                <h4>双怠速</h4>
+                                <div class="easypiechart" id="gas2" data-percent="55">
+                                    <span class="percent">55%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body easypiechart-panel">
+                                <h4>加载减速</h4>
+                                <div class="easypiechart" id="diesel1" data-percent="84">
+                                    <span class="percent">84%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body easypiechart-panel">
+                                <h4>不透光烟度</h4>
+                                <div class="easypiechart" id="diesel2" data-percent="46">
+                                    <span class="percent">46%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/.row-->
+                <div class="row" style="display:none">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                汽油车检测方法统计<span id="bar-chart-gas-checkMethod-legend"></span>
+                            </div>
+                            <div class="panel-body">
+                                <canvas id="bar-chart-gas-checkMethod" class="chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                柴油车检测方法统计<span id="bar-chart-diesel-checkMethod-legend"></span>
+                            </div>
+                            <div class="panel-body">
+                                <canvas id="bar-chart-diesel-checkMethod" class="chart"></canvas>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+              <!-- /. ROW  -->
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+</body>
+</html>

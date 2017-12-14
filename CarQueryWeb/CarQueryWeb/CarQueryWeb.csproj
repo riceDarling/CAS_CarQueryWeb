@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{63D47486-654B-4D6F-A6D9-F534CA5CBEDD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CarQueryWeb</RootNamespace>
+    <AssemblyName>CarQueryWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="ThoughtWorks.QRCode, Version=1.0.4778.30637, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\ThoughtWorks.QRCode.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\bootstrap-table.min.css" />
+    <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\font-awesome\fonts\fontawesome-webfontba72.eot" />
+    <Content Include="assets\font-awesome\fonts\fontawesome-webfontba72.svg" />
+    <Content Include="assets\font-awesome\fonts\fontawesome-webfontba72.ttf" />
+    <Content Include="assets\font-awesome\fonts\fontawesome-webfontba72.woff" />
+    <Content Include="assets\font-awesome\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="assets\js\bootstrap-table-fixed-columns.js" />
+    <Content Include="assets\js\bootstrap-table-zh-CN.js" />
+    <Content Include="assets\js\bootstrap-table.js" />
+    <Content Include="assets\js\bootstrap.min1.js" />
+    <Content Include="assets\js\colResizable-1.6.js" />
+    <Content Include="assets\js\jquery-2.2.1.min.js" />
+    <Content Include="assets\js\Lightweight-Chart\README.md" />
+    <Content Include="AjaxHandler\OilHandler.ashx" />
+    <Content Include="AjaxHandler\LoginHandler.ashx" />
+    <Content Include="CarCheckVideo.aspx" />
+    <Content Include="CarWarnList.aspx" />
+    <Content Include="css\index2.css" />
+    <Content Include="DLL\log4net.dll" />
+    <Content Include="DLL\Oracle.ManagedDataAccess.dll" />
+    <Content Include="DLL\ThoughtWorks.QRCode.dll" />
+    <Content Include="index\5983ddeb3dcee.jpg" />
+    <Content Include="index\bg.jpg" />
+    <Content Include="index\bg2.jpg" />
+    <Content Include="index\css\header.css" />
+    <Content Include="index\images\1.png" />
+    <Content Include="index\images\10.png" />
+    <Content Include="index\images\11.png" />
+    <Content Include="index\images\12.png" />
+    <Content Include="index\images\13.png" />
+    <Content Include="index\images\14.png" />
+    <Content Include="index\images\15.png" />
+    <Content Include="index\images\16.png" />
+    <Content Include="index\images\17.png" />
+    <Content Include="index\images\2.png" />
+    <Content Include="index\images\3.png" />
+    <Content Include="index\images\4.png" />
+    <Content Include="index\images\5.png" />
+    <Content Include="index\images\6.png" />
+    <Content Include="index\images\7.png" />
+    <Content Include="index\images\8.png" />
+    <Content Include="index\images\9.png" />
+    <Content Include="index\images\beijing.jpg" />
+    <Content Include="index\images\bg.gif" />
+    <Content Include="index\images\bg_up.png" />
+    <Content Include="index\images\btn1.png" />
+    <Content Include="index\images\btn2.png" />
+    <Content Include="index\images\btn3.png" />
+    <Content Include="index\images\btn4.png" />
+    <Content Include="index\images\button.gif" />
+    <Content Include="index\images\button.png" />
+    <Content Include="index\images\button_onmouse.gif" />
+    <Content Include="index\images\cancel.gif" />
+    <Content Include="index\images\cancelbtn.png" />
+    <Content Include="index\images\close.png" />
+    <Content Include="index\images\close1.png" />
+    <Content Include="index\images\denglu.png" />
+    <Content Include="index\images\downArrow.png" />
+    <Content Include="index\images\foot.png" />
+    <Content Include="index\images\function.png" />
+    <Content Include="index\images\home.png" />
+    <Content Include="index\images\ico.png" />
+    <Content Include="index\images\icons.png" />
+    <Content Include="index\images\jcaptcha.gif" />
+    <Content Include="index\images\left.png" />
+    <Content Include="index\images\leftBar.png" />
+    <Content Include="index\images\li-hoveri.png" />
+    <Content Include="index\images\li.png" />
+    <Content Include="index\images\login_bg.png" />
+    <Content Include="index\images\login_err.png" />
+    <Content Include="index\images\login_onmouse.png" />
+    <Content Include="index\images\login_static.png" />
+    <Content Include="index\images\logo-1.png" />
+    <Content Include="index\images\logo-2.png" />
+    <Content Include="index\images\main-bg.jpg" />
+    <Content Include="index\images\map-1-click.png" />
+    <Content Include="index\images\map-1-hover.png" />
+    <Content Include="index\images\map-1.png" />
+    <Content Include="index\images\map-10-click.png" />
+    <Content Include="index\images\map-10-hover.png" />
+    <Content Include="index\images\map-2-click.png" />
+    <Content Include="index\images\map-2-hover.png" />
+    <Content Include="index\images\map-3-click.png" />
+    <Content Include="index\images\map-3-hover.png" />
+    <Content Include="index\images\map-4-click.png" />
+    <Content Include="index\images\map-4-hover.png" />
+    <Content Include="index\images\map-5-click.png" />
+    <Content Include="index\images\map-5-hover.png" />
+    <Content Include="index\images\map-6-click.png" />
+    <Content Include="index\images\map-6-hover.png" />
+    <Content Include="index\images\map-7-click.png" />
+    <Content Include="index\images\map-7-hover.png" />
+    <Content Include="index\images\map-8-click.png" />
+    <Content Include="index\images\map-8-hover.png" />
+    <Content Include="index\images\map-9-click.png" />
+    <Content Include="index\images\map-9-hover.png" />
+    <Content Include="index\images\oldblank.png" />
+    <Content Include="index\images\open.png" />
+    <Content Include="index\images\open1.png" />
+    <Content Include="index\images\relogin.gif" />
+    <Content Include="index\images\right.png" />
+    <Content Include="index\images\rightBar.png" />
+    <Content Include="index\images\searchbtn.png" />
+    <Content Include="index\images\text-bg.gif" />
+    <Content Include="index\images\timeout.JPG" />
+    <Content Include="index\images\title-1.png" />
+    <Content Include="index\images\title-2.png" />
+    <Content Include="index\images\title.png" />
+    <Content Include="index\images\titlecube.gif" />
+    <Content Include="index\images\titlefoot.png" />
+    <Content Include="index\images\tongji.png" />
+    <Content Include="index\images\top-2.png" />
+    <Content Include="index\images\top-3.png" />
+    <Content Include="index\images\topBg.jpg" />
+    <Content Include="index\images\topbg.png" />
+    <Content Include="index\images\undifinded_page.jpg" />
+    <Content Include="index\images\unieap_logo.png" />
+    <Content Include="index\images\zhanwu.jpg" />
+    <Content Include="index\img\1.gif" />
+    <Content Include="index\img\1.png" />
+    <Content Include="index\img\10.png" />
+    <Content Include="index\img\11.png" />
+    <Content Include="index\img\12.png" />
+    <Content Include="index\img\13.png" />
+    <Content Include="index\img\14.png" />
+    <Content Include="index\img\15.png" />
+    <Content Include="index\img\16.png" />
+    <Content Include="index\img\17.png" />
+    <Content Include="index\img\18.png" />
+    <Content Include="index\img\19.png" />
+    <Content Include="index\img\2.png" />
+    <Content Include="index\img\20.png" />
+    <Content Include="index\img\21.png" />
+    <Content Include="index\img\22.png" />
+    <Content Include="index\img\23.png" />
+    <Content Include="index\img\3.png" />
+    <Content Include="index\img\4.png" />
+    <Content Include="index\img\5.png" />
+    <Content Include="index\img\6.png" />
+    <Content Include="index\img\7.png" />
+    <Content Include="index\img\8.png" />
+    <Content Include="index\img\9.png" />
+    <Content Include="index\img\bx_loader.gif" />
+    <Content Include="index\img\controls.png" />
+    <Content Include="index\img\icon2.png" />
+    <Content Include="index\index.html" />
+    <Content Include="index\index3.html" />
+    <Content Include="index\page-child\baojingjiankong.html" />
+    <Content Include="index\page-child\baojingjiankongguanli.html" />
+    <Content Include="index\page-child\cheliangchaxun.html" />
+    <Content Include="index\page-child\cheliangfenxi.html" />
+    <Content Include="index\page-child\cheliangshenhe2.html" />
+    <Content Include="index\page-child\cheliangshenheluru2.html" />
+    <Content Include="index\page-child\hegeliangtongjibaobiao_date.html" />
+    <Content Include="index\page-child\hegeliangtongjibaobiao_date_tableframe.html" />
+    <Content Include="index\page-child\jianceliangtongjibaobiao_date.html" />
+    <Content Include="index\page-child\jianceliangtongjibaobiao_date_tableframe.html" />
+    <Content Include="index\page-child\jianceliangtongjibaobiao_year.html" />
+    <Content Include="index\page-child\jianceliangtongjibaobiao_month.html" />
+    <Content Include="index\page-child\jianceliangtongjibaobiao_year_tableframe.html" />
+    <Content Include="index\page-child\jianceliangtongjibaobiao_month_tableframe.html" />
+    <Content Include="index\page-child\jianceshujuchaxun.html" />
+    <Content Include="index\page-child\jiancezhanchaxun.html" />
+    <Content Include="index\page-child\jiancezhanguanli.html" />
+    <Content Include="index\page-child\js\column.js" />
+    <Content Include="index\page-child\js\echarts.min.js" />
+    <Content Include="index\page-child\lujianlucha.html" />
+    <Content Include="index\page-child\meiti.html" />
+    <Content Include="index\page-child\menzhanshizhifa.html" />
+    <Content Include="index\page-child\picture.html" />
+    <Content Include="index\page-child\pingtaijiankong.html" />
+    <Content Include="index\page-child\shujufankong.html" />
+    <Content Include="index\page-child\waizhuanchechaxun.html" />
+    <Content Include="index\page-child\xinchefenxi.html" />
+    <Content Include="index\page-child\shipinzhongzhuan.html" />
+    <Content Include="index\page-child\video.html" />
+    <Content Include="index\page-child\cheliangshenhe.html" />
+    <Content Include="index\page-child\cheliangshenheluru.html" />
+    <Content Include="index\page-child\cheliangxinxiweihu.html" />
+    <Content Include="index\page-child\chexingfenxi.html" />
+    <Content Include="index\page-child\css\css\font-awesome.min.css" />
+    <Content Include="index\page-child\css\easyui.css" />
+    <Content Include="index\page-child\css\font\fontawesome-webfont.svg" />
+    <Content Include="index\page-child\css\images\accordion_arrows.png" />
+    <Content Include="index\page-child\css\images\ajax-loader.gif" />
+    <Content Include="index\page-child\css\images\blank.gif" />
+    <Content Include="index\page-child\css\images\calendar_arrows.png" />
+    <Content Include="index\page-child\css\images\combo_arrow.png" />
+    <Content Include="index\page-child\css\images\datagrid_icons.png" />
+    <Content Include="index\page-child\css\images\datebox_arrow.png" />
+    <Content Include="index\page-child\css\images\fa-line-chart.png" />
+    <Content Include="index\page-child\css\images\input-checked.png" />
+    <Content Include="index\page-child\css\images\input-unchecked.png" />
+    <Content Include="index\page-child\css\images\layout_arrows.png" />
+    <Content Include="index\page-child\css\images\line-chart.png" />
+    <Content Include="index\page-child\css\images\linkbutton_bg.png" />
+    <Content Include="index\page-child\css\images\loading.gif" />
+    <Content Include="index\page-child\css\images\menu_arrows.png" />
+    <Content Include="index\page-child\css\images\messager_icons.png" />
+    <Content Include="index\page-child\css\images\pagination_icons.png" />
+    <Content Include="index\page-child\css\images\panel_tools.png" />
+    <Content Include="index\page-child\css\images\searchbox_button.png" />
+    <Content Include="index\page-child\css\images\slider_handle.png" />
+    <Content Include="index\page-child\css\images\spinner_arrows.png" />
+    <Content Include="index\page-child\css\images\tabs_icons.png" />
+    <Content Include="index\page-child\css\images\tree_icons.png" />
+    <Content Include="index\page-child\css\images\validatebox_warning.png" />
+    <Content Include="index\page-child\huanbaoxinxiguiji.html" />
+    <Content Include="index\page-child\jiankongpingtai.html" />
+    <Content Include="index\page-child\js\jquery-2.2.1.min.js" />
+    <Content Include="index\page-child\js\jquery.easyui.min.js" />
+    <Content Include="index\page-child\mov_bbb.mp4" />
+    <Content Include="index\page-child\newCarReport.html" />
+    <Content Include="index\page-child\quanxianguanli.html" />
+    <Content Include="index\page-child\rizhiguanli.html" />
+    <Content Include="index\page-child\shipinzhuisu.html" />
+    <Content Include="index\page-child\xincheguanli.html" />
+    <Content Include="index\page-child\xinxifabu.html" />
+    <Content Include="index\page-child\xinxiguanli.html" />
+    <Content Include="index\page-child\xinxiliulan.html" />
+    <Content Include="index\page-child\yaocefenxi.html" />
+    <Content Include="index\page-child\yidongshizhifa.html" />
+    <Content Include="index\page-child\youqifenxi.html" />
+    <Content Include="index\page-child\zonghefenxi\jianceshujuchaxun.html" />
+    <Content Include="index\page-child\zonghefenxi\jiancezhanguanli.html" />
+    <Content Include="index\page-child\shujuzidian.html" />
+    <Content Include="index\page-child\tongjifenxi.html" />
+    <Content Include="index\page-child\xitongguanli.html" />
+    <Content Include="index\page-child\xitongjiekou.html" />
+    <Content Include="index\page-child\xml\basedata.xml" />
+    <Content Include="index\page-child\xml\info.xml" />
+    <Content Include="index\page-child\xml\log.xml" />
+    <Content Include="index\page-child\xml\result.xml" />
+    <Content Include="index\page-child\xml\Unit.xml" />
+    <Content Include="index\page-child\xml\user.xml" />
+    <Content Include="index\page-child\xml\Vehicle.xml" />
+    <Content Include="index\page-child\xml\vehicleModel.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="index\page-child\xml\yaogan.xml" />
+    <Content Include="index\page-child\yaoganfenxi.html" />
+    <Content Include="index\page-child\zhifajiandu.html" />
+    <Content Include="index\page-child\zonghechaxun.html" />
+    <Content Include="index\page-child\zonghechaxun2.html" />
+    <Content Include="index\page-child\zonghefenxi.html" />
+    <Content Include="index\page-child\zonghefenxi\cheliangchaxun.html" />
+    <Content Include="index\test.html" />
+    <Content Include="index\timg %284%29.jpg" />
+    <Content Include="index\timg %284%29.png" />
+    <Content Include="index\XMLFile1.xml" />
+    <Content Include="js\common.js" />
+    <Content Include="js\echarts.min.js" />
+    <Content Include="js\store.min.js" />
+    <Content Include="js\vaildateVIN.js" />
+    <Content Include="js\XMLHelper.js" />
+    <Content Include="video.html" />
+    <Content Include="AjaxHandler\NewCarHandler.ashx" />
+    <Content Include="xml\info.xml" />
+    <Content Include="xml\log.xml" />
+    <Content Include="xml\user.xml" />
+    <Content Include="xml\Vehicle.xml" />
+    <Content Include="index\page-child\css\font\fontawesome-webfont.eot" />
+    <Content Include="index\page-child\css\font\fontawesome-webfont.ttf" />
+    <Content Include="index\page-child\css\font\fontawesome-webfont.woff" />
+    <Content Include="index\page-child\css\font\FontAwesome.otf" />
+    <Content Include="index\page-child\mov_bbb.ogg" />
+    <Content Include="AjaxHandler\AjaxService.ashx" />
+    <None Include="Properties\PublishProfiles\CarQueryWeb.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\bootstrap-theme.min.css" />
+    <Content Include="assets\css\checkbox3.min.css" />
+    <Content Include="assets\css\custom-styles.css" />
+    <Content Include="assets\css\font-awesome.css" />
+    <Content Include="assets\css\select2.min.css" />
+    <Content Include="assets\img\bg-img.jpg" />
+    <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\chart-data.js" />
+    <Content Include="assets\js\chart.min.js" />
+    <Content Include="assets\js\chartjs.js" />
+    <Content Include="assets\js\custom-scripts.js" />
+    <Content Include="assets\js\custom.js" />
+    <Content Include="assets\js\dataTables\dataTables.bootstrap.css" />
+    <Content Include="assets\js\dataTables\dataTables.bootstrap.js" />
+    <Content Include="assets\js\dataTables\jquery.dataTables.js" />
+    <Content Include="assets\js\easypiechart-data.js" />
+    <Content Include="assets\js\easypiechart.js" />
+    <Content Include="assets\js\jquery-1.10.2.js" />
+    <Content Include="assets\js\jquery.metisMenu.js" />
+    <Content Include="assets\js\Lightweight-Chart\chart.js" />
+    <Content Include="assets\js\Lightweight-Chart\cssCharts.css" />
+    <Content Include="assets\js\Lightweight-Chart\index - Copy.html" />
+    <Content Include="assets\js\Lightweight-Chart\index.html" />
+    <Content Include="assets\js\Lightweight-Chart\jquery.chart.js" />
+    <Content Include="assets\js\Lightweight-Chart\jquery.chart.min.js" />
+    <Content Include="assets\js\morris\morris-0.4.3.min.css" />
+    <Content Include="assets\js\morris\morris.js" />
+    <Content Include="assets\js\morris\raphael-2.1.0.min.js" />
+    <Content Include="assets\js\select2.full.min.js" />
+    <Content Include="Image\MALogo.JPG" />
+    <Content Include="Oil.aspx" />
+    <Content Include="CarQueryList.aspx" />
+    <Content Include="css\bootstrap-table.min.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\query.css" />
+    <Content Include="css\reset.css" />
+    <Content Include="css\style.css" />
+    <Content Include="data.html" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="images\button.png" />
+    <Content Include="images\header_bg.png" />
+    <Content Include="images\input_bg.png" />
+    <Content Include="images\input_name.png" />
+    <Content Include="images\input_name_hover.png" />
+    <Content Include="images\input_password.png" />
+    <Content Include="images\input_password_hover.png" />
+    <Content Include="images\login_bg.png" />
+    <Content Include="images\logo_ico.png" />
+    <Content Include="images\member_title.png" />
+    <Content Include="js\belatedpng.js" />
+    <Content Include="js\bootstrap-table-fixed-columns.js" />
+    <Content Include="js\bootstrap-table-zh-CN.js" />
+    <Content Include="js\bootstrap-table.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\DatePicker\calendar.js" />
+    <Content Include="js\DatePicker\lang\en.js" />
+    <Content Include="js\DatePicker\lang\zh-cn.js" />
+    <Content Include="js\DatePicker\lang\zh-tw.js" />
+    <Content Include="js\DatePicker\skin\datePicker.gif" />
+    <Content Include="js\DatePicker\skin\default\datepicker.css" />
+    <Content Include="js\DatePicker\skin\default\img.gif" />
+    <Content Include="js\DatePicker\skin\WdatePicker.css" />
+    <Content Include="js\DatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="js\DatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="js\DatePicker\skin\whyGreen\img.gif" />
+    <Content Include="js\DatePicker\WdatePicker.js" />
+    <Content Include="js\jquery-1.8.3.js" />
+    <Content Include="js\placeholder.js" />
+    <Content Include="Login.aspx" />
+    <Content Include="picture.html" />
+    <Content Include="Properties\PublishProfiles\CarQueryWeb.pubxml.user" />
+    <Content Include="report\TDieselOilResult.html" />
+    <Content Include="report\TDoubleidle.html" />
+    <Content Include="report\TFreeacceSpeed.html" />
+    <Content Include="report\TGasResult.html" />
+    <Content Include="report\VideoPrintScreen\1.txt" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AjaxHandler\AjaxService.ashx.cs">
+      <DependentUpon>AjaxService.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="AjaxHandler\LoginHandler.ashx.cs">
+      <DependentUpon>LoginHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="AjaxHandler\NewCarHandler.ashx.cs">
+      <DependentUpon>NewCarHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="AjaxHandler\OilHandler.ashx.cs">
+      <DependentUpon>OilHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="CarCheckVideo.aspx.cs">
+      <DependentUpon>CarCheckVideo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CarCheckVideo.aspx.designer.cs">
+      <DependentUpon>CarCheckVideo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CarWarnList.aspx.cs">
+      <DependentUpon>CarWarnList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CarWarnList.aspx.designer.cs">
+      <DependentUpon>CarWarnList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ToJson.cs" />
+    <Compile Include="DB\SQLHelper.cs" />
+    <Compile Include="MODEL\LoginLog.cs" />
+    <Compile Include="MODEL\NC_JDCCLXXB.cs" />
+    <Compile Include="MODEL\NC_JDCCXXXB.cs" />
+    <Compile Include="Common\XMLHelper.cs" />
+    <Compile Include="MODEL\BJB.cs" />
+    <Compile Include="MODEL\HJB.cs" />
+    <Compile Include="MODEL\JYQB.cs" />
+    <Compile Include="MODEL\ReportCheckResult.cs" />
+    <Compile Include="MODEL\TDieselOilResultVO.cs" />
+    <Compile Include="MODEL\TFACECHECK.cs" />
+    <Compile Include="MODEL\TGasResult.cs" />
+    <Compile Include="Oil.aspx.cs">
+      <DependentUpon>Oil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Oil.aspx.designer.cs">
+      <DependentUpon>Oil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CarQueryList.aspx.cs">
+      <DependentUpon>CarQueryList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CarQueryList.aspx.designer.cs">
+      <DependentUpon>CarQueryList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MODEL\CheckResult.cs" />
+    <Compile Include="Common\CommonUtil.cs" />
+    <Compile Include="Common\Constant.cs" />
+    <Compile Include="Common\ConvertHelper.cs" />
+    <Compile Include="Common\GenerateLog.cs" />
+    <Compile Include="Common\MessageBox.cs" />
+    <Compile Include="Common\StringUtil.cs" />
+    <Compile Include="DB\OracleHelper.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Common\JsonHelper.cs" />
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="report\QRCode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Image\TDCode\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3029</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3029/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
