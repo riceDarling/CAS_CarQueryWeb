@@ -173,10 +173,50 @@
 					数据管理
 				</div>
 				<div class="listbtnz tjwqActive"><b></b>
-					<div>数据管理</div>
+					<div framehref>数据字典</div>
+				</div>
+				<div class="listbtnz"><b></b>
+					<div framehref>限值管理</div>
+				</div>
+				<div class="listbtnz"><b></b>
+					<div framehref>车辆维修信息</div>
+				</div>
+				<div class="listbtnz"><b></b>
+					<div framehref>限行信息管理</div>
+				</div>
+				<div class="listbtnz"><b></b>
+					<div framehref>车型信息管理</div>
+				</div>
+				<div class="listbtnz"><b></b>
+					<div framehref>设备检定管理</div>
+				</div>
+				<div class="listbtnz"><b></b>
+					<div framehref>达标车型管理</div>
+				</div>
+				<div class="listbtnz"><b></b>
+					<div framehref>设备维修管理</div>
+				</div>
+				<div class="listbtnz"><b></b>
+					<div framehref>系统配置管理</div>
+				</div>
+				<div class="listbtnz"><b></b>
+					<div framehref>视频通道配置</div>
+				</div>
+				<div class="listbtnz"><b></b>
+					<div framehref>1429088784213</div>
+				</div>
+				<div class="listbtnz"><b></b>
+					<div framehref>视频录像机配置</div>
 				</div>
 			</div>
-			<div style="width:100%;height:42px;background:#f4f4f4;border-bottom:1px solid #d0d0d0;">
+			<div id="tjwqMainframe">
+				<div id="tjwqMainframe_bodybox">
+					<div id="tjwqMainframe_body">
+						<iframe name="mainFrame" id="mainFrame" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" src="./shujuzidainguanli.html"></iframe>
+					</div>
+				</div>
+			</div>
+			<!--<div style="width:100%;height:42px;background:#f4f4f4;border-bottom:1px solid #d0d0d0;">
 
 				<div style="float:left;margin-left:20px;margin-top:7px;">
 					<div style="float:left;height:27px;line-height:27px;">数据类型：</div>
@@ -193,85 +233,13 @@
 				<div style="width:100%;height:100%;">
 					<table class="page-table"></table>
 				</div>
-			</div>
+			</div>-->
 		</div>
 
 		<script src="js/jquery-2.2.1.min.js"></script>
 		<script src="js/jquery.easyui.min.js"></script>
 		<script type="text/javascript" src="js/column.js"></script>
-		<script>
-			$('.page-table').datagrid({
-				columns: [
-					[{
-							field: '',
-							title: '',
-							checkbox: true
-						},
-						{
-							field: 'CDATATYPE',
-							title: '数据类型',
-							width: 100
-						},
-						{
-							field: 'NBASEDATAID',
-							title: '数据类型编码',
-							width: 100
-						},
-						{
-							field: 'CDATANAME',
-							title: '数据类型名称',
-							width: 100
-						}
-					]
-				],
-				fitColumns: true,
-				striped: true,
-				pagination: true,
-				rownumbers: true,
-				height: 635,
-				selectOnCheck: true,
-				resizable: true,
-				loadMsg: '...加载中',
-				pageSize: 50,
-				pageList: [20, 50, 100, 150],
-				singleSelect: true
-
-			});
-
-			function tablerefresh(_pagenumber, _pagesize) {
-				$.ajax({
-					url: "../../AjaxHandler/AjaxService.ashx",
-					data: {
-						method: 'GetDataBase',
-						pagenumber: _pagenumber,
-						pagesize: _pagesize,
-						CDATATYPE: $('._CDATATYPE').val(),
-						NBASEDATAID: $('._NBASEDATAID').val()
-					},
-					async: false,
-					dataType: "json",
-					type: "post",
-					success: function(json) {
-						$('.page-table').datagrid('loadData', json);
-					},
-					error: function(xhr) {
-
-					}
-				});
-			}
-
-			tablerefresh(1, 50);
-
-			$('.page-search').click(function() {
-				tablerefresh(1, 50);
-			});
-
-			$('.page-table').datagrid('getPager').pagination({
-				onSelectPage: function(pageNumber, pageSize) {
-					tablerefresh(pageNumber, pageSize);
-				}
-			});
-		</script>
+		
 		<!--<script>
         $.ajax({
             url: 'xml/basedata.xml',

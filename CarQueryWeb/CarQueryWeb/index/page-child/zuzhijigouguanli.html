@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天津市机动车排污检控中心监控平台</title>
+
+		<link href="css/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="css/easyui.css" rel="stylesheet" type="text/css">
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				background: #f4f4f4;
+			}
+			
+			* {
+				font-family: "微软雅黑";
+				font-size: 13px;
+				letter-spacing: 1px;
+			}
+			
+			.datagrid-cell {
+				overflow: hidden !important;
+				text-overflow: ellipsis !important;
+				white-space: nowrap !important;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="pagewrap" style="width:100%;height:100%;">
+			<!--<div style="width:100%;height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;">
+				组织机构管理
+			</div>-->
+			<div style="width:15%;height:100%;float:left;border-right:1px solid #d0d0d0;">
+				<div style="height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;width:100%;">
+					组织机构树
+				</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:15px;"><i class="icon-file"></i>&nbsp;和平区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;河东区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;河西区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;红桥区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;南开区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;河北区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;河西区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;东丽区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;西青区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;北辰区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;津南区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;静海区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;宁河区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;宝坻区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;蓟县区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;武清区环保局</div>
+				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;滨海区环保局</div>
+			</div>
+
+			<div style="width:100%;height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;">
+			</div>
+			<div style="width:100%;height:100%;">
+				<table class="page-table"></table>
+			</div>
+		</div>
+
+		<script src="js/jquery-2.2.1.min.js"></script>
+		<script src="js/jquery.easyui.min.js"></script>
+		<script>
+			$.ajax({
+				url: 'xml/user.xml',
+				type: 'GET',
+				dataType: 'xml',
+				timeout: 10000, //设定超时
+				cache: false, //禁用缓存
+				error: function(xml) {
+
+				},
+				success: function(xml) {
+					var arr = new Array();
+
+					$(xml).find("user").each(function(i) {
+						var self = $(this);
+
+						arr.push({
+							name: self.attr('name'),
+							username: self.attr('username'),
+							email: self.attr('email'),
+							phone: self.attr('phone'),
+							telphone: self.attr('telphone'),
+							fax: self.attr('fax'),
+							desc: '管理员'
+
+						});
+
+					});
+
+					$('.page-table').datagrid({
+						columns: [
+							[{
+									field: '',
+									title: '',
+									checkbox: true
+								},
+								{
+									field: 'name',
+									title: '账号',
+									width: 100
+								},
+								{
+									field: 'username',
+									title: '姓名',
+									width: 100
+								},
+								{
+									field: 'email',
+									title: '邮件地址',
+									width: 100
+								},
+								{
+									field: 'phone',
+									title: '移动电话',
+									width: 100
+								},
+								{
+									field: 'telphone',
+									title: '办公电话',
+									width: 100
+								},
+								{
+									field: 'fax',
+									title: '传真',
+									width: 100
+								},
+								{
+									field: 'desc',
+									title: '描述信息',
+									width: 100
+								}
+
+							]
+						],
+						fitColumns: true,
+						striped: true,
+						data: arr,
+						pagination: true,
+						rownumbers: true,
+						height: 635,
+						selectOnCheck: true,
+						pageSize: 20,
+						pageList: [20, 50, 100, 150],
+						singleSelect: true,
+
+					});
+
+				}
+			});
+		</script>
+	</body>
+
+</html>

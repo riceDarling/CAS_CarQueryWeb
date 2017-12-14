@@ -167,28 +167,35 @@
 					系统管理及日志管理
 				</div>
 				<div class="listbtnz tjwqActive"><b></b>
-					<div>组织机构管理</div>
+					<div framehref>组织机构管理</div>
 				</div>
 				<div class="listbtnz"><b></b>
-					<div>用户管理</div>
+					<div framehref>用户管理</div>
 				</div>
 				<div class="listbtnz"><b></b>
-					<div>权限管理</div>
+					<div framehref>权限管理</div>
 				</div>
 				<div class="listbtnz"><b></b>
-					<div>检测站人员审核</div>
+					<div framehref>检测站人员审核</div>
 				</div>
 				<div class="listbtnz"><b></b>
 					<div>业务角色管理</div>
+				</div framehref>
+				<div class="listbtnz"><b></b>
+					<div framehref>登陆日志</div>
 				</div>
 				<div class="listbtnz"><b></b>
-					<div>登陆日志</div>
+					<div framehref>操作日志</div>
 				</div>
 				<div class="listbtnz"><b></b>
-					<div>操作日志</div>
+					<div framehref>日志状态设置</div>
 				</div>
-				<div class="listbtnz"><b></b>
-					<div>日志状态设置</div>
+			</div>
+			<div id="tjwqMainframe">
+				<div id="tjwqMainframe_bodybox">
+					<div id="tjwqMainframe_body">
+						<iframe name="mainFrame" id="mainFrame" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" src="./zuzhijigouguanli.html"></iframe>
+					</div>
 				</div>
 			</div>
 			<!--<div id="tjwqBtn" style="width:15%;height:100%;float:left;border-right:1px solid #d0d0d0;">
@@ -202,7 +209,7 @@
 				<div class="listbtnz" style="width:100%;height:42px;line-height:42px;background:#eee;border-bottom:1px solid #d0d0d0;text-indent:25px;">操作日志</div>
 				<div class="listbtnz" style="width:100%;height:42px;line-height:42px;background:#eee;border-bottom:1px solid #d0d0d0;text-indent:25px;">日志状态设置</div>
 			</div>-->
-			<div style="width:15%;height:100%;float:left;border-right:1px solid #d0d0d0;">
+			<!--<div style="width:15%;height:100%;float:left;border-right:1px solid #d0d0d0;">
 				<div style="height:35px;background:linear-gradient(to bottom , #eee , #ccc);line-height:35px;text-indent:15px;border-bottom:1px solid #d0d0d0;font-weight:bold;width:100%;"></div>
 				<div style="width:100%;height:27px;line-height:27px;text-indent:15px;"><i class="icon-file"></i>&nbsp;和平区环保局</div>
 				<div style="width:100%;height:27px;line-height:27px;text-indent:25px;"><i class="icon-plus"></i>&nbsp;河东区环保局</div>
@@ -230,102 +237,13 @@
 				<div style="width:100%;height:100%;">
 					<table class="page-table"></table>
 				</div>
-			</div>
+			</div>--> 
 		</div>
 
 		<script src="js/jquery-2.2.1.min.js"></script>
 		<script src="js/jquery.easyui.min.js"></script>
 		<script type="text/javascript" src="js/column.js"></script>
-		<script>
-			$.ajax({
-				url: 'xml/user.xml',
-				type: 'GET',
-				dataType: 'xml',
-				timeout: 10000, //设定超时
-				cache: false, //禁用缓存
-				error: function(xml) {
-
-				},
-				success: function(xml) {
-					var arr = new Array();
-
-					$(xml).find("user").each(function(i) {
-						var self = $(this);
-
-						arr.push({
-							name: self.attr('name'),
-							username: self.attr('username'),
-							email: self.attr('email'),
-							phone: self.attr('phone'),
-							telphone: self.attr('telphone'),
-							fax: self.attr('fax'),
-							desc: '管理员'
-
-						});
-
-					});
-
-					$('.page-table').datagrid({
-						columns: [
-							[{
-									field: '',
-									title: '',
-									checkbox: true
-								},
-								{
-									field: 'name',
-									title: '账号',
-									width: 100
-								},
-								{
-									field: 'username',
-									title: '姓名',
-									width: 100
-								},
-								{
-									field: 'email',
-									title: '邮件地址',
-									width: 100
-								},
-								{
-									field: 'phone',
-									title: '移动电话',
-									width: 100
-								},
-								{
-									field: 'telphone',
-									title: '办公电话',
-									width: 100
-								},
-								{
-									field: 'fax',
-									title: '传真',
-									width: 100
-								},
-								{
-									field: 'desc',
-									title: '描述信息',
-									width: 100
-								}
-
-							]
-						],
-						fitColumns: true,
-						striped: true,
-						data: arr,
-						pagination: true,
-						rownumbers: true,
-						height: 635,
-						selectOnCheck: true,
-						pageSize: 20,
-						pageList: [20, 50, 100, 150],
-						singleSelect: true,
-
-					});
-
-				}
-			});
-		</script>
+		
 	</body>
 
 </html>

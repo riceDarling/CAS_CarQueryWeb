@@ -79,6 +79,25 @@ var linkjump = {
 	"路检路查":"./lujianlucha.html",
 	"门站式执法":"./menzhanshizhifa.html",
 	"移动式执法":"./yidongshizhifa.html",
+	'组织机构管理':"./zuzhijigouguanli.html",
+	'用户管理':'yonghuguanli.html',
+	'权限管理':'quanxianguanli.html',
+	'检测站人员审核':'jiancezhanrenyuanshenhe.html',
+	'业务角色管理':'yewujueseguanli.html',
+	'登录日志':'denglurizhi.html',
+	'操作日志':'caozuorizhi.html',
+	'日志状态设置':'rizhizhuangtaishezhi.html',
+	'数据字典':'shujuzidainguanli.html',
+	'限值管理':'xianzhiguanli.html',
+	'车辆维修信息':'cheliangweixiuxinxi.html',
+	'限行信息管理':'xianxingxinxiguanli.html',
+	'车型信息管理':'hexingxinxiguanli.html',
+	'设备检定管理':'shebeijiandingguanli.html',
+	'达标车型管理':'dabiaochexingguanli.html',
+	'设备维修管理':'shebeiweixiuguanli.html',
+	'系统配置管理':'xitongpeizhiguanli.html',
+	'视频通道配置':'shipintongdaopeizhi.html',
+	'视频录像机配置':'shipinluxiangjipeizhi.html'
 }
 $(document).on("click", "[frameHref]", function() {
 	var _thishref_ = $(this).attr("frameHref");
@@ -144,7 +163,7 @@ window.onload = function() {
 };
 
 /*--------------------------------*/
-$('#mapbox_xk a').click(function() {
+$('.chartmapbox_xk ul a').click(function() {
 	if(!$(this).is(".on_xk")) {
 		$(this).addClass("on_xk").parent("li").siblings("li").children("a").removeClass("on_xk");
 
